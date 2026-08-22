@@ -6,7 +6,7 @@ import { cn } from "@/shared/lib/utils";
 export interface WorkbenchNodeData {
   specId: string;
   params: Record<string, string | number | boolean>;
-  status?: "idle" | "running" | "success" | "error";
+  status?: "idle" | "running" | "success" | "error" | "blocked";
   [key: string]: unknown;
 }
 
@@ -17,6 +17,7 @@ const STATUS_COLOR: Record<Status, string> = {
   running: "bg-amber-400 animate-pulse",
   success: "bg-emerald-400",
   error: "bg-destructive",
+  blocked: "bg-muted-foreground/40",
 };
 
 const STATUS_LABEL: Record<Status, string> = {
@@ -24,6 +25,7 @@ const STATUS_LABEL: Record<Status, string> = {
   running: "Sedang berjalan",
   success: "Selesai",
   error: "Gagal",
+  blocked: "Diblokir",
 };
 
 /** Vertical rhythm of the port rows, shared by the labels and the handles. */
