@@ -1,3 +1,5 @@
+export type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue }
+
 export type ArtifactKind = "raster" | "vector" | "table"
 
 export interface ArtifactRef {
@@ -29,7 +31,7 @@ export interface NodeRunResult {
   nodeId: string
   status: "success" | "error"
   implemented: boolean
-  summary?: Record<string, unknown>
+  summary?: Record<string, JsonValue>
   error?: string
 }
 

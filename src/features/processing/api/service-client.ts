@@ -1,4 +1,4 @@
-import type { ArtifactKind, ArtifactRef } from "./types"
+import type { ArtifactKind, ArtifactRef, JsonValue } from "./types"
 
 export const SERVICE_URL = process.env.PROCESSING_SERVICE_URL ?? "http://127.0.0.1:8787"
 
@@ -15,7 +15,7 @@ export async function uploadArtifact(file: File, kind: ArtifactKind): Promise<Ar
 
 export interface NodeExecuteResult {
   implemented: boolean
-  summary: Record<string, unknown>
+  summary: Record<string, JsonValue>
   outputs: Record<string, string>
 }
 
