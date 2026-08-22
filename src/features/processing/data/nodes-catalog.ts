@@ -10,7 +10,7 @@ export interface Port {
   type: PortType;
 }
 
-export type ParamType = "text" | "number" | "select" | "checkbox";
+export type ParamType = "text" | "number" | "select" | "checkbox" | "file";
 
 export interface Param {
   key: string;
@@ -19,6 +19,7 @@ export interface Param {
   default?: string | number | boolean;
   options?: string[];
   help?: string;
+  accept?: string;
 }
 
 export interface NodeSpec {
@@ -81,7 +82,13 @@ export const NODES: NodeSpec[] = [
     inputs: [],
     outputs: [p("out", "Raster", "raster")],
     params: [
-      { key: "file", label: "File raster", type: "text", default: "S2_karimunjawa_20220710.tif" },
+      {
+        key: "file",
+        label: "File raster",
+        type: "file",
+        accept: ".tif,.tiff",
+        default: "S2_karimunjawa_20220710.tif",
+      },
       { key: "crs", label: "CRS", type: "text", default: "EPSG:32749" },
       { key: "bands", label: "Nama band (comma)", type: "text", default: "B2,B3,B4,B8" },
     ],
@@ -94,8 +101,31 @@ export const NODES: NodeSpec[] = [
     inputs: [],
     outputs: [p("out", "Vector", "vector")],
     params: [
-      { key: "file", label: "File shapefile", type: "text", default: "sampel_lapangan.shp" },
+      {
+        key: "file",
+        label: "File shapefile",
+        type: "file",
+        accept: ".shp,.geojson,.json",
+        default: "sampel_lapangan.shp",
+      },
       { key: "crs", label: "CRS", type: "text", default: "EPSG:32749" },
+    ],
+  },
+  {
+    id: "table-input",
+    name: "Muat Tabel",
+    category: "io",
+    description: "Membaca berkas tabel (CSV/XLSX) untuk digunakan sebagai data lapangan.",
+    inputs: [],
+    outputs: [p("table", "Tabel", "table")],
+    params: [
+      {
+        key: "file",
+        label: "File",
+        type: "file",
+        accept: ".csv,.xlsx",
+        default: "data_lapangan.csv",
+      },
     ],
   },
   {
