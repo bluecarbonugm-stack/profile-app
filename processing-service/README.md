@@ -7,7 +7,7 @@ for the design.
 ## Setup
 
     cd processing-service
-    uv sync --extra dev
+    uv sync
 
 ## Run (dev)
 
