@@ -1,6 +1,8 @@
-import { cn } from "@/lib/utils";
+import { useEffect, useRef } from "react";
 import { Terminal, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+import { Button } from "@/shared/components/ui/button";
+import { cn } from "@/shared/lib/utils";
 
 export interface LogEntry {
   time: string;
@@ -22,33 +24,54 @@ const LEVEL_COLOR: Record<LogEntry["level"], string> = {
 };
 
 export function ConsolePanel({ logs, onClear }: Props) {
+  const endRef = useRef<HTMLDivElement>(null);
+
+  // A run appends a dozen lines at once; without this the newest output sits
+  // below the fold and the panel looks frozen.
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "end" });
+  }, [logs.length]);
+
   return (
-    <div className="h-48 flex flex-col border-t border-border bg-[oklch(0.14_0.03_245)] text-slate-100 font-mono">
-      <div className="flex items-center gap-2 px-3 py-1.5 border-b border-border">
-        <Terminal className="h-3.5 w-3.5 text-teal" />
-        <span className="text-[11px] uppercase tracking-wider text-muted-foreground">Console / Log</span>
-        <span className="ml-2 text-[10px] text-muted-foreground">{logs.length} entri</span>
-        <Button variant="ghost" size="sm" onClick={onClear} className="ml-auto h-6 text-[11px] gap-1">
+    <section className="flex h-48 shrink-0 flex-col border-t border-border bg-[oklch(0.13_0.03_245)] text-slate-100">
+      <header className="flex h-9 shrink-0 items-center gap-2.5 border-b border-border px-3">
+        <Terminal aria-hidden="true" className="h-3.5 w-3.5 text-teal" />
+        <h2 className="eyebrow text-muted-foreground">Console</h2>
+        <span className="eyebrow tabular text-muted-foreground/60">
+          {String(logs.length).padStart(3, "0")}
+        </span>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onClear}
+          disabled={logs.length === 0}
+          className="ml-auto h-6 gap-1.5 px-2 text-xs text-muted-foreground"
+        >
           <X className="h-3 w-3" /> Clear
         </Button>
-      </div>
-      <div className="flex-1 overflow-y-auto text-[11px] leading-relaxed p-2 space-y-0.5">
-        {logs.length === 0 && (
-          <div className="text-muted-foreground italic px-1">
-            Belum ada log. Jalankan node atau muat template untuk mulai.
-          </div>
+      </header>
+
+      <div className="flex-1 overflow-y-auto p-3 font-mono text-[11px] leading-relaxed">
+        {logs.length === 0 ? (
+          <p className="text-muted-foreground/70">
+            Belum ada log. Muat template atau jalankan pipeline untuk mulai.
+          </p>
+        ) : (
+          <ol className="space-y-0.5">
+            {logs.map((log, i) => (
+              <li key={i} className="flex gap-2.5">
+                <span className="tabular shrink-0 text-muted-foreground/60">{log.time}</span>
+                <span className={cn("w-14 shrink-0 uppercase", LEVEL_COLOR[log.level])}>
+                  {log.level}
+                </span>
+                {log.node && <span className="shrink-0 text-teal">[{log.node}]</span>}
+                <span className="break-words whitespace-pre-wrap">{log.message}</span>
+              </li>
+            ))}
+          </ol>
         )}
-        {logs.map((log, i) => (
-          <div key={i} className="flex gap-2">
-            <span className="text-muted-foreground shrink-0">{log.time}</span>
-            <span className={cn("uppercase text-[10px] shrink-0 w-14", LEVEL_COLOR[log.level])}>
-              {log.level}
-            </span>
-            {log.node && <span className="text-teal shrink-0">[{log.node}]</span>}
-            <span className="whitespace-pre-wrap break-words">{log.message}</span>
-          </div>
-        ))}
+        <div ref={endRef} />
       </div>
-    </div>
+    </section>
   );
 }

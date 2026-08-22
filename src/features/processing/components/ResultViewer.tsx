@@ -1,7 +1,19 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, LineChart, Line, Legend } from "recharts";
-import { NODES_BY_ID } from "@/lib/nodes-catalog";
+import { useEffect } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  Legend,
+} from "recharts";
+import { NODES_BY_ID } from "@/features/processing/data/nodes-catalog";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/components/ui/button";
 
 interface Props {
   nodeId: string | null;
@@ -36,6 +48,17 @@ const confusion = [
 ];
 
 export function ResultViewer({ nodeId, specId, onClose }: Props) {
+  // Escape must close the dialog — it is the first thing anyone reaches for,
+  // and without it the only way out is the small × in the corner.
+  useEffect(() => {
+    if (!nodeId) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [nodeId, onClose]);
+
   if (!nodeId || !specId) return null;
   const spec = NODES_BY_ID[specId];
   if (!spec) return null;
@@ -46,20 +69,31 @@ export function ResultViewer({ nodeId, specId, onClose }: Props) {
   const hasVector = spec.outputs.some((o) => o.type === "vector");
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-6">
-      <div className="w-full max-w-4xl max-h-[85vh] overflow-hidden rounded-lg border border-border bg-card shadow-2xl flex flex-col">
-        <div className="flex items-center justify-between border-b border-border px-4 py-3">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 p-6 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Hasil ${spec.name}`}
+        onClick={(e) => e.stopPropagation()}
+        className="flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl"
+      >
+        <header className="flex shrink-0 items-start justify-between gap-4 border-b border-border px-5 py-4">
           <div>
-            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Result preview</div>
-            <h3 className="text-sm font-semibold">{spec.name}</h3>
+            <p className="eyebrow text-accent">Result preview</p>
+            <h2 className="mt-1.5 text-sm font-semibold">{spec.name}</h2>
           </div>
-          <Button variant="ghost" size="sm" onClick={onClose}><X className="h-4 w-4" /></Button>
-        </div>
+          <Button variant="ghost" size="icon" onClick={onClose} aria-label="Tutup">
+            <X className="h-4 w-4" />
+          </Button>
+        </header>
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 space-y-6 overflow-y-auto p-5">
           {spec.id === "rf-train" && (
             <>
-              <Section title="Variable Importance (mock)">
+              <Panel title="Variable Importance">
                 <div className="h-56">
                   <ResponsiveContainer>
                     <BarChart data={varImportance}>
@@ -71,10 +105,10 @@ export function ResultViewer({ nodeId, specId, onClose }: Props) {
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
-              </Section>
-              <Section title="OOB Report">
+              </Panel>
+              <Panel title="OOB Report">
                 <pre className="text-[11px] leading-relaxed bg-muted/40 p-3 rounded border border-border">
-{`nTree = 300
+                  {`nTree = 300
 Variable selection = sqrt
 Impurity = Gini
 OOB accuracy = 0.882
@@ -82,12 +116,12 @@ Kappa = 0.845
 Kelas terbaik = Pasir (UA 0.978)
 Kelas terlemah = Lamun (UA 0.844)`}
                 </pre>
-              </Section>
+              </Panel>
             </>
           )}
 
           {spec.id === "confusion-matrix" && (
-            <Section title="Confusion Matrix (mock)">
+            <Panel title="Confusion Matrix">
               <div className="overflow-x-auto">
                 <table className="text-xs border-collapse w-full">
                   <tbody>
@@ -103,14 +137,14 @@ Kelas terlemah = Lamun (UA 0.844)`}
                   </tbody>
                 </table>
               </div>
-              <p className="text-[11px] text-muted-foreground mt-2">
-                Overall Accuracy 90.4%, Kappa 0.87 — hasil disimulasikan untuk demo UI.
+              <p className="tabular mt-3 text-[11px] text-muted-foreground">
+                Overall Accuracy 90.4% · Kappa 0.87
               </p>
-            </Section>
+            </Panel>
           )}
 
           {spec.id === "timeseries-chart" && (
-            <Section title="Tren Luasan Kelas (mock, ha)">
+            <Panel title="Tren Luasan Kelas (ha)">
               <div className="h-64">
                 <ResponsiveContainer>
                   <LineChart data={timeseries}>
@@ -126,22 +160,22 @@ Kelas terlemah = Lamun (UA 0.844)`}
                   </LineChart>
                 </ResponsiveContainer>
               </div>
-            </Section>
+            </Panel>
           )}
 
           {(hasRaster || hasVector) && spec.id !== "rf-train" && spec.id !== "confusion-matrix" && (
-            <Section title="Map Preview (mock)">
+            <Panel title="Map Preview">
               <div className="relative h-64 rounded border border-border overflow-hidden bg-ocean-gradient">
                 <div className="absolute inset-0 bg-grid opacity-40" />
                 <div className="absolute bottom-3 left-3 text-[11px] bg-black/50 text-white px-2 py-1 rounded">
                   Preview raster / vektor — {spec.name}
                 </div>
               </div>
-            </Section>
+            </Panel>
           )}
 
           {hasChart && spec.id !== "rf-train" && spec.id !== "timeseries-chart" && (
-            <Section title="Chart (mock)">
+            <Panel title="Chart">
               <div className="h-56">
                 <ResponsiveContainer>
                   <BarChart data={varImportance}>
@@ -153,11 +187,11 @@ Kelas terlemah = Lamun (UA 0.844)`}
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-            </Section>
+            </Panel>
           )}
 
           {hasTable && spec.id !== "confusion-matrix" && (
-            <Section title="Tabel atribut (mock)">
+            <Panel title="Tabel Atribut">
               <table className="text-xs w-full border-collapse">
                 <thead className="bg-muted/40">
                   <tr>
@@ -171,30 +205,38 @@ Kelas terlemah = Lamun (UA 0.844)`}
                     <tr key={c}>
                       <td className="border border-border px-2 py-1">{i + 1}</td>
                       <td className="border border-border px-2 py-1">{c}</td>
-                      <td className="border border-border px-2 py-1">{(150 + i * 37).toFixed(2)}</td>
+                      <td className="border border-border px-2 py-1">
+                        {(150 + i * 37).toFixed(2)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </Section>
+            </Panel>
           )}
 
           {spec.outputs.length === 0 && (
-            <p className="text-xs text-muted-foreground italic">
+            <p className="text-xs text-muted-foreground">
               Node ini tidak menghasilkan output preview.
             </p>
           )}
         </div>
+
+        <footer className="shrink-0 border-t border-border px-5 py-3">
+          <p className="eyebrow text-muted-foreground/70">
+            Hasil disimulasikan untuk demo antarmuka
+          </p>
+        </footer>
       </div>
     </div>
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Panel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div>
-      <div className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">{title}</div>
+    <section>
+      <h3 className="eyebrow mb-3 text-muted-foreground">{title}</h3>
       {children}
-    </div>
+    </section>
   );
 }

@@ -1,6 +1,7 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import { NODES_BY_ID, PORT_COLORS, type PortType } from "@/lib/nodes-catalog";
-import { cn } from "@/lib/utils";
+
+import { NODES_BY_ID, PORT_COLORS, type PortType } from "@/features/processing/data/nodes-catalog";
+import { cn } from "@/shared/lib/utils";
 
 export interface WorkbenchNodeData {
   specId: string;
@@ -9,17 +10,31 @@ export interface WorkbenchNodeData {
   [key: string]: unknown;
 }
 
-const STATUS_COLORS: Record<NonNullable<WorkbenchNodeData["status"]>, string> = {
+type Status = NonNullable<WorkbenchNodeData["status"]>;
+
+const STATUS_COLOR: Record<Status, string> = {
   idle: "bg-muted-foreground/40",
   running: "bg-amber-400 animate-pulse",
   success: "bg-emerald-400",
   error: "bg-destructive",
 };
 
+const STATUS_LABEL: Record<Status, string> = {
+  idle: "Belum dijalankan",
+  running: "Sedang berjalan",
+  success: "Selesai",
+  error: "Gagal",
+};
+
+/** Vertical rhythm of the port rows, shared by the labels and the handles. */
+const HEADER_OFFSET = 62;
+const PORT_SPACING = 22;
+
 function PortDot({ type }: { type: PortType }) {
   return (
     <span
-      className="inline-block h-2.5 w-2.5 rounded-full ring-1 ring-black/40"
+      aria-hidden="true"
+      className="inline-block h-2 w-2 shrink-0 rounded-full ring-1 ring-black/40"
       style={{ background: PORT_COLORS[type] }}
     />
   );
@@ -29,66 +44,68 @@ export function WorkbenchNode({ data, selected }: NodeProps) {
   const d = data as WorkbenchNodeData;
   const spec = NODES_BY_ID[d.specId];
   if (!spec) return null;
-  const status = d.status ?? "idle";
 
-  const inputSlots = Math.max(spec.inputs.length, 1);
-  const outputSlots = Math.max(spec.outputs.length, 1);
-  const height = 20 + Math.max(inputSlots, outputSlots) * 22;
+  const status = d.status ?? "idle";
+  const rows = Math.max(spec.inputs.length, spec.outputs.length, 1);
 
   return (
     <div
       className={cn(
-        "rounded-md border bg-card/95 backdrop-blur text-card-foreground shadow-lg min-w-[210px]",
-        "border-border transition-colors",
-        selected && "border-accent ring-2 ring-accent/40",
+        "min-w-[216px] rounded-md border bg-card/95 text-card-foreground shadow-lg backdrop-blur-sm",
+        "transition-colors",
+        selected ? "border-accent ring-2 ring-accent/35" : "border-border",
       )}
-      style={{ minHeight: 60 + height }}
+      style={{ minHeight: HEADER_OFFSET + rows * PORT_SPACING + 12 }}
     >
       <div className="flex items-center gap-2 border-b border-border px-3 py-2">
-        <span className={cn("h-2 w-2 rounded-full", STATUS_COLORS[status])} />
-        <div className="text-[13px] font-semibold leading-tight">{spec.name}</div>
+        <span
+          title={STATUS_LABEL[status]}
+          className={cn("h-2 w-2 shrink-0 rounded-full", STATUS_COLOR[status])}
+        />
+        <span className="truncate text-[13px] font-semibold leading-tight">{spec.name}</span>
       </div>
-      <div className="px-3 py-2 text-[11px] text-muted-foreground leading-snug line-clamp-2">
+
+      <p className="line-clamp-2 px-3 py-2 text-[11px] leading-snug text-muted-foreground">
         {spec.description}
-      </div>
+      </p>
 
-      {/* Input handles */}
-      {spec.inputs.map((port, i) => {
-        const top = 60 + i * 22;
-        return (
-          <div key={port.id} className="absolute left-0 text-[10px]" style={{ top }}>
-            <Handle
-              id={port.id}
-              type="target"
-              position={Position.Left}
-              style={{ background: PORT_COLORS[port.type], top: 6 }}
-            />
-            <span className="ml-4 flex items-center gap-1 text-muted-foreground">
-              <PortDot type={port.type} />
-              {port.label}
-            </span>
-          </div>
-        );
-      })}
+      {spec.inputs.map((port, i) => (
+        <div
+          key={port.id}
+          className="absolute left-0 flex items-center gap-1.5 text-[10px] text-muted-foreground"
+          style={{ top: HEADER_OFFSET + i * PORT_SPACING }}
+        >
+          <Handle
+            id={port.id}
+            type="target"
+            position={Position.Left}
+            style={{ background: PORT_COLORS[port.type], top: 6 }}
+          />
+          <span className="ml-4 flex items-center gap-1.5">
+            <PortDot type={port.type} />
+            {port.label}
+          </span>
+        </div>
+      ))}
 
-      {/* Output handles */}
-      {spec.outputs.map((port, i) => {
-        const top = 60 + i * 22;
-        return (
-          <div key={port.id} className="absolute right-0 text-[10px]" style={{ top }}>
-            <span className="mr-4 flex items-center gap-1 text-muted-foreground justify-end">
-              {port.label}
-              <PortDot type={port.type} />
-            </span>
-            <Handle
-              id={port.id}
-              type="source"
-              position={Position.Right}
-              style={{ background: PORT_COLORS[port.type], top: 6 }}
-            />
-          </div>
-        );
-      })}
+      {spec.outputs.map((port, i) => (
+        <div
+          key={port.id}
+          className="absolute right-0 flex items-center gap-1.5 text-[10px] text-muted-foreground"
+          style={{ top: HEADER_OFFSET + i * PORT_SPACING }}
+        >
+          <span className="mr-4 flex items-center gap-1.5">
+            {port.label}
+            <PortDot type={port.type} />
+          </span>
+          <Handle
+            id={port.id}
+            type="source"
+            position={Position.Right}
+            style={{ background: PORT_COLORS[port.type], top: 6 }}
+          />
+        </div>
+      ))}
     </div>
   );
 }

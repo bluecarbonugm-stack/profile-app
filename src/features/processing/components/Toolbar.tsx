@@ -1,9 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { FilePlus2, FolderOpen, LayoutTemplate, Play, Save, Trash2 } from "lucide-react";
+
+import { Button } from "@/shared/components/ui/button";
 import {
-  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger, DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
-import { TEMPLATES } from "@/lib/pipeline-templates";
-import { FilePlus2, Save, FolderOpen, Play, Trash2, LayoutTemplate } from "lucide-react";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/shared/components/ui/dropdown-menu";
+import { TEMPLATES } from "@/features/processing/data/pipeline-templates";
 
 interface Props {
   onNew: () => void;
@@ -16,48 +22,82 @@ interface Props {
 
 export function Toolbar({ onNew, onSave, onLoad, onRunAll, onClear, onLoadTemplate }: Props) {
   return (
-    <div className="flex items-center gap-1 border-b border-border bg-card/80 px-3 py-1.5">
-      <div className="flex items-center gap-1">
-        <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-xs" onClick={onNew}>
-          <FilePlus2 className="h-3.5 w-3.5" /> New
-        </Button>
-        <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-xs" onClick={onSave}>
-          <Save className="h-3.5 w-3.5" /> Save
-        </Button>
-        <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-xs" onClick={onLoad}>
-          <FolderOpen className="h-3.5 w-3.5" /> Load
-        </Button>
-      </div>
-      <div className="h-5 w-px bg-border mx-1" />
+    <div className="flex h-12 shrink-0 items-center gap-1 border-b border-border bg-card px-3">
+      <ToolbarButton icon={FilePlus2} onClick={onNew}>
+        New
+      </ToolbarButton>
+      <ToolbarButton icon={Save} onClick={onSave}>
+        Save
+      </ToolbarButton>
+      <ToolbarButton icon={FolderOpen} onClick={onLoad}>
+        Load
+      </ToolbarButton>
+
+      <Divider />
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-xs">
-            <LayoutTemplate className="h-3.5 w-3.5" /> Load Template
+          <Button variant="ghost" size="sm" className="gap-2 text-muted-foreground">
+            <LayoutTemplate className="h-3.5 w-3.5" /> Template
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-80">
-          <DropdownMenuLabel className="text-[10px] uppercase tracking-wider">
-            Preset Workflow
+          <DropdownMenuLabel className="eyebrow text-muted-foreground">
+            Preset workflow
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {TEMPLATES.map((t) => (
-            <DropdownMenuItem key={t.id} onClick={() => onLoadTemplate(t.id)} className="flex-col items-start py-2">
-              <div className="text-sm font-medium">{t.name}</div>
-              <div className="text-[11px] text-muted-foreground">{t.description}</div>
+          {TEMPLATES.map((template) => (
+            <DropdownMenuItem
+              key={template.id}
+              onClick={() => onLoadTemplate(template.id)}
+              className="flex-col items-start gap-1 py-2.5"
+            >
+              <span className="text-sm font-medium">{template.name}</span>
+              <span className="text-xs leading-snug text-muted-foreground">
+                {template.description}
+              </span>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
-      <div className="h-5 w-px bg-border mx-1" />
-      <Button size="sm" className="h-8 gap-1.5 text-xs bg-accent text-accent-foreground hover:bg-accent/90" onClick={onRunAll}>
+
+      <Divider />
+
+      <Button
+        size="sm"
+        onClick={onRunAll}
+        className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90"
+      >
         <Play className="h-3.5 w-3.5" /> Run All
       </Button>
-      <Button variant="ghost" size="sm" className="h-8 gap-1.5 text-xs" onClick={onClear}>
-        <Trash2 className="h-3.5 w-3.5" /> Clear canvas
-      </Button>
-      <div className="ml-auto text-[10px] text-muted-foreground">
-        Workflow tersimpan sementara di browser (localStorage).
-      </div>
+      <ToolbarButton icon={Trash2} onClick={onClear}>
+        Clear
+      </ToolbarButton>
+
+      <p className="eyebrow ml-auto hidden text-muted-foreground/70 xl:block">
+        Tersimpan di browser · localStorage
+      </p>
     </div>
   );
+}
+
+function ToolbarButton({
+  icon: Icon,
+  onClick,
+  children,
+}: {
+  icon: React.ElementType;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <Button variant="ghost" size="sm" onClick={onClick} className="gap-2 text-muted-foreground">
+      <Icon className="h-3.5 w-3.5" />
+      {children}
+    </Button>
+  );
+}
+
+function Divider() {
+  return <span aria-hidden="true" className="mx-1.5 h-5 w-px bg-border" />;
 }
