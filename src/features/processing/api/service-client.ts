@@ -21,7 +21,7 @@ export interface NodeExecuteResult {
 
 export async function executeNode(
   nodeType: string,
-  params: Record<string, string | number | boolean>,
+  params: Record<string, JsonValue>,
   inputs: Record<string, string>,
   outputPorts: string[],
 ): Promise<NodeExecuteResult> {

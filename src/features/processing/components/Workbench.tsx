@@ -26,6 +26,7 @@ import { NODES_BY_ID, PORT_COLORS } from "@/features/processing/data/nodes-catal
 import { TEMPLATES } from "@/features/processing/data/pipeline-templates";
 import { runGraphFn } from "@/features/processing";
 import type { NodeRunResult, RunResult } from "@/features/processing";
+import type { JsonValue } from "@/features/processing/api/types";
 import { toast } from "sonner";
 import { MousePointerSquareDashed } from "lucide-react";
 
@@ -41,10 +42,10 @@ function nowTime() {
   return d.toTimeString().slice(0, 8);
 }
 
-function buildDefaultParams(specId: string): Record<string, string | number | boolean> {
+function buildDefaultParams(specId: string): Record<string, JsonValue> {
   const spec = NODES_BY_ID[specId];
   if (!spec) return {};
-  const out: Record<string, string | number | boolean> = {};
+  const out: Record<string, JsonValue> = {};
   for (const p of spec.params) if (p.default !== undefined) out[p.key] = p.default;
   return out;
 }
@@ -132,7 +133,7 @@ function InnerWorkbench() {
   }, []);
 
   const onParamChange = useCallback(
-    (nodeId: string, key: string, value: string | number | boolean) => {
+    (nodeId: string, key: string, value: JsonValue) => {
       setNodes((nds) =>
         nds.map((n) =>
           n.id === nodeId

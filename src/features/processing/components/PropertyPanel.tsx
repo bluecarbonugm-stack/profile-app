@@ -1,5 +1,6 @@
+import { useState } from "react";
 import type { Node } from "@xyflow/react";
-import { SlidersHorizontal } from "lucide-react";
+import { PanelRightClose, PanelRightOpen, SlidersHorizontal } from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -9,6 +10,7 @@ import {
   type Port,
 } from "@/features/processing/data/nodes-catalog";
 import { uploadArtifactFn } from "@/features/processing";
+import type { JsonValue } from "@/features/processing/api/types";
 import { Input } from "@/shared/components/ui/input";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import {
@@ -22,20 +24,44 @@ import type { WorkbenchNodeData } from "./WorkbenchNode";
 
 interface Props {
   node: Node | null;
-  onParamChange: (nodeId: string, key: string, value: string | number | boolean) => void;
+  onParamChange: (nodeId: string, key: string, value: JsonValue) => void;
 }
 
 const CATEGORY_LABEL = Object.fromEntries(CATEGORIES.map((c) => [c.id, `${c.code} · ${c.label}`]));
 
 export function PropertyPanel({ node, onParamChange }: Props) {
+  const [collapsed, setCollapsed] = useState(false);
   const data = node?.data as WorkbenchNodeData | undefined;
   const spec = data ? NODES_BY_ID[data.specId] : undefined;
 
+  if (collapsed) {
+    return (
+      <aside className="relative h-full w-0 shrink-0 bg-card">
+        <button
+          type="button"
+          onClick={() => setCollapsed(false)}
+          aria-label="Buka properties"
+          className="absolute right-2 top-3 z-20 grid h-8 w-8 place-items-center rounded-md border border-border bg-card text-muted-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          <PanelRightOpen className="h-4 w-4" />
+        </button>
+      </aside>
+    );
+  }
+
   if (!node || !data || !spec) {
     return (
-      <aside className="flex h-full w-80 shrink-0 flex-col border-l border-border bg-card">
+      <aside className="flex h-full w-[315px] shrink-0 flex-col border-l border-border bg-card">
         <header className="flex h-9 shrink-0 items-center border-b border-border px-4">
           <h2 className="eyebrow text-muted-foreground">Properties</h2>
+          <button
+            type="button"
+            onClick={() => setCollapsed(true)}
+            aria-label="Tutup properties"
+            className="ml-auto grid h-7 w-7 place-items-center rounded text-muted-foreground transition-colors hover:bg-muted"
+          >
+            <PanelRightClose className="h-3.5 w-3.5" />
+          </button>
         </header>
         <div className="grid flex-1 place-items-center p-6">
           <div className="text-center">
@@ -57,9 +83,21 @@ export function PropertyPanel({ node, onParamChange }: Props) {
       string | number | boolean;
 
   return (
-    <aside className="flex h-full w-80 shrink-0 flex-col border-l border-border bg-card">
+    <aside className="flex h-full w-[315px] shrink-0 flex-col border-l border-border bg-card">
       <header className="shrink-0 border-b border-border p-4">
-        <p className="eyebrow text-accent">{CATEGORY_LABEL[spec.category] ?? spec.category}</p>
+        <div className="flex items-start gap-2">
+          <p className="eyebrow flex-1 text-accent">
+            {CATEGORY_LABEL[spec.category] ?? spec.category}
+          </p>
+          <button
+            type="button"
+            onClick={() => setCollapsed(true)}
+            aria-label="Tutup properties"
+            className="-mr-1 -mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded text-muted-foreground transition-colors hover:bg-muted"
+          >
+            <PanelRightClose className="h-3.5 w-3.5" />
+          </button>
+        </div>
         <h2 className="mt-2 text-sm font-semibold">{spec.name}</h2>
         <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
           {spec.description}
@@ -189,7 +227,7 @@ function PortList({ title, ports }: { title: string; ports: Port[] }) {
     <div>
       <h3 className="eyebrow mb-2.5 text-muted-foreground">{title}</h3>
       {ports.length === 0 ? (
-        <p className="text-[11px] text-muted-foreground/60">—</p>
+        <p className="text-[11px] text-muted-foreground/60">Tidak ada</p>
       ) : (
         <ul className="space-y-1.5">
           {ports.map((port) => (

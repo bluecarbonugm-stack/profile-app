@@ -1,11 +1,12 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 
+import type { JsonValue } from "@/features/processing/api/types";
 import { NODES_BY_ID, PORT_COLORS, type PortType } from "@/features/processing/data/nodes-catalog";
 import { cn } from "@/shared/lib/utils";
 
 export interface WorkbenchNodeData {
   specId: string;
-  params: Record<string, string | number | boolean>;
+  params: Record<string, JsonValue>;
   status?: "idle" | "running" | "success" | "error" | "blocked";
   [key: string]: unknown;
 }
@@ -53,9 +54,9 @@ export function WorkbenchNode({ data, selected }: NodeProps) {
   return (
     <div
       className={cn(
-        "min-w-[216px] rounded-md border bg-card/95 text-card-foreground shadow-lg backdrop-blur-sm",
+        "min-w-[216px] rounded-md border border-slate-300 bg-white text-slate-900 shadow-md",
         "transition-colors",
-        selected ? "border-accent ring-2 ring-accent/35" : "border-border",
+        selected ? "border-primary ring-2 ring-primary/35" : "border-slate-300",
       )}
       style={{ minHeight: HEADER_OFFSET + rows * PORT_SPACING + 12 }}
     >

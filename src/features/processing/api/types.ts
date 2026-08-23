@@ -12,7 +12,7 @@ export interface ArtifactRef {
 export interface GraphNodeInput {
   id: string;
   specId: string;
-  params: Record<string, string | number | boolean>;
+  params: Record<string, JsonValue>;
 }
 
 export interface GraphEdgeInput {

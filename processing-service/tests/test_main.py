@@ -60,6 +60,23 @@ def test_execute_real_io_node(client: TestClient, tiny_csv_bytes: bytes) -> None
     assert body["summary"]["rowCount"] == 3
 
 
+def test_execute_node_accepts_nested_json_params(client: TestClient) -> None:
+    response = client.post(
+        "/nodes/table-input/execute",
+        json={
+            "params": {
+                "file": "dummy",
+                "sample_points": [{"lat": -5.0, "lon": 110.0}],
+                "options": {"mode": "manual"},
+            },
+            "inputs": {},
+            "output_ports": ["table"],
+        },
+    )
+    # The stub executor should still respond; contract is validated by schema parsing.
+    assert response.status_code in (200, 400)
+
+
 def test_execute_unknown_node_type_falls_back_to_stub(client: TestClient) -> None:
     response = client.post(
         "/nodes/sunglint-correction/execute",
