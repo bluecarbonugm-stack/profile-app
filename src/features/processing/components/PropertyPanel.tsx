@@ -1,5 +1,6 @@
 import type { Node } from "@xyflow/react";
 import { SlidersHorizontal } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   CATEGORIES,
@@ -7,6 +8,7 @@ import {
   PORT_COLORS,
   type Port,
 } from "@/features/processing/data/nodes-catalog";
+import { uploadArtifactFn } from "@/features/processing";
 import { Input } from "@/shared/components/ui/input";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import {
@@ -111,6 +113,45 @@ export function PropertyPanel({ node, onParamChange }: Props) {
                       ))}
                     </SelectContent>
                   </Select>
+                )}
+
+                {param.type === "file" && (
+                  <div className="space-y-1.5">
+                    <Input
+                      id={id}
+                      type="file"
+                      accept={param.accept}
+                      className="h-8 text-xs file:text-xs"
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        const kind =
+                          data.specId === "raster-input"
+                            ? "raster"
+                            : data.specId === "vector-input"
+                              ? "vector"
+                              : "table";
+                        const formData = new FormData();
+                        formData.set("file", file);
+                        formData.set("kind", kind);
+                        try {
+                          const artifact = await uploadArtifactFn({ data: formData });
+                          onParamChange(node.id, param.key, artifact.id);
+                        } catch (error) {
+                          toast.error(
+                            error instanceof Error ? error.message : "Gagal mengunggah file",
+                          );
+                        }
+                      }}
+                    />
+                    {typeof valueOf(param.key) === "string" &&
+                    valueOf(param.key) !== param.default &&
+                    valueOf(param.key) !== "" ? (
+                      <p className="text-[11px] text-muted-foreground">
+                        File terunggah (id: {String(valueOf(param.key)).slice(0, 8)}…)
+                      </p>
+                    ) : null}
+                  </div>
                 )}
 
                 {param.type === "checkbox" && (
