@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import uuid
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
@@ -9,6 +10,8 @@ from pathlib import Path
 ARTIFACT_ROOT = Path(__file__).resolve().parent.parent / "data" / "artifacts"
 
 VALID_KINDS = {"raster", "vector", "table"}
+SAFE_FILENAME_RE = re.compile(r"^[\w.\-]{1,255}$")
+MAX_UPLOAD_BYTES = 200 * 1024 * 1024  # 200MB
 
 
 @dataclass(frozen=True)
@@ -37,6 +40,12 @@ class ArtifactStore:
     def save(self, filename: str, kind: str, data: bytes) -> ArtifactRef:
         if kind not in VALID_KINDS:
             raise ValueError(f"Unknown artifact kind: {kind}")
+        safe_filename = Path(filename).name
+        if not SAFE_FILENAME_RE.match(safe_filename):
+            raise ValueError(f"Nama file tidak valid: {filename}")
+        if len(data) > MAX_UPLOAD_BYTES:
+            raise ValueError("Ukuran file melebihi batas maksimum 200MB")
+        filename = safe_filename
         artifact_id = uuid.uuid4().hex
         artifact_dir = self.root / artifact_id
         artifact_dir.mkdir(parents=True, exist_ok=True)

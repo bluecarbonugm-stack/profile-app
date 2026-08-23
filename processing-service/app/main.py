@@ -44,7 +44,7 @@ async def execute_node(
     executor = REAL_EXECUTORS.get(node_type)
     try:
         if executor is not None:
-            result = executor(store, request.params, request.inputs)
+            result = executor(store, request.params, request.inputs, request.output_ports)
         else:
             result = execute_stub(store, node_type, request.params, request.inputs, request.output_ports)
     except (ValueError, KeyError) as exc:

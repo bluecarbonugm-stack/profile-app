@@ -70,32 +70,7 @@ export function ResultViewer({ nodeId, specId, onClose, result }: Props) {
   const hasRaster = spec.outputs.some((o) => o.type === "raster");
   const hasVector = spec.outputs.some((o) => o.type === "vector");
 
-  if (result && !result.implemented) {
-    return (
-      <div className="p-4 text-sm text-muted-foreground">
-        Node ini belum diimplementasikan secara ilmiah pada Phase 1 — data hanya diteruskan
-        apa adanya dari node sebelumnya.
-      </div>
-    );
-  }
-  if (result?.implemented && result.summary) {
-    return (
-      <div className="p-4">
-        <table className="w-full text-sm">
-          <tbody>
-            {Object.entries(result.summary).map(([key, value]) => (
-              <tr key={key} className="border-b">
-                <td className="py-1 pr-4 font-medium">{key}</td>
-                <td className="py-1">
-                  {typeof value === "object" ? JSON.stringify(value) : String(value)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
+  const isRealResult = result !== undefined;
 
   return (
     <div
@@ -120,7 +95,29 @@ export function ResultViewer({ nodeId, specId, onClose, result }: Props) {
         </header>
 
         <div className="flex-1 space-y-6 overflow-y-auto p-5">
-          {spec.id === "rf-train" && (
+          {isRealResult && !result.implemented && (
+            <p className="text-sm text-muted-foreground">
+              Node ini belum diimplementasikan secara ilmiah pada Phase 1, data hanya diteruskan apa
+              adanya dari node sebelumnya.
+            </p>
+          )}
+
+          {isRealResult && result.implemented && result.summary && (
+            <table className="w-full text-sm">
+              <tbody>
+                {Object.entries(result.summary).map(([key, value]) => (
+                  <tr key={key} className="border-b border-border">
+                    <td className="py-1 pr-4 font-medium">{key}</td>
+                    <td className="py-1">
+                      {typeof value === "object" ? JSON.stringify(value) : String(value)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
+          {!isRealResult && spec.id === "rf-train" && (
             <>
               <Panel title="Variable Importance">
                 <div className="h-56">
@@ -149,7 +146,7 @@ Kelas terlemah = Lamun (UA 0.844)`}
             </>
           )}
 
-          {spec.id === "confusion-matrix" && (
+          {!isRealResult && spec.id === "confusion-matrix" && (
             <Panel title="Confusion Matrix">
               <div className="overflow-x-auto">
                 <table className="text-xs border-collapse w-full">
@@ -172,7 +169,7 @@ Kelas terlemah = Lamun (UA 0.844)`}
             </Panel>
           )}
 
-          {spec.id === "timeseries-chart" && (
+          {!isRealResult && spec.id === "timeseries-chart" && (
             <Panel title="Tren Luasan Kelas (ha)">
               <div className="h-64">
                 <ResponsiveContainer>
@@ -192,34 +189,40 @@ Kelas terlemah = Lamun (UA 0.844)`}
             </Panel>
           )}
 
-          {(hasRaster || hasVector) && spec.id !== "rf-train" && spec.id !== "confusion-matrix" && (
-            <Panel title="Map Preview">
-              <div className="relative h-64 rounded border border-border overflow-hidden bg-ocean-gradient">
-                <div className="absolute inset-0 bg-grid opacity-40" />
-                <div className="absolute bottom-3 left-3 text-[11px] bg-black/50 text-white px-2 py-1 rounded">
-                  Preview raster / vektor — {spec.name}
+          {!isRealResult &&
+            (hasRaster || hasVector) &&
+            spec.id !== "rf-train" &&
+            spec.id !== "confusion-matrix" && (
+              <Panel title="Map Preview">
+                <div className="relative h-64 rounded border border-border overflow-hidden bg-ocean-gradient">
+                  <div className="absolute inset-0 bg-grid opacity-40" />
+                  <div className="absolute bottom-3 left-3 text-[11px] bg-black/50 text-white px-2 py-1 rounded">
+                    Preview raster / vektor: {spec.name}
+                  </div>
                 </div>
-              </div>
-            </Panel>
-          )}
+              </Panel>
+            )}
 
-          {hasChart && spec.id !== "rf-train" && spec.id !== "timeseries-chart" && (
-            <Panel title="Chart">
-              <div className="h-56">
-                <ResponsiveContainer>
-                  <BarChart data={varImportance}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                    <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-                    <YAxis tick={{ fontSize: 11 }} />
-                    <Tooltip />
-                    <Bar dataKey="value" fill="var(--accent)" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </Panel>
-          )}
+          {!isRealResult &&
+            hasChart &&
+            spec.id !== "rf-train" &&
+            spec.id !== "timeseries-chart" && (
+              <Panel title="Chart">
+                <div className="h-56">
+                  <ResponsiveContainer>
+                    <BarChart data={varImportance}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <XAxis dataKey="name" tick={{ fontSize: 11 }} />
+                      <YAxis tick={{ fontSize: 11 }} />
+                      <Tooltip />
+                      <Bar dataKey="value" fill="var(--accent)" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </Panel>
+            )}
 
-          {hasTable && spec.id !== "confusion-matrix" && (
+          {!isRealResult && hasTable && spec.id !== "confusion-matrix" && (
             <Panel title="Tabel Atribut">
               <table className="text-xs w-full border-collapse">
                 <thead className="bg-muted/40">
@@ -244,18 +247,20 @@ Kelas terlemah = Lamun (UA 0.844)`}
             </Panel>
           )}
 
-          {spec.outputs.length === 0 && (
+          {!isRealResult && spec.outputs.length === 0 && (
             <p className="text-xs text-muted-foreground">
               Node ini tidak menghasilkan output preview.
             </p>
           )}
         </div>
 
-        <footer className="shrink-0 border-t border-border px-5 py-3">
-          <p className="eyebrow text-muted-foreground/70">
-            Hasil disimulasikan untuk demo antarmuka
-          </p>
-        </footer>
+        {!isRealResult && (
+          <footer className="shrink-0 border-t border-border px-5 py-3">
+            <p className="eyebrow text-muted-foreground/70">
+              Hasil disimulasikan untuk demo antarmuka
+            </p>
+          </footer>
+        )}
       </div>
     </div>
   );

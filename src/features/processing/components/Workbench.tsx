@@ -76,7 +76,7 @@ function InnerWorkbench() {
         toast.error(`Port tidak kompatibel: ${srcPort.type} → ${tgtPort.type}`);
         log({
           level: "warn",
-          message: `Koneksi ditolak — ${srcPort.type} tidak cocok dengan ${tgtPort.type}`,
+          message: `Koneksi ditolak: ${srcPort.type} tidak cocok dengan ${tgtPort.type}`,
         });
         return;
       }
@@ -200,13 +200,7 @@ function InnerWorkbench() {
           return { ...n, data: { ...(n.data as WorkbenchNodeData), status: "idle" } };
         return {
           ...n,
-          data: {
-            ...(n.data as WorkbenchNodeData),
-            status:
-              nodeResult.status === "error" && nodeResult.error === "Node upstream gagal"
-                ? "blocked"
-                : nodeResult.status,
-          },
+          data: { ...(n.data as WorkbenchNodeData), status: nodeResult.status },
         };
       }),
     );
@@ -289,8 +283,14 @@ function InnerWorkbench() {
     }
     try {
       const parsed = JSON.parse(raw) as { nodes: Node[]; edges: Edge[] };
-      setNodes(parsed.nodes ?? []);
+      setNodes(
+        (parsed.nodes ?? []).map((n) => ({
+          ...n,
+          data: { ...(n.data as WorkbenchNodeData), status: "idle" },
+        })),
+      );
       setEdges(parsed.edges ?? []);
+      setRunResults([]);
       toast.success("Workflow dimuat.");
       log({ level: "success", message: "Workflow dimuat dari localStorage." });
     } catch {
@@ -350,12 +350,7 @@ function InnerWorkbench() {
               fitView
               proOptions={{ hideAttribution: true }}
             >
-              <Background
-                variant={BackgroundVariant.Dots}
-                gap={20}
-                size={1}
-                color="oklch(0.35 0.05 240)"
-              />
+              <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#CBD5E1" />
               <Controls />
               <MiniMap
                 pannable

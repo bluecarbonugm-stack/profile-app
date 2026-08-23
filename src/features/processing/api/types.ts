@@ -30,7 +30,7 @@ export interface GraphPayload {
 
 export interface NodeRunResult {
   nodeId: string;
-  status: "success" | "error";
+  status: "success" | "error" | "blocked";
   implemented: boolean;
   summary?: Record<string, JsonValue>;
   error?: string;

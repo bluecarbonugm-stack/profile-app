@@ -76,3 +76,40 @@ def test_execute_missing_file_param_returns_400(client: TestClient) -> None:
         json={"params": {}, "inputs": {}, "output_ports": ["raster"]},
     )
     assert response.status_code == 400
+
+
+def test_raster_input_to_export_wiring_carries_real_data(
+    client: TestClient, tiny_geotiff_bytes: bytes
+) -> None:
+    """Regression guard for the port-id contract: raster-input's output must be
+    keyed by the catalog's real output port id ("out") so that wiring it into
+    raster-export's input port ("in") actually carries the artifact through."""
+    upload = client.post(
+        "/artifacts",
+        files={"file": ("source.tif", tiny_geotiff_bytes, "image/tiff")},
+        data={"kind": "raster"},
+    ).json()
+
+    input_response = client.post(
+        "/nodes/raster-input/execute",
+        json={"params": {"file": upload["id"]}, "inputs": {}, "output_ports": ["out"]},
+    )
+    assert input_response.status_code == 200
+    input_body = input_response.json()
+    assert "out" in input_body["outputs"]
+
+    # Simulate the graph runner: the artifact produced on raster-input's "out"
+    # port is fed into raster-export's "in" port via the edge map.
+    export_response = client.post(
+        "/nodes/raster-export/execute",
+        json={
+            "params": {"filename": "hasil.tif"},
+            "inputs": {"in": input_body["outputs"]["out"]},
+            "output_ports": [],
+        },
+    )
+    assert export_response.status_code == 200
+    export_body = export_response.json()
+    assert export_body["implemented"] is True
+    assert export_body["summary"]["sourceArtifact"] == input_body["outputs"]["out"]
+    assert export_body["summary"]["savedAs"] == "hasil.tif"

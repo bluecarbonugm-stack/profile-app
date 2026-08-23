@@ -63,7 +63,12 @@ export const runGraphFn = createServerFn({ method: "POST" })
         (e) => results.find((r) => r.nodeId === e.source)?.status === "error",
       );
       if (blocked) {
-        results.push({ nodeId, status: "error", implemented: false, error: "Node upstream gagal" });
+        results.push({
+          nodeId,
+          status: "blocked",
+          implemented: false,
+          error: "Node upstream gagal",
+        });
         continue;
       }
 
