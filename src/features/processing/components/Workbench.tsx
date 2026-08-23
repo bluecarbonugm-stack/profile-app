@@ -24,6 +24,8 @@ import { ResultViewer } from "./ResultViewer";
 import { Toolbar } from "./Toolbar";
 import { NODES_BY_ID, PORT_COLORS } from "@/features/processing/data/nodes-catalog";
 import { TEMPLATES } from "@/features/processing/data/pipeline-templates";
+import { runGraphFn } from "@/features/processing";
+import type { RunResult } from "@/features/processing";
 import { toast } from "sonner";
 import { MousePointerSquareDashed } from "lucide-react";
 
@@ -159,33 +161,77 @@ function InnerWorkbench() {
   );
 
   const runAll = useCallback(async () => {
-    if (nodes.length === 0) {
-      toast.info("Kanvas kosong. Muat template atau tambahkan node.");
+    const graphNodes = nodes.map((n) => ({
+      id: n.id,
+      specId: (n.data as WorkbenchNodeData).specId,
+      params: (n.data as WorkbenchNodeData).params,
+    }));
+    const graphEdges = edges.map((e) => ({
+      id: e.id,
+      source: e.source,
+      sourceHandle: e.sourceHandle ?? "",
+      target: e.target,
+      targetHandle: e.targetHandle ?? "",
+    }));
+
+    setNodes((current) =>
+      current.map((n) => ({ ...n, data: { ...(n.data as WorkbenchNodeData), status: "running" } })),
+    );
+    log({ level: "info", message: "Menjalankan seluruh pipeline..." });
+
+    let result: RunResult;
+    try {
+      result = await runGraphFn({ data: { nodes: graphNodes, edges: graphEdges } });
+    } catch (error) {
+      log({
+        level: "error",
+        message: error instanceof Error ? error.message : "Gagal menjalankan pipeline",
+      });
+      setNodes((current) =>
+        current.map((n) => ({ ...n, data: { ...(n.data as WorkbenchNodeData), status: "error" } })),
+      );
       return;
     }
-    // topological-ish order: use current node list, mock execution.
-    log({ level: "info", message: `▶ Menjalankan pipeline (${nodes.length} node)…` });
-    for (const n of nodes) {
-      const spec = NODES_BY_ID[(n.data as WorkbenchNodeData).specId];
-      setNodeStatus(n.id, "running");
-      log({ level: "info", node: spec.name, message: "Running…" });
-      await new Promise((r) => setTimeout(r, 220 + Math.random() * 260));
-      setNodeStatus(n.id, "success");
-      const detail =
-        spec.id === "rf-train"
-          ? "OOB accuracy = 0.882, Kappa = 0.845"
-          : spec.id === "confusion-matrix"
-            ? "Overall Accuracy = 90.4%, Kappa = 0.87"
-            : spec.id === "sunglint"
-              ? "R² per band: B2=0.71, B3=0.68, B4=0.63"
-              : spec.id === "water-column"
-                ? "ki/kj ratio B2/B3 = 0.87"
-                : "Success";
-      log({ level: "success", node: spec.name, message: detail });
+
+    if (result.graphError) {
+      log({ level: "error", message: result.graphError });
+      setNodes((current) =>
+        current.map((n) => ({ ...n, data: { ...(n.data as WorkbenchNodeData), status: "idle" } })),
+      );
+      return;
     }
-    log({ level: "success", message: "✓ Pipeline selesai." });
-    toast.success("Pipeline selesai dijalankan.");
-  }, [nodes, log, setNodeStatus]);
+
+    setNodes((current) =>
+      current.map((n) => {
+        const nodeResult = result.results.find((r) => r.nodeId === n.id);
+        if (!nodeResult)
+          return { ...n, data: { ...(n.data as WorkbenchNodeData), status: "idle" } };
+        return {
+          ...n,
+          data: {
+            ...(n.data as WorkbenchNodeData),
+            status:
+              nodeResult.status === "error" && nodeResult.error === "Node upstream gagal"
+                ? "blocked"
+                : nodeResult.status,
+          },
+        };
+      }),
+    );
+
+    for (const nodeResult of result.results) {
+      if (nodeResult.status === "success") {
+        log({
+          level: nodeResult.implemented ? "success" : "info",
+          message: nodeResult.implemented
+            ? `${nodeResult.nodeId}: selesai`
+            : `${nodeResult.nodeId}: belum diimplementasikan, data diteruskan apa adanya`,
+        });
+      } else {
+        log({ level: "error", message: `${nodeResult.nodeId}: ${nodeResult.error ?? "gagal"}` });
+      }
+    }
+  }, [nodes, edges, log, setNodes]);
 
   const loadTemplate = useCallback(
     (templateId: string) => {
