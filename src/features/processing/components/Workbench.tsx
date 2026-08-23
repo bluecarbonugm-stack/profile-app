@@ -150,17 +150,6 @@ function InnerWorkbench() {
     [setNodes],
   );
 
-  const setNodeStatus = useCallback(
-    (id: string, status: WorkbenchNodeData["status"]) => {
-      setNodes((nds) =>
-        nds.map((n) =>
-          n.id === id ? { ...n, data: { ...(n.data as WorkbenchNodeData), status } } : n,
-        ),
-      );
-    },
-    [setNodes],
-  );
-
   const runAll = useCallback(async () => {
     const graphNodes = nodes.map((n) => ({
       id: n.id,
@@ -191,6 +180,7 @@ function InnerWorkbench() {
       setNodes((current) =>
         current.map((n) => ({ ...n, data: { ...(n.data as WorkbenchNodeData), status: "error" } })),
       );
+      setRunResults([]);
       return;
     }
 
@@ -199,6 +189,7 @@ function InnerWorkbench() {
       setNodes((current) =>
         current.map((n) => ({ ...n, data: { ...(n.data as WorkbenchNodeData), status: "idle" } })),
       );
+      setRunResults([]);
       return;
     }
 
