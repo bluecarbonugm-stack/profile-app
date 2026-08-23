@@ -12,6 +12,7 @@ import {
   Legend,
 } from "recharts";
 import { NODES_BY_ID } from "@/features/processing/data/nodes-catalog";
+import type { NodeRunResult } from "@/features/processing";
 import { X } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 
@@ -19,6 +20,7 @@ interface Props {
   nodeId: string | null;
   specId: string | null;
   onClose: () => void;
+  result?: NodeRunResult;
 }
 
 // Mocked deterministic results per spec — enough to convey the "vibe" of results.
@@ -47,7 +49,7 @@ const confusion = [
   ["PA (%)", "93.3", "84.4", "84.4", "97.8", "OA 90.4"],
 ];
 
-export function ResultViewer({ nodeId, specId, onClose }: Props) {
+export function ResultViewer({ nodeId, specId, onClose, result }: Props) {
   // Escape must close the dialog — it is the first thing anyone reaches for,
   // and without it the only way out is the small × in the corner.
   useEffect(() => {
@@ -67,6 +69,33 @@ export function ResultViewer({ nodeId, specId, onClose }: Props) {
   const hasTable = spec.outputs.some((o) => o.type === "table");
   const hasRaster = spec.outputs.some((o) => o.type === "raster");
   const hasVector = spec.outputs.some((o) => o.type === "vector");
+
+  if (result && !result.implemented) {
+    return (
+      <div className="p-4 text-sm text-muted-foreground">
+        Node ini belum diimplementasikan secara ilmiah pada Phase 1 — data hanya diteruskan
+        apa adanya dari node sebelumnya.
+      </div>
+    );
+  }
+  if (result?.implemented && result.summary) {
+    return (
+      <div className="p-4">
+        <table className="w-full text-sm">
+          <tbody>
+            {Object.entries(result.summary).map(([key, value]) => (
+              <tr key={key} className="border-b">
+                <td className="py-1 pr-4 font-medium">{key}</td>
+                <td className="py-1">
+                  {typeof value === "object" ? JSON.stringify(value) : String(value)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 
   return (
     <div

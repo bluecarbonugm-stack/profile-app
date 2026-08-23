@@ -25,7 +25,7 @@ import { Toolbar } from "./Toolbar";
 import { NODES_BY_ID, PORT_COLORS } from "@/features/processing/data/nodes-catalog";
 import { TEMPLATES } from "@/features/processing/data/pipeline-templates";
 import { runGraphFn } from "@/features/processing";
-import type { RunResult } from "@/features/processing";
+import type { NodeRunResult, RunResult } from "@/features/processing";
 import { toast } from "sonner";
 import { MousePointerSquareDashed } from "lucide-react";
 
@@ -55,6 +55,7 @@ function InnerWorkbench() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [viewer, setViewer] = useState<{ nodeId: string; specId: string } | null>(null);
+  const [runResults, setRunResults] = useState<NodeRunResult[]>([]);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const log = useCallback((entry: Omit<LogEntry, "time">) => {
@@ -218,6 +219,7 @@ function InnerWorkbench() {
         };
       }),
     );
+    setRunResults(result.results);
 
     for (const nodeResult of result.results) {
       if (nodeResult.status === "success") {
@@ -381,6 +383,7 @@ function InnerWorkbench() {
         nodeId={viewer?.nodeId ?? null}
         specId={viewer?.specId ?? null}
         onClose={() => setViewer(null)}
+        result={runResults.find((r) => r.nodeId === viewer?.nodeId)}
       />
     </div>
   );
