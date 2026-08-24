@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import { nitro } from "nitro/vite";
 import { fileURLToPath } from "node:url";
 
 const srcDir = fileURLToPath(new URL("./src", import.meta.url));
@@ -36,7 +35,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
         // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
         server: { entry: "server" },
       }),
-      ...(command === "build" ? [nitro({ preset: "cloudflare-module" })] : []),
       react(),
     ],
   };
