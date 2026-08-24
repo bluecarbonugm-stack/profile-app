@@ -356,8 +356,8 @@ function InnerWorkbench() {
               <MiniMap
                 pannable
                 zoomable
-                nodeColor={() => "var(--teal)"}
-                maskColor="oklch(0.14 0.03 245 / 0.7)"
+                nodeColor={() => "var(--primary)"}
+                maskColor="rgba(16, 49, 107, 0.35)"
               />
             </ReactFlow>
             {nodes.length === 0 && <EmptyCanvasHint />}
