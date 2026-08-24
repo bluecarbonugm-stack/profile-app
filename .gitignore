@@ -30,3 +30,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Secrets / local env
+.env
+supabasekey.txt
+
+# Graphify analysis output (generated)
+graphify-out/
