@@ -37,7 +37,12 @@ def execute_classify_rf(
     if not vector_id:
         raise ValueError("rf-train requires a training vector artifact id via params or inputs")
 
-    label_field = params.get("label_field") or params.get("field") or "class"
+    label_field = (
+        params.get("label_field")
+        or params.get("labelField")
+        or params.get("field")
+        or "class"
+    )
 
     try:
         n_estimators = int(params.get("n_estimators") or params.get("nTree") or 200)
@@ -56,9 +61,14 @@ def execute_classify_rf(
     vector_ref = store.get(str(vector_id))
 
     with rasterio.open(raster_ref.path) as dataset:
+        crs = dataset.crs
+        if crs is None:
+            raise ValueError(
+                "Raster has no CRS defined. Assign a CRS to the raster before "
+                "running classification (e.g. via a reproject node)."
+            )
         data = dataset.read().astype("float32")
         transform = dataset.transform
-        crs = dataset.crs
         height = dataset.height
         width = dataset.width
         n_bands = dataset.count
