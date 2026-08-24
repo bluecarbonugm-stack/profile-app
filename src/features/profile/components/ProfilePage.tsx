@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/shared/components/ui/button";
+import { Card } from "@/shared/components/ui/card";
+import { Badge } from "@/shared/components/ui/badge";
 import {
   Waves, Satellite, MapPin, GraduationCap, Mail, ArrowRight, Fish, Sprout, Layers, LineChart,
   Download, Building2,
