@@ -1,0 +1,287 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "label": "Konten Web Profile dari Google Spreadsheet",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_1_buat_spreadsheet",
+      "label": "1. Buat spreadsheet",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_2_deploy_sebagai_web_app",
+      "label": "2. Deploy sebagai Web App",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_3_hubungkan_ke_situs",
+      "label": "3. Hubungkan ke situs",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L51"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_token_opsional",
+      "label": "Token opsional",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L72"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "label": "Struktur sheet",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L82"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_site_dua_kolom_nama_field_isi",
+      "label": "`site` \u2014 dua kolom: nama field, isi",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L90"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_stats_angka_di_bawah_hero",
+      "label": "`stats` \u2014 angka di bawah hero",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L111"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_focus_pilar_riset",
+      "label": "`focus` \u2014 pilar riset",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L117"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_team_anggota_tim",
+      "label": "`team` \u2014 anggota tim",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L124"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_publications_publikasi_output",
+      "label": "`publications` \u2014 publikasi & output",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L132"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_gallery_dokumentasi_lapangan",
+      "label": "`gallery` \u2014 dokumentasi lapangan",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L138"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_partners_mitra",
+      "label": "`partners` \u2014 mitra",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L144"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_foto",
+      "label": "Foto",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L150"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_setelah_mengubah_isi_spreadsheet",
+      "label": "Setelah mengubah isi spreadsheet",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L168"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_alias_header",
+      "label": "Alias header",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L182"
+    },
+    {
+      "id": "$graphify-root$_scripts_apps_script_readme_kalau_konten_tidak_muncul",
+      "label": "Kalau konten tidak muncul",
+      "file_type": "document",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L207"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_md",
+      "target": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_1_buat_spreadsheet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_2_deploy_sebagai_web_app",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_3_hubungkan_ke_situs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_3_hubungkan_ke_situs",
+      "target": "$graphify-root$_scripts_apps_script_readme_token_opsional",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_site_dua_kolom_nama_field_isi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_stats_angka_di_bawah_hero",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_focus_pilar_riset",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_team_anggota_tim",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_publications_publikasi_output",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_gallery_dokumentasi_lapangan",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_struktur_sheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_partners_mitra",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_foto",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L150",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_setelah_mengubah_isi_spreadsheet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_alias_header",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L182",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_scripts_apps_script_readme_konten_web_profile_dari_google_spreadsheet",
+      "target": "$graphify-root$_scripts_apps_script_readme_kalau_konten_tidak_muncul",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/apps-script/README.md",
+      "source_location": "L207",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

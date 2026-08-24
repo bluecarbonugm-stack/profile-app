@@ -1,0 +1,387 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "label": "test_io_nodes.py",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_reads_real_metadata",
+      "label": "test_raster_input_reads_real_metadata()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L14",
+      "_callable": true
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_io_nodes.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_requires_file_param",
+      "label": "test_raster_input_requires_file_param()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L24",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_input_reads_real_metadata",
+      "label": "test_vector_input_reads_real_metadata()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L32",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_input_reads_real_csv",
+      "label": "test_table_input_reads_real_csv()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L40",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_requires_connected_input",
+      "label": "test_raster_export_requires_connected_input()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L50",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_records_source_artifact",
+      "label": "test_raster_export_records_source_artifact()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L58",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_export_records_source_artifact",
+      "label": "test_vector_export_records_source_artifact()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L66",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_export_records_source_artifact",
+      "label": "test_table_export_records_source_artifact()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L72",
+      "_callable": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "app_nodes_io_nodes",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_reads_real_metadata",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_reads_real_metadata",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_requires_file_param",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_requires_file_param",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_input_reads_real_metadata",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_input_reads_real_metadata",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_input_reads_real_csv",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_input_reads_real_csv",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_requires_connected_input",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_requires_connected_input",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_records_source_artifact",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_records_source_artifact",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_export_records_source_artifact",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_export_records_source_artifact",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_py",
+      "target": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_export_records_source_artifact",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_export_records_source_artifact",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L72",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_reads_real_metadata",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L15",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_reads_real_metadata",
+      "callee": "execute_raster_input",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L16",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_requires_file_param",
+      "callee": "execute_raster_input",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L26",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_input_requires_file_param",
+      "callee": "AssertionError",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L27",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_input_reads_real_metadata",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L33",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_input_reads_real_metadata",
+      "callee": "execute_vector_input",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L34",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_input_reads_real_csv",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L41",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_input_reads_real_csv",
+      "callee": "execute_table_input",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L42",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_requires_connected_input",
+      "callee": "execute_raster_export",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L52",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_requires_connected_input",
+      "callee": "AssertionError",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L53",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_records_source_artifact",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L59",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_raster_export_records_source_artifact",
+      "callee": "execute_raster_export",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L60",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_export_records_source_artifact",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L67",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_vector_export_records_source_artifact",
+      "callee": "execute_vector_export",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L68",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_export_records_source_artifact",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L73",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_io_nodes_test_table_export_records_source_artifact",
+      "callee": "execute_table_export",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_io_nodes.py",
+      "source_location": "L74",
+      "receiver": null
+    }
+  ]
+}

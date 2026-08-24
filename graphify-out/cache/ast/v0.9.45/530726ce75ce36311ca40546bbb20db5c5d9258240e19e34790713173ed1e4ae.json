@@ -1,0 +1,410 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_app_main_py",
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_main_get_store",
+      "label": "get_store()",
+      "file_type": "code",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L15",
+      "_callable": true
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/main.py"
+    },
+    {
+      "id": "get",
+      "label": "get",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/main.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_main_health_check",
+      "label": "health_check()",
+      "file_type": "code",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L20",
+      "_callable": true
+    },
+    {
+      "id": "post",
+      "label": "post",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/main.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "label": "upload_artifact()",
+      "file_type": "code",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L25",
+      "_callable": true
+    },
+    {
+      "id": "uploadfile",
+      "label": "UploadFile",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/main.py"
+    },
+    {
+      "id": "artifactuploadresponse",
+      "label": "ArtifactUploadResponse",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/main.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_main_execute_node",
+      "label": "execute_node()",
+      "file_type": "code",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L39",
+      "_callable": true
+    },
+    {
+      "id": "executerequest",
+      "label": "ExecuteRequest",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/main.py"
+    },
+    {
+      "id": "executeresponse",
+      "label": "ExecuteResponse",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/main.py"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "fastapi",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "app_nodes",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "app_nodes_stub",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "app_schemas",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "$graphify-root$_processing_service_app_main_get_store",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_get_store",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_health_check",
+      "target": "get",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "$graphify-root$_processing_service_app_main_health_check",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "target": "post",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "target": "uploadfile",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "target": "artifactuploadresponse",
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_execute_node",
+      "target": "post",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_py",
+      "target": "$graphify-root$_processing_service_app_main_execute_node",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_execute_node",
+      "target": "executerequest",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_execute_node",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_execute_node",
+      "target": "executeresponse",
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "target": "artifactuploadresponse",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_main_execute_node",
+      "target": "executeresponse",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L52",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_get_store",
+      "callee": "_default_store",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "return",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L16"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "callee": "read",
+      "is_member_call": true,
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L30",
+      "receiver": "file"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L32",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "callee": "HTTPException",
+      "is_member_call": false,
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L34",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_upload_artifact",
+      "callee": "exc",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "argument",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L34"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_execute_node",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L44",
+      "receiver": "REAL_EXECUTORS"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_execute_node",
+      "callee": "executor",
+      "is_member_call": false,
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L47",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_execute_node",
+      "callee": "execute_stub",
+      "is_member_call": false,
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L49",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_execute_node",
+      "callee": "ValueError",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "collection",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L50"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_execute_node",
+      "callee": "KeyError",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "collection",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L50"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_execute_node",
+      "callee": "HTTPException",
+      "is_member_call": false,
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L51",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_main_execute_node",
+      "callee": "exc",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "argument",
+      "source_file": "processing-service/app/main.py",
+      "source_location": "L51"
+    }
+  ]
+}

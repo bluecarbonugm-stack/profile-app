@@ -1,0 +1,367 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_md",
+      "label": "zed-dev-uiux-brief.md",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "label": "\ud83c\udfa8 UI/UX Design Brief \u2014 Referensi Clone Zed.dev",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_1_ringkasan_eksekutif",
+      "label": "1. Ringkasan Eksekutif",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_2_struktur_halaman_terverifikasi_dari_konten_live",
+      "label": "2. Struktur Halaman (Terverifikasi dari Konten Live)",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_3_elemen_ui_yang_perlu_diperhatikan_tim_unik_ke_zed",
+      "label": "3. Elemen UI yang Perlu Diperhatikan Tim (Unik ke Zed)",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L40"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_3_1_live_git_activity_feed",
+      "label": "3.1 Live Git Activity Feed",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L42"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_3_2_panel_demo_agentic_coding",
+      "label": "3.2 Panel Demo Agentic Coding",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L49"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_3_3_terminal_ascii_branding",
+      "label": "3.3 Terminal ASCII Branding",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L54"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_3_4_video_preview_per_fitur",
+      "label": "3.4 Video Preview per Fitur",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L58"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_3_5_extension_cards",
+      "label": "3.5 Extension Cards",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L62"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "label": "4. Sistem Desain \u2014 Terverifikasi dari CSS Asli \u2705",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L68"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_1_koreksi_penting_dari_draft_sebelumnya",
+      "label": "4.1 Koreksi penting dari draft sebelumnya",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L72"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_2_tipografi_nilai_asli",
+      "label": "4.2 Tipografi (nilai asli)",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L79"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_3_warna_netral_brand_hex_asli_dikonversi_dari_lab",
+      "label": "4.3 Warna Netral & Brand (hex asli, dikonversi dari lab())",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L112"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_4_palet_semantik_diff_status_hex_terverifikasi",
+      "label": "4.4 Palet Semantik (diff, status) \u2014 hex terverifikasi",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L141"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_5_motif_dekoratif_shader_hero_temuan_baru_tidak_ada_di_draft_sebelumnya",
+      "label": "4.5 Motif Dekoratif & Shader Hero (temuan baru \u2014 tidak ada di draft sebelumnya!)",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L152"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_6_shadow_dua_sistem_berbeda",
+      "label": "4.6 Shadow \u2014 dua sistem berbeda",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L165"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_7_border_radius_nilai_asli",
+      "label": "4.7 Border Radius (nilai asli)",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L169"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_8_layout_content_width_nilai_asli",
+      "label": "4.8 Layout & Content Width (nilai asli)",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L179"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_9_animasi_dikonfirmasi_ada_di_css_bukan_tebakan",
+      "label": "4.9 Animasi (dikonfirmasi ada di CSS, bukan tebakan)",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L187"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_4_10_catatan_tambahan",
+      "label": "4.10 Catatan tambahan",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L194"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_5_rekomendasi_langkah_selanjutnya_untuk_tim",
+      "label": "5. Rekomendasi Langkah Selanjutnya untuk Tim",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L201"
+    },
+    {
+      "id": "$graphify-root$_zed_dev_uiux_brief_6_tech_stack_yang_umum_dipakai_untuk_pola_seperti_ini",
+      "label": "6. Tech Stack yang Umum Dipakai untuk Pola Seperti Ini",
+      "file_type": "document",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L211"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_md",
+      "target": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "target": "$graphify-root$_zed_dev_uiux_brief_1_ringkasan_eksekutif",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "target": "$graphify-root$_zed_dev_uiux_brief_2_struktur_halaman_terverifikasi_dari_konten_live",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "target": "$graphify-root$_zed_dev_uiux_brief_3_elemen_ui_yang_perlu_diperhatikan_tim_unik_ke_zed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_3_elemen_ui_yang_perlu_diperhatikan_tim_unik_ke_zed",
+      "target": "$graphify-root$_zed_dev_uiux_brief_3_1_live_git_activity_feed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_3_elemen_ui_yang_perlu_diperhatikan_tim_unik_ke_zed",
+      "target": "$graphify-root$_zed_dev_uiux_brief_3_2_panel_demo_agentic_coding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_3_elemen_ui_yang_perlu_diperhatikan_tim_unik_ke_zed",
+      "target": "$graphify-root$_zed_dev_uiux_brief_3_3_terminal_ascii_branding",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_3_elemen_ui_yang_perlu_diperhatikan_tim_unik_ke_zed",
+      "target": "$graphify-root$_zed_dev_uiux_brief_3_4_video_preview_per_fitur",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_3_elemen_ui_yang_perlu_diperhatikan_tim_unik_ke_zed",
+      "target": "$graphify-root$_zed_dev_uiux_brief_3_5_extension_cards",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_1_koreksi_penting_dari_draft_sebelumnya",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_2_tipografi_nilai_asli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_3_warna_netral_brand_hex_asli_dikonversi_dari_lab",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_4_palet_semantik_diff_status_hex_terverifikasi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_5_motif_dekoratif_shader_hero_temuan_baru_tidak_ada_di_draft_sebelumnya",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_6_shadow_dua_sistem_berbeda",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L165",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_7_border_radius_nilai_asli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_8_layout_content_width_nilai_asli",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L179",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_9_animasi_dikonfirmasi_ada_di_css_bukan_tebakan",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L187",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_4_sistem_desain_terverifikasi_dari_css_asli",
+      "target": "$graphify-root$_zed_dev_uiux_brief_4_10_catatan_tambahan",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L194",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "target": "$graphify-root$_zed_dev_uiux_brief_5_rekomendasi_langkah_selanjutnya_untuk_tim",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L201",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_zed_dev_uiux_brief_ui_ux_design_brief_referensi_clone_zed_dev",
+      "target": "$graphify-root$_zed_dev_uiux_brief_6_tech_stack_yang_umum_dipakai_untuk_pola_seperti_ini",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed-dev-uiux-brief.md",
+      "source_location": "L211",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

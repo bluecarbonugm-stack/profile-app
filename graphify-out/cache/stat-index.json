@@ -1,0 +1,696 @@
+{
+  ".claude/settings.json": {
+    "size": 498,
+    "mtime_ns": 1787358662527968600,
+    "indexed_at_ns": 1787360529415126100,
+    "word_count": 38,
+    "hashes": {
+      ".claude/settings.json": "ba6a2439cd1982efda03ca16726768fc8972811a0f045fd2684e13a2c7709fcb"
+    }
+  },
+  "AGENTS.md": {
+    "size": 2464,
+    "mtime_ns": 1785887687866657600,
+    "indexed_at_ns": 1787358666464345800,
+    "word_count": 308,
+    "hashes": { "agents.md": "50fd8828bc150ebbad9bbcb2667e4b48d63eabf3e6a9bf626aa06f9064ca7877" }
+  },
+  "CLAUDE.md": {
+    "size": 781,
+    "mtime_ns": 1787358662511446900,
+    "indexed_at_ns": 1787358666465345900,
+    "word_count": 106,
+    "hashes": { "claude.md": "b5a5237f0dd262308961666186afbe48d20e935dfee4ce03b818c7badbca2cc4" }
+  },
+  "README.md": {
+    "size": 5850,
+    "mtime_ns": 1785887677951810000,
+    "indexed_at_ns": 1787358666467348000,
+    "word_count": 704,
+    "hashes": { "readme.md": "c74d285eb0a59e96eb7c2bbeeaa552016228b29f2e6c3a8c180424fef1c64cd7" }
+  },
+  "components.json": {
+    "size": 500,
+    "mtime_ns": 1785882035121385400,
+    "indexed_at_ns": 1787358663431554100,
+    "word_count": 40,
+    "hashes": {
+      "components.json": "046e7ceab5e7096fdd4ef4df6b1760bd69bfb36478aa789639868658fe9514b5"
+    }
+  },
+  "e2e/navigation.spec.ts": {
+    "size": 2627,
+    "mtime_ns": 1787456041435695900,
+    "indexed_at_ns": 1787479952855279700,
+    "word_count": 265
+  },
+  "e2e/pages/profile.page.ts": {
+    "size": 1611,
+    "mtime_ns": 1785894518004747200,
+    "indexed_at_ns": 1787358663031208000,
+    "word_count": 199
+  },
+  "e2e/pages/workbench.page.ts": {
+    "size": 3045,
+    "mtime_ns": 1787454783002097900,
+    "indexed_at_ns": 1787455098699388600,
+    "word_count": 327
+  },
+  "e2e/profile.spec.ts": {
+    "size": 4265,
+    "mtime_ns": 1785894547094174800,
+    "indexed_at_ns": 1787358663036738700,
+    "word_count": 442
+  },
+  "e2e/workbench.spec.ts": {
+    "size": 6453,
+    "mtime_ns": 1787454760423364400,
+    "indexed_at_ns": 1787455098702904600,
+    "word_count": 627
+  },
+  "eslint.config.js": {
+    "size": 1290,
+    "mtime_ns": 1785054715078363200,
+    "indexed_at_ns": 1787358663041266100,
+    "word_count": 101
+  },
+  "package.json": {
+    "size": 1875,
+    "mtime_ns": 1787458368880551100,
+    "indexed_at_ns": 1787479953294693600,
+    "word_count": 128,
+    "hashes": { "package.json": "8b5ce117b3e1ab7dd5d8353e21b9a27ec98c98593872ec9704b249c19d59b7d4" }
+  },
+  "playwright.config.ts": {
+    "size": 1522,
+    "mtime_ns": 1785894497218182100,
+    "indexed_at_ns": 1787358663045678700,
+    "word_count": 209
+  },
+  "scripts/apps-script/README.md": {
+    "size": 8729,
+    "mtime_ns": 1785883261315922600,
+    "indexed_at_ns": 1787358666468346200,
+    "word_count": 1080,
+    "hashes": {
+      "scripts/apps-script/readme.md": "9e777f9ae4be18f8785c5265604c2495141913687361dda3bde1efa8de3f032f"
+    }
+  },
+  "src/features/processing/components/ConsolePanel.tsx": {
+    "size": 3206,
+    "mtime_ns": 1787494930830168800,
+    "indexed_at_ns": 1787508342771439100,
+    "word_count": 274
+  },
+  "src/features/processing/components/NodePalette.tsx": {
+    "size": 5396,
+    "mtime_ns": 1787495141052724300,
+    "indexed_at_ns": 1787508342773948200,
+    "word_count": 414
+  },
+  "src/features/processing/components/PropertyPanel.tsx": {
+    "size": 9418,
+    "mtime_ns": 1787511574921149400,
+    "indexed_at_ns": 1787511961396302600,
+    "word_count": 696
+  },
+  "src/features/processing/components/ResultViewer.tsx": {
+    "size": 10513,
+    "mtime_ns": 1787508258962099500,
+    "indexed_at_ns": 1787508342776452900,
+    "word_count": 941
+  },
+  "src/features/processing/components/Toolbar.tsx": {
+    "size": 2889,
+    "mtime_ns": 1787457225161587000,
+    "indexed_at_ns": 1787479952971025200,
+    "word_count": 227
+  },
+  "src/features/processing/components/Workbench.tsx": {
+    "size": 13707,
+    "mtime_ns": 1787511607459951700,
+    "indexed_at_ns": 1787511961402825500,
+    "word_count": 1366
+  },
+  "src/features/processing/components/WorkbenchNode.tsx": {
+    "size": 3566,
+    "mtime_ns": 1787511647310037500,
+    "indexed_at_ns": 1787511961406334700,
+    "word_count": 334
+  },
+  "src/features/processing/data/nodes-catalog.ts": {
+    "size": 22601,
+    "mtime_ns": 1787481144899684200,
+    "indexed_at_ns": 1787481626286063800,
+    "word_count": 2495
+  },
+  "src/features/processing/data/pipeline-templates.ts": {
+    "size": 6827,
+    "mtime_ns": 1785881875947314600,
+    "indexed_at_ns": 1787358663092091500,
+    "word_count": 1006
+  },
+  "src/features/processing/index.ts": {
+    "size": 630,
+    "mtime_ns": 1787413090399976600,
+    "indexed_at_ns": 1787413123006796100,
+    "word_count": 79
+  },
+  "src/features/profile/api/content-source.ts": {
+    "size": 5290,
+    "mtime_ns": 1785883261725190200,
+    "indexed_at_ns": 1787358663107116100,
+    "word_count": 687
+  },
+  "src/features/profile/api/profile-content.ts": {
+    "size": 576,
+    "mtime_ns": 1785882183211818200,
+    "indexed_at_ns": 1787358663112115700,
+    "word_count": 82
+  },
+  "src/features/profile/components/AboutSection.tsx": {
+    "size": 742,
+    "mtime_ns": 1785884949323152700,
+    "indexed_at_ns": 1787358663118130800,
+    "word_count": 62
+  },
+  "src/features/profile/components/CaseStudySection.tsx": {
+    "size": 5727,
+    "mtime_ns": 1787458035871960900,
+    "indexed_at_ns": 1787479953004811600,
+    "word_count": 503
+  },
+  "src/features/profile/components/ContactSection.tsx": {
+    "size": 5762,
+    "mtime_ns": 1787458040853741800,
+    "indexed_at_ns": 1787479953010871100,
+    "word_count": 504
+  },
+  "src/features/profile/components/FocusSection.tsx": {
+    "size": 2273,
+    "mtime_ns": 1787458070436888500,
+    "indexed_at_ns": 1787479953015966100,
+    "word_count": 216
+  },
+  "src/features/profile/components/GallerySection.tsx": {
+    "size": 2778,
+    "mtime_ns": 1785885799862181800,
+    "indexed_at_ns": 1787358663141663500,
+    "word_count": 237
+  },
+  "src/features/profile/components/HeroSection.tsx": {
+    "size": 3035,
+    "mtime_ns": 1787457242050760200,
+    "indexed_at_ns": 1787479953021772700,
+    "word_count": 240
+  },
+  "src/features/profile/components/PartnersSection.tsx": {
+    "size": 1813,
+    "mtime_ns": 1785884989941653000,
+    "indexed_at_ns": 1787358663151397700,
+    "word_count": 171
+  },
+  "src/features/profile/components/ProfilePage.tsx": {
+    "size": 2396,
+    "mtime_ns": 1787457210198519700,
+    "indexed_at_ns": 1787479953030901100,
+    "word_count": 266
+  },
+  "src/features/profile/components/PublicationsSection.tsx": {
+    "size": 2567,
+    "mtime_ns": 1785884983610026100,
+    "indexed_at_ns": 1787358663163415500,
+    "word_count": 251
+  },
+  "src/features/profile/components/SiteFooter.tsx": {
+    "size": 1188,
+    "mtime_ns": 1787458075640967100,
+    "indexed_at_ns": 1787479953038070700,
+    "word_count": 108
+  },
+  "src/features/profile/components/TeamSection.tsx": {
+    "size": 3116,
+    "mtime_ns": 1787458080809129900,
+    "indexed_at_ns": 1787479953042591300,
+    "word_count": 250
+  },
+  "src/features/profile/data/fallback-content.ts": {
+    "size": 6034,
+    "mtime_ns": 1787458009230980600,
+    "indexed_at_ns": 1787479953048481600,
+    "word_count": 762
+  },
+  "src/features/profile/data/media.ts": {
+    "size": 1864,
+    "mtime_ns": 1785882112039354000,
+    "indexed_at_ns": 1787358663183467800,
+    "word_count": 242
+  },
+  "src/features/profile/index.ts": {
+    "size": 398,
+    "mtime_ns": 1785882356694151800,
+    "indexed_at_ns": 1787358663188973100,
+    "word_count": 51
+  },
+  "src/features/profile/types.ts": {
+    "size": 3583,
+    "mtime_ns": 1785882214610448700,
+    "indexed_at_ns": 1787358663192489200,
+    "word_count": 397
+  },
+  "src/routeTree.gen.ts": {
+    "size": 2462,
+    "mtime_ns": 1785206937866709000,
+    "indexed_at_ns": 1787358663196488600,
+    "word_count": 266
+  },
+  "src/router.tsx": {
+    "size": 394,
+    "mtime_ns": 1785881876035753100,
+    "indexed_at_ns": 1787358663201001800,
+    "word_count": 47
+  },
+  "src/routes/README.md": {
+    "size": 1256,
+    "mtime_ns": 1785883261956443100,
+    "indexed_at_ns": 1787358666469349400,
+    "word_count": 127,
+    "hashes": {
+      "src/routes/readme.md": "d1cc21a33b676ca32da62dfdeee44f9849205adf0f92f8dd1a82181c423b4891"
+    }
+  },
+  "src/routes/__root.tsx": {
+    "size": 4525,
+    "mtime_ns": 1787457950858837000,
+    "indexed_at_ns": 1787479953069971200,
+    "word_count": 465
+  },
+  "src/routes/index.tsx": {
+    "size": 1264,
+    "mtime_ns": 1787457971166899900,
+    "indexed_at_ns": 1787479953072497800,
+    "word_count": 152
+  },
+  "src/routes/processing.tsx": {
+    "size": 2717,
+    "mtime_ns": 1787493684577775100,
+    "indexed_at_ns": 1787508342828374800,
+    "word_count": 280
+  },
+  "src/server.ts": {
+    "size": 2069,
+    "mtime_ns": 1785881876214870300,
+    "indexed_at_ns": 1787358663228548800,
+    "word_count": 214
+  },
+  "src/shared/components/layout/section.tsx": {
+    "size": 2962,
+    "mtime_ns": 1787457253031458300,
+    "indexed_at_ns": 1787479953084997900,
+    "word_count": 348
+  },
+  "src/shared/components/layout/site-header.tsx": {
+    "size": 1707,
+    "mtime_ns": 1787493746465851100,
+    "indexed_at_ns": 1787508342833192600,
+    "word_count": 139
+  },
+  "src/shared/components/ui/badge.tsx": {
+    "size": 1180,
+    "mtime_ns": 1785885800089488500,
+    "indexed_at_ns": 1787358663245090800,
+    "word_count": 119
+  },
+  "src/shared/components/ui/button.tsx": {
+    "size": 1983,
+    "mtime_ns": 1785885800102991100,
+    "indexed_at_ns": 1787358663250600900,
+    "word_count": 203
+  },
+  "src/shared/components/ui/checkbox.tsx": {
+    "size": 1050,
+    "mtime_ns": 1785881876853438100,
+    "indexed_at_ns": 1787358663255601700,
+    "word_count": 82
+  },
+  "src/shared/components/ui/dropdown-menu.tsx": {
+    "size": 7603,
+    "mtime_ns": 1785881877112584600,
+    "indexed_at_ns": 1787358663258209800,
+    "word_count": 492
+  },
+  "src/shared/components/ui/input.tsx": {
+    "size": 750,
+    "mtime_ns": 1785884865857517200,
+    "indexed_at_ns": 1787358663260756100,
+    "word_count": 65
+  },
+  "src/shared/components/ui/select.tsx": {
+    "size": 5756,
+    "mtime_ns": 1785881877765966900,
+    "indexed_at_ns": 1787358663264972000,
+    "word_count": 379
+  },
+  "src/shared/components/ui/sonner.tsx": {
+    "size": 734,
+    "mtime_ns": 1785881878030044400,
+    "indexed_at_ns": 1787358663267971900,
+    "word_count": 55
+  },
+  "src/shared/lib/error-capture.ts": {
+    "size": 2898,
+    "mtime_ns": 1785881878463035500,
+    "indexed_at_ns": 1787358663270971400,
+    "word_count": 358
+  },
+  "src/shared/lib/error-page.ts": {
+    "size": 1371,
+    "mtime_ns": 1785881878506388300,
+    "indexed_at_ns": 1787358663274493600,
+    "word_count": 159
+  },
+  "src/shared/lib/error-reporting.ts": {
+    "size": 2066,
+    "mtime_ns": 1785881908605981500,
+    "indexed_at_ns": 1787358663277750200,
+    "word_count": 276
+  },
+  "src/shared/lib/utils.ts": {
+    "size": 169,
+    "mtime_ns": 1785881878593534300,
+    "indexed_at_ns": 1787358663281028200,
+    "word_count": 22
+  },
+  "src/start.ts": {
+    "size": 951,
+    "mtime_ns": 1785881878637156600,
+    "indexed_at_ns": 1787358663283545700,
+    "word_count": 115
+  },
+  "tsconfig.json": {
+    "size": 699,
+    "mtime_ns": 1785054715128541000,
+    "indexed_at_ns": 1787358663437058000,
+    "word_count": 54,
+    "hashes": {
+      "tsconfig.json": "1e0580a210d686ab68e68bbd687aab0d1ae7e533ada3a31c5fe0283fb3277ce1"
+    }
+  },
+  "vite.config.ts": {
+    "size": 2797,
+    "mtime_ns": 1785894507466077400,
+    "indexed_at_ns": 1787358663292110900,
+    "word_count": 322
+  },
+  "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md": {
+    "size": 8172,
+    "mtime_ns": 1787360515326751600,
+    "indexed_at_ns": 1787360529705468100,
+    "word_count": 1180,
+    "hashes": {
+      "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md": "b70b7b233c9cfe8f3f4fb7e8c0c28d05b5f0f7a6ab0ba32bda715f3a909c70b2"
+    }
+  },
+  "supabasekey.txt": {
+    "size": 407,
+    "mtime_ns": 1787359206135977700,
+    "indexed_at_ns": 1787360529554521900,
+    "word_count": 16
+  },
+  "docs/superpowers/plans/2026-08-22-processing-engine-phase1.md": {
+    "size": 58898,
+    "mtime_ns": 1787361936516725400,
+    "indexed_at_ns": 1787455099000278800,
+    "word_count": 6679,
+    "hashes": {
+      "docs/superpowers/plans/2026-08-22-processing-engine-phase1.md": "a9288ddd7bda33ef284420127032d6a1e0f32705da293a775d7f08c510a65033"
+    }
+  },
+  "processing-service/README.md": {
+    "size": 578,
+    "mtime_ns": 1787384122709350900,
+    "indexed_at_ns": 1787384130688265900,
+    "word_count": 71,
+    "hashes": {
+      "processing-service/readme.md": "e0611d9302c351a7b37f693b8f019e902f3a869f767cb863e58fa5288a68db43"
+    }
+  },
+  "processing-service/app/__init__.py": {
+    "size": 0,
+    "mtime_ns": 1787383759570460400,
+    "indexed_at_ns": 1787383951588541000,
+    "word_count": 0,
+    "hashes": {
+      "processing-service/app/__init__.py": "6fcb3d1ee707f335c7e990a7fe5289465714eda585dd58e9e0b9b89d0599acaf"
+    }
+  },
+  "processing-service/app/artifacts.py": {
+    "size": 2704,
+    "mtime_ns": 1787481177360251100,
+    "indexed_at_ns": 1787481626525986800,
+    "word_count": 232,
+    "hashes": {
+      "processing-service/app/artifacts.py": "979f0a6ee15cde20a0d17a754b8f87ec6945def8ee4156a61357128938018b20"
+    }
+  },
+  "processing-service/pyproject.toml": {
+    "size": 531,
+    "mtime_ns": 1787534105251603800,
+    "indexed_at_ns": 1787536194258900900,
+    "word_count": 42
+  },
+  "processing-service/tests/__init__.py": {
+    "size": 0,
+    "mtime_ns": 1787383762528404800,
+    "indexed_at_ns": 1787383951591541300,
+    "word_count": 0,
+    "hashes": {
+      "processing-service/tests/__init__.py": "cdf5156bb9c5630fe5500429bbb59d3b61d642de3f757ecc6351ac4e7ddd57f5"
+    }
+  },
+  "processing-service/tests/test_artifacts.py": {
+    "size": 1794,
+    "mtime_ns": 1787383772052742400,
+    "indexed_at_ns": 1787383951592542800,
+    "word_count": 151,
+    "hashes": {
+      "processing-service/tests/test_artifacts.py": "cb037bd9d410946be8bed5a8d6d43a70d53696917d188da6f092a0e0ff59ce0b"
+    }
+  },
+  "processing-service/app/nodes/__init__.py": {
+    "size": 754,
+    "mtime_ns": 1787536145383329900,
+    "indexed_at_ns": 1787536194577822000,
+    "word_count": 49,
+    "hashes": {
+      "processing-service/app/nodes/__init__.py": "b1b3db8ad9be5ad964abe7051a62fb5a92d0a8c7858639d93ab6f2158d2c6a05"
+    }
+  },
+  "processing-service/app/nodes/io_nodes.py": {
+    "size": 3693,
+    "mtime_ns": 1787509082127046200,
+    "indexed_at_ns": 1787511961345378500,
+    "word_count": 374
+  },
+  "processing-service/app/nodes/stub.py": {
+    "size": 825,
+    "mtime_ns": 1787384234842123900,
+    "indexed_at_ns": 1787384312117467000,
+    "word_count": 84,
+    "hashes": {
+      "processing-service/app/nodes/stub.py": "5608bae62ee696c5488592e721f2a15cbb99d808bd11709d006b543fbcb579f3"
+    }
+  },
+  "processing-service/tests/conftest.py": {
+    "size": 1174,
+    "mtime_ns": 1787384205564629200,
+    "indexed_at_ns": 1787384312118466900,
+    "word_count": 111,
+    "hashes": {
+      "processing-service/tests/conftest.py": "c4bc56301c2c9fcee4a4003005be34c158fbf8504287b1eee354f333822af354"
+    }
+  },
+  "processing-service/tests/test_io_nodes.py": {
+    "size": 3039,
+    "mtime_ns": 1787481111280909500,
+    "indexed_at_ns": 1787481626545593100,
+    "word_count": 240,
+    "hashes": {
+      "processing-service/tests/test_io_nodes.py": "c276b746185acf182a4706fa6d206bd5eefdd024b1accddb3f4328cd31db512b"
+    }
+  },
+  "processing-service/tests/test_stub.py": {
+    "size": 886,
+    "mtime_ns": 1787384220620915700,
+    "indexed_at_ns": 1787384312120468600,
+    "word_count": 74,
+    "hashes": {
+      "processing-service/tests/test_stub.py": "b6628c2ee88d1debd3c64e8d53a0a47bef6a7d49d760a3b2bad3280d04feac00"
+    }
+  },
+  "processing-service/app/main.py": {
+    "size": 1722,
+    "mtime_ns": 1787481093191444700,
+    "indexed_at_ns": 1787481626527010500,
+    "word_count": 151,
+    "hashes": {
+      "processing-service/app/main.py": "530726ce75ce36311ca40546bbb20db5c5d9258240e19e34790713173ed1e4ae"
+    }
+  },
+  "processing-service/app/schemas.py": {
+    "size": 414,
+    "mtime_ns": 1787511479490242500,
+    "indexed_at_ns": 1787511961653177200,
+    "word_count": 45,
+    "hashes": {
+      "processing-service/app/schemas.py": "eec1ed3cf4c6d69930cfd7de666bf65021f2516285f91bba9bc1636347404908"
+    }
+  },
+  "processing-service/tests/test_main.py": {
+    "size": 4466,
+    "mtime_ns": 1787511451544197200,
+    "indexed_at_ns": 1787511961655189200,
+    "word_count": 382,
+    "hashes": {
+      "processing-service/tests/test_main.py": "9072c77cb9906a4e1217426ab57a642d88e4a365e8ca9c4395d0e550ca673fec"
+    }
+  },
+  "src/features/processing/api/topo-sort.test.ts": {
+    "size": 1660,
+    "mtime_ns": 1787413090282648400,
+    "indexed_at_ns": 1787413122985661400,
+    "word_count": 218
+  },
+  "src/features/processing/api/topo-sort.ts": {
+    "size": 1243,
+    "mtime_ns": 1787413090297867100,
+    "indexed_at_ns": 1787413122987668200,
+    "word_count": 158
+  },
+  "vitest.config.ts": {
+    "size": 131,
+    "mtime_ns": 1787413102847767400,
+    "indexed_at_ns": 1787413123071487700,
+    "word_count": 15
+  },
+  "src/features/processing/api/service-client.ts": {
+    "size": 1389,
+    "mtime_ns": 1787511510178790700,
+    "indexed_at_ns": 1787511961379511600,
+    "word_count": 144
+  },
+  "src/features/processing/api/types.ts": {
+    "size": 864,
+    "mtime_ns": 1787511503665572000,
+    "indexed_at_ns": 1787511961386783200,
+    "word_count": 106
+  },
+  "src/features/processing/api/run.ts": {
+    "size": 3327,
+    "mtime_ns": 1787511757896574000,
+    "indexed_at_ns": 1787511961377507300,
+    "word_count": 360
+  },
+  "src/features/processing/api/upload.ts": {
+    "size": 877,
+    "mtime_ns": 1787481195911965800,
+    "indexed_at_ns": 1787481626268991400,
+    "word_count": 112
+  },
+  "src/shared/lib/supabase.ts": {
+    "size": 328,
+    "mtime_ns": 1787458679481006800,
+    "indexed_at_ns": 1787479953117434800,
+    "word_count": 28
+  },
+  "zed-dev-uiux-brief.md": {
+    "size": 14762,
+    "mtime_ns": 1786622530021475400,
+    "indexed_at_ns": 1787479953373929300,
+    "word_count": 2171,
+    "hashes": {
+      "zed-dev-uiux-brief.md": "a8d5c1150dcf3ba7784563e94fc477d2ec7ce8139e6bfe9a01940647d881e725"
+    }
+  },
+  ".claude/settings.local.json": {
+    "size": 236,
+    "mtime_ns": 1787480352885901700,
+    "indexed_at_ns": 1787481626515465300,
+    "word_count": 29,
+    "hashes": {
+      ".claude/settings.local.json": "c59007c4269bfafe102aba2bf7ce7f1dd56da8c2e7bd5fba2b8d68b5d318c156"
+    }
+  },
+  "docs/superpowers/plans/2026-08-24-processing-engine-phase2.md": {
+    "size": 17918,
+    "mtime_ns": 1787510506083186900,
+    "indexed_at_ns": 1787511961308231700,
+    "word_count": 2043
+  },
+  "docs/superpowers/specs/2026-08-24-processing-engine-phase2-design.md": {
+    "size": 8617,
+    "mtime_ns": 1787510290241394500,
+    "indexed_at_ns": 1787511961313922000,
+    "word_count": 1242
+  },
+  "src/features/processing/api/run.test.ts": {
+    "size": 1071,
+    "mtime_ns": 1787511775414110600,
+    "indexed_at_ns": 1787511961374975900,
+    "word_count": 111
+  },
+  "processing-service/app/nodes/classify_rf.py": {
+    "size": 4960,
+    "mtime_ns": 1787536117959960500,
+    "indexed_at_ns": 1787536194580401300,
+    "word_count": 467,
+    "hashes": {
+      "processing-service/app/nodes/classify_rf.py": "157bc3282bbbc68e3958a35b84b67e331f1b76c59f545ce2ef803ceee1462fe1"
+    }
+  },
+  "processing-service/app/nodes/hedley.py": {
+    "size": 5384,
+    "mtime_ns": 1787534184605064400,
+    "indexed_at_ns": 1787536194244382200,
+    "word_count": 572
+  },
+  "processing-service/app/nodes/lyzenga.py": {
+    "size": 5627,
+    "mtime_ns": 1787535186919100400,
+    "indexed_at_ns": 1787536194249848600,
+    "word_count": 568
+  },
+  "processing-service/app/nodes/sample_utils.py": {
+    "size": 2934,
+    "mtime_ns": 1787533254568793700,
+    "indexed_at_ns": 1787536194252363400,
+    "word_count": 301
+  },
+  "processing-service/tests/test_classify_rf.py": {
+    "size": 3290,
+    "mtime_ns": 1787536023060756500,
+    "indexed_at_ns": 1787536194582871300,
+    "word_count": 248,
+    "hashes": {
+      "processing-service/tests/test_classify_rf.py": "2fdcef696a6ef13bf45ea7bb60649ac25f613fd686a84e858f54d252cc7f0b02"
+    }
+  },
+  "processing-service/tests/test_hedley.py": {
+    "size": 4632,
+    "mtime_ns": 1787534386506996500,
+    "indexed_at_ns": 1787536194273780200,
+    "word_count": 394
+  },
+  "processing-service/tests/test_lyzenga.py": {
+    "size": 5512,
+    "mtime_ns": 1787535133769754100,
+    "indexed_at_ns": 1787536194277779000,
+    "word_count": 447
+  },
+  "processing-service/tests/test_sample_utils.py": {
+    "size": 2765,
+    "mtime_ns": 1787533232197559000,
+    "indexed_at_ns": 1787536194281803100,
+    "word_count": 225
+  }
+}

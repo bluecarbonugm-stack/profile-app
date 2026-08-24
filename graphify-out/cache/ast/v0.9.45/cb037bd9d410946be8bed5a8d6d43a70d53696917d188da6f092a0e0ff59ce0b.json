@@ -1,0 +1,472 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "label": "test_artifacts.py",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "label": "make_store()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L10",
+      "_callable": true
+    },
+    {
+      "id": "path",
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_artifacts.py"
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_artifacts.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_test_save_creates_artifact_with_generated_id",
+      "label": "test_save_creates_artifact_with_generated_id()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L14",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_test_save_rejects_unknown_kind",
+      "label": "test_save_rejects_unknown_kind()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L23",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_test_get_returns_saved_artifact",
+      "label": "test_get_returns_saved_artifact()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L29",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_test_get_unknown_id_raises_key_error",
+      "label": "test_get_unknown_id_raises_key_error()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L36",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "label": "test_copy_as_new_duplicates_content_under_a_new_id()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L42",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_artifacts_test_manifest_persists_across_store_instances",
+      "label": "test_manifest_persists_across_store_instances()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L52",
+      "_callable": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "pytest",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_test_save_creates_artifact_with_generated_id",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_save_creates_artifact_with_generated_id",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_test_save_rejects_unknown_kind",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_save_rejects_unknown_kind",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_test_get_returns_saved_artifact",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_get_returns_saved_artifact",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_test_get_unknown_id_raises_key_error",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_get_unknown_id_raises_key_error",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_py",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_test_manifest_persists_across_store_instances",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_manifest_persists_across_store_instances",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "target": "artifactstore",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_save_creates_artifact_with_generated_id",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_save_creates_artifact_with_generated_id",
+      "target": "path",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_save_rejects_unknown_kind",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_get_returns_saved_artifact",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_get_unknown_id_raises_key_error",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "target": "$graphify-root$_processing_service_tests_test_artifacts_make_store",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "target": "path",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_artifacts_test_manifest_persists_across_store_instances",
+      "target": "artifactstore",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L54",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_save_creates_artifact_with_generated_id",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L16",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_save_creates_artifact_with_generated_id",
+      "callee": "read_bytes",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L20",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_save_rejects_unknown_kind",
+      "callee": "raises",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L25",
+      "receiver": "pytest"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_save_rejects_unknown_kind",
+      "callee": "ValueError",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "argument",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L25"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_save_rejects_unknown_kind",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L26",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_get_returns_saved_artifact",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L31",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_get_returns_saved_artifact",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L32",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_get_unknown_id_raises_key_error",
+      "callee": "raises",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L38",
+      "receiver": "pytest"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_get_unknown_id_raises_key_error",
+      "callee": "KeyError",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "argument",
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L38"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_get_unknown_id_raises_key_error",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L39",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L44",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "callee": "copy_as_new",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L45",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_copy_as_new_duplicates_content_under_a_new_id",
+      "callee": "read_bytes",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L49",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_manifest_persists_across_store_instances",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L55",
+      "receiver": "store_a"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_artifacts_test_manifest_persists_across_store_instances",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_artifacts.py",
+      "source_location": "L57",
+      "receiver": "store_b"
+    }
+  ]
+}

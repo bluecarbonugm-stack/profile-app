@@ -1,0 +1,207 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_md",
+      "label": "2026-08-22-processing-engine-phase1-design.md",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "label": "Processing Engine Phase 1 \u2014 Real Execution + Real I/O",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_context",
+      "label": "Context",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_goal_non_goals",
+      "label": "Goal / Non-goals",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_architecture",
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_components",
+      "label": "Components",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_1_processing_service_python_fastapi",
+      "label": "1. `processing-service` (Python/FastAPI)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L57"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_2_tanstack_start_server_routes_new_under_src_features_processing_api",
+      "label": "2. TanStack Start server routes (new, under `src/features/processing/api/`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L73"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_3_client_changes_src_features_processing_components",
+      "label": "3. Client changes (`src/features/processing/components/`)",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L82"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_data_flow",
+      "label": "Data flow",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L96"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_error_handling",
+      "label": "Error handling",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L113"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_testing",
+      "label": "Testing",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L125"
+    },
+    {
+      "id": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_explicitly_deferred",
+      "label": "Explicitly deferred",
+      "file_type": "document",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L136"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_md",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_goal_non_goals",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_architecture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_components",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_components",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_1_processing_service_python_fastapi",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_components",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_2_tanstack_start_server_routes_new_under_src_features_processing_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_components",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_3_client_changes_src_features_processing_components",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_data_flow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_error_handling",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_testing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L125",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_processing_engine_phase_1_real_execution_real_i_o",
+      "target": "$graphify-root$_docs_superpowers_specs_2026_08_22_processing_engine_phase1_design_explicitly_deferred",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/superpowers/specs/2026-08-22-processing-engine-phase1-design.md",
+      "source_location": "L136",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

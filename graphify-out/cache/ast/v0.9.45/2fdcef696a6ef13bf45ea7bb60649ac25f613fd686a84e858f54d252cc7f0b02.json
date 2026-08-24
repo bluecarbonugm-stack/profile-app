@@ -1,0 +1,315 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "label": "test_classify_rf.py",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "fixture",
+      "label": "fixture",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_classify_rf.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "label": "tiny_classify_bundle()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L16",
+      "_callable": true
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_classify_rf.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_classify_produces_output",
+      "label": "test_rf_classify_produces_output()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L26",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "label": "test_rf_writes_int16_classification_with_two_classes()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L47",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_rejects_missing_label_field",
+      "label": "test_rf_rejects_missing_label_field()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L81",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_requires_raster_and_vector",
+      "label": "test_rf_requires_raster_and_vector()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L101",
+      "_callable": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "numpy",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "local_alias": "np"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "pytest",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "rasterio",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "target": "fixture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_classify_produces_output",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_rejects_missing_label_field",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_classify_rf_py",
+      "target": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_requires_raster_and_vector",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L101",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L17",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "callee": "read_bytes",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L18",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L20",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_tiny_classify_bundle",
+      "callee": "read_bytes",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L21",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_classify_produces_output",
+      "callee": "execute_classify_rf",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L30",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "callee": "execute_classify_rf",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L51",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "callee": "values",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L65",
+      "receiver": "mapping"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L67",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "callee": "read",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L72",
+      "receiver": "dataset"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "callee": "items",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L74",
+      "receiver": "mapping"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "callee": "items",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L75",
+      "receiver": "mapping"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_writes_int16_classification_with_two_classes",
+      "callee": "unique",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L76",
+      "receiver": "np"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_rejects_missing_label_field",
+      "callee": "execute_classify_rf",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L86",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_rejects_missing_label_field",
+      "callee": "AssertionError",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L96",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_requires_raster_and_vector",
+      "callee": "execute_classify_rf",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L105",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_classify_rf_test_rf_requires_raster_and_vector",
+      "callee": "AssertionError",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_classify_rf.py",
+      "source_location": "L106",
+      "receiver": null
+    }
+  ]
+}

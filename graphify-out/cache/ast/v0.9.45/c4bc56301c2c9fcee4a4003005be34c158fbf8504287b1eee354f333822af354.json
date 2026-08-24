@@ -1,0 +1,349 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_tests_conftest_py",
+      "label": "conftest.py",
+      "file_type": "code",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "fixture",
+      "label": "fixture",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/conftest.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_conftest_store",
+      "label": "store()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L16",
+      "_callable": true
+    },
+    {
+      "id": "path",
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/conftest.py"
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/conftest.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "label": "tiny_geotiff_bytes()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L21",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "label": "tiny_geojson_bytes()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L41",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_conftest_tiny_csv_bytes",
+      "label": "tiny_csv_bytes()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L51",
+      "_callable": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "geopandas",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "local_alias": "gpd"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "numpy",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "local_alias": "np"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "pytest",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "rasterio",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "rasterio_transform",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "shapely_geometry",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_store",
+      "target": "fixture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "$graphify-root$_processing_service_tests_conftest_store",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_store",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_store",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "target": "fixture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "target": "fixture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_tiny_csv_bytes",
+      "target": "fixture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_py",
+      "target": "$graphify-root$_processing_service_tests_conftest_tiny_csv_bytes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_conftest_store",
+      "target": "artifactstore",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L17",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "callee": "ones",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L23",
+      "receiver": "np"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "callee": "from_origin",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L24",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "callee": "write",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L36",
+      "receiver": "dst"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geotiff_bytes",
+      "callee": "read_bytes",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L37",
+      "receiver": "path"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "callee": "GeoDataFrame",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L42",
+      "receiver": "gpd"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "callee": "Point",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L44",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "callee": "Point",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L44",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "callee": "Point",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L44",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "callee": "encode",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L47",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_conftest_tiny_geojson_bytes",
+      "callee": "to_json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/conftest.py",
+      "source_location": "L47",
+      "receiver": "gdf"
+    }
+  ]
+}

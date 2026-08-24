@@ -1,0 +1,512 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_py",
+      "label": "test_main.py",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "fixture",
+      "label": "fixture",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_main.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_client",
+      "label": "client()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L13",
+      "_callable": true
+    },
+    {
+      "id": "path",
+      "label": "Path",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_main.py"
+    },
+    {
+      "id": "testclient",
+      "label": "TestClient",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_main.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_test_health_check",
+      "label": "test_health_check()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L20",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact",
+      "label": "test_upload_artifact()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L25",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact_rejects_bad_kind",
+      "label": "test_upload_artifact_rejects_bad_kind()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L38",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_test_execute_real_io_node",
+      "label": "test_execute_real_io_node()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L47",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_test_execute_unknown_node_type_falls_back_to_stub",
+      "label": "test_execute_unknown_node_type_falls_back_to_stub()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L63",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_test_execute_missing_file_param_returns_400",
+      "label": "test_execute_missing_file_param_returns_400()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L73",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "label": "test_raster_input_to_export_wiring_carries_real_data()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L81",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_main_rationale_84",
+      "label": "Regression guard for the port-id contract: raster-input's output must be keyed\u2026",
+      "file_type": "rationale",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L84"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "pytest",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "fastapi_testclient",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "app_main",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_client",
+      "target": "fixture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "context": "decorator"
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_client",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_client",
+      "target": "path",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_client",
+      "target": "testclient",
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_health_check",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_test_health_check",
+      "target": "testclient",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact",
+      "target": "testclient",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact_rejects_bad_kind",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact_rejects_bad_kind",
+      "target": "testclient",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_execute_real_io_node",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_test_execute_real_io_node",
+      "target": "testclient",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_execute_unknown_node_type_falls_back_to_stub",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_test_execute_unknown_node_type_falls_back_to_stub",
+      "target": "testclient",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_execute_missing_file_param_returns_400",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_test_execute_missing_file_param_returns_400",
+      "target": "testclient",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_py",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "target": "testclient",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_client",
+      "target": "testclient",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_main_rationale_84",
+      "target": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L84",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_client",
+      "callee": "ArtifactStore",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L14",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_client",
+      "callee": "app",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "argument",
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L16"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_client",
+      "callee": "clear",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L17",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_health_check",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L21",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L26",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact",
+      "callee": "json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L32",
+      "receiver": "response"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_upload_artifact_rejects_bad_kind",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L39",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_execute_real_io_node",
+      "callee": "json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L48",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_execute_real_io_node",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L48",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_execute_real_io_node",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L53",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_execute_real_io_node",
+      "callee": "json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L58",
+      "receiver": "response"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_execute_unknown_node_type_falls_back_to_stub",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L64",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_execute_unknown_node_type_falls_back_to_stub",
+      "callee": "json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L69",
+      "receiver": "response"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_execute_missing_file_param_returns_400",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L74",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "callee": "json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L87",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L87",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L93",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "callee": "json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L98",
+      "receiver": "input_response"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "callee": "post",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L103",
+      "receiver": "client"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_main_test_raster_input_to_export_wiring_carries_real_data",
+      "callee": "json",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_main.py",
+      "source_location": "L112",
+      "receiver": "export_response"
+    }
+  ]
+}

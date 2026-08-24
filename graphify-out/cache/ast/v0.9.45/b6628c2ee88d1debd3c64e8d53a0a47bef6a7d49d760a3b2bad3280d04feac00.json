@@ -1,0 +1,145 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_tests_test_stub_py",
+      "label": "test_stub.py",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "label": "test_stub_forwards_first_input_to_every_output_port()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L7",
+      "_callable": true
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/tests/test_stub.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_tests_test_stub_test_stub_with_no_inputs_produces_no_outputs",
+      "label": "test_stub_with_no_inputs_produces_no_outputs()",
+      "file_type": "code",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L17",
+      "_callable": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_tests_test_stub_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_stub_py",
+      "target": "app_nodes_stub",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_stub_py",
+      "target": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_stub_py",
+      "target": "$graphify-root$_processing_service_tests_test_stub_test_stub_with_no_inputs_produces_no_outputs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_tests_test_stub_test_stub_with_no_inputs_produces_no_outputs",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L17",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "callee": "save",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L8",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "callee": "execute_stub",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L9",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "callee": "keys",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L11",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "callee": "values",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L13",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_stub_test_stub_forwards_first_input_to_every_output_port",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L14",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_tests_test_stub_test_stub_with_no_inputs_produces_no_outputs",
+      "callee": "execute_stub",
+      "is_member_call": false,
+      "source_file": "processing-service/tests/test_stub.py",
+      "source_location": "L18",
+      "receiver": null
+    }
+  ]
+}

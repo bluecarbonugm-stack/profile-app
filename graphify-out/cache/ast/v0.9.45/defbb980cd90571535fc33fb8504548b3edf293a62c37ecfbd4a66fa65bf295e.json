@@ -1,0 +1,113 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_app_schemas_py",
+      "label": "schemas.py",
+      "file_type": "code",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_schemas_executerequest",
+      "label": "ExecuteRequest",
+      "file_type": "code",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L6",
+      "_callable": true,
+      "_callable_class": true
+    },
+    {
+      "id": "basemodel",
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/schemas.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_schemas_executeresponse",
+      "label": "ExecuteResponse",
+      "file_type": "code",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L12",
+      "_callable": true,
+      "_callable_class": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_schemas_artifactuploadresponse",
+      "label": "ArtifactUploadResponse",
+      "file_type": "code",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L18",
+      "_callable": true,
+      "_callable_class": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_app_schemas_py",
+      "target": "pydantic",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_schemas_py",
+      "target": "$graphify-root$_processing_service_app_schemas_executerequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_schemas_executerequest",
+      "target": "basemodel",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_schemas_py",
+      "target": "$graphify-root$_processing_service_app_schemas_executeresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_schemas_executeresponse",
+      "target": "basemodel",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_schemas_py",
+      "target": "$graphify-root$_processing_service_app_schemas_artifactuploadresponse",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_schemas_artifactuploadresponse",
+      "target": "basemodel",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/schemas.py",
+      "source_location": "L18",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": []
+}

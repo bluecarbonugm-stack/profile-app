@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "processing-service/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_readme_processing_service",
+      "label": "processing-service",
+      "file_type": "document",
+      "source_file": "processing-service/README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_readme_setup",
+      "label": "Setup",
+      "file_type": "document",
+      "source_file": "processing-service/README.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "$graphify-root$_processing_service_readme_run_dev",
+      "label": "Run (dev)",
+      "file_type": "document",
+      "source_file": "processing-service/README.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "$graphify-root$_processing_service_readme_test",
+      "label": "Test",
+      "file_type": "document",
+      "source_file": "processing-service/README.md",
+      "source_location": "L20"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_readme_md",
+      "target": "$graphify-root$_processing_service_readme_processing_service",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_readme_processing_service",
+      "target": "$graphify-root$_processing_service_readme_setup",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/README.md",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_readme_processing_service",
+      "target": "$graphify-root$_processing_service_readme_run_dev",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/README.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_readme_processing_service",
+      "target": "$graphify-root$_processing_service_readme_test",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/README.md",
+      "source_location": "L20",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

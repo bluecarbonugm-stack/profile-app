@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_stub_py",
+      "label": "stub.py",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_stub_execute_stub",
+      "label": "execute_stub()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L6",
+      "_callable": true
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/nodes/stub.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_stub_rationale_13",
+      "label": "Phase 1 fallback for every node type without a real implementation yet\u2026",
+      "file_type": "rationale",
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L13"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_stub_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_stub_py",
+      "target": "$graphify-root$_processing_service_app_nodes_stub_execute_stub",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_stub_execute_stub",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_stub_rationale_13",
+      "target": "$graphify-root$_processing_service_app_nodes_stub_execute_stub",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L13",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_stub_execute_stub",
+      "callee": "values",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L17",
+      "receiver": "inputs"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_stub_execute_stub",
+      "callee": "copy_as_new",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/stub.py",
+      "source_location": "L20",
+      "receiver": "store"
+    }
+  ]
+}

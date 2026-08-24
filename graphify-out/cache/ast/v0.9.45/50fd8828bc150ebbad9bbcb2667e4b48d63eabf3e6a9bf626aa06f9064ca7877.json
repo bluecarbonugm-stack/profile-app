@@ -1,0 +1,121 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_agents_md",
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_agents_panduan_kontribusi_manusia_agen",
+      "label": "Panduan kontribusi (manusia & agen)",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_agents_aturan_arsitektur",
+      "label": "Aturan arsitektur",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L6"
+    },
+    {
+      "id": "$graphify-root$_agents_aturan_ui",
+      "label": "Aturan UI",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "$graphify-root$_agents_data_konten_profil",
+      "label": "Data konten profil",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L34"
+    },
+    {
+      "id": "$graphify-root$_agents_sebelum_commit",
+      "label": "Sebelum commit",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "$graphify-root$_agents_routing",
+      "label": "Routing",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": "L50"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_agents_md",
+      "target": "$graphify-root$_agents_panduan_kontribusi_manusia_agen",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_panduan_kontribusi_manusia_agen",
+      "target": "$graphify-root$_agents_aturan_arsitektur",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_panduan_kontribusi_manusia_agen",
+      "target": "$graphify-root$_agents_aturan_ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_panduan_kontribusi_manusia_agen",
+      "target": "$graphify-root$_agents_data_konten_profil",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_panduan_kontribusi_manusia_agen",
+      "target": "$graphify-root$_agents_sebelum_commit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_panduan_kontribusi_manusia_agen",
+      "target": "$graphify-root$_agents_routing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_md",
+      "target": "$graphify-root$_src_routes_readme_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "target_file": "$graphify-root$/src/routes/README.md"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

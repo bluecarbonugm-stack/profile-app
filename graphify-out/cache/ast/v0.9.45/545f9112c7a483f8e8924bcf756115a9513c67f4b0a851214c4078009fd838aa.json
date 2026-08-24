@@ -1,0 +1,487 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "label": "io_nodes.py",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_input",
+      "label": "execute_raster_input()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L10",
+      "_callable": true
+    },
+    {
+      "id": "artifactstore",
+      "label": "ArtifactStore",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "origin_file": "$graphify-root$/processing-service/app/nodes/io_nodes.py"
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "label": "execute_vector_input()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L29",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "label": "execute_table_input()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L56",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "label": "_execute_export()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L76",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_export",
+      "label": "execute_raster_export()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L88",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_export",
+      "label": "execute_vector_export()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L94",
+      "_callable": true
+    },
+    {
+      "id": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_export",
+      "label": "execute_table_export()",
+      "file_type": "code",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L100",
+      "_callable": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "geopandas",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "local_alias": "gpd"
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "pandas",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "local_alias": "pd"
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "rasterio",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "app_artifacts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_input",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_input",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_export",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_export",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_export",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_export",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_py",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_export",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_export",
+      "target": "artifactstore",
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_export",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_export",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_export",
+      "target": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L103",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_input",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L13",
+      "receiver": "params"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_input",
+      "callee": "ValueError",
+      "is_member_call": false,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L15",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_raster_input",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L16",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L32",
+      "receiver": "params"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "ValueError",
+      "is_member_call": false,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L34",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L35",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "read_file",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L37",
+      "receiver": "gpd"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "AttributeError",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "collection",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L38"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "Exception",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "collection",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L38"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "load",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L42",
+      "receiver": "json"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "f",
+      "is_member_call": false,
+      "indirect": true,
+      "context": "argument",
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L42"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L43",
+      "receiver": "geojson_data"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "shape",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L44",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_vector_input",
+      "callee": "GeoDataFrame",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L45",
+      "receiver": "gpd"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L59",
+      "receiver": "params"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "callee": "ValueError",
+      "is_member_call": false,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L61",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L62",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "callee": "endswith",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L63",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "callee": "lower",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L63",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "callee": "read_excel",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L64",
+      "receiver": "pd"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_table_input",
+      "callee": "read_csv",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L66",
+      "receiver": "pd"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "callee": "values",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L77",
+      "receiver": "inputs"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "callee": "ValueError",
+      "is_member_call": false,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L79",
+      "receiver": null
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L80",
+      "receiver": "store"
+    },
+    {
+      "caller_nid": "$graphify-root$_processing_service_app_nodes_io_nodes_execute_export",
+      "callee": "get",
+      "is_member_call": true,
+      "source_file": "processing-service/app/nodes/io_nodes.py",
+      "source_location": "L83",
+      "receiver": "params"
+    }
+  ]
+}
