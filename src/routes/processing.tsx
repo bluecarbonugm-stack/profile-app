@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/shared/components/ui/sonner";
 
 const Workbench = lazy(() =>
-  import("@/components/processing/Workbench").then((m) => ({ default: m.Workbench })),
+  import("@/features/processing/components/Workbench").then((m) => ({ default: m.Workbench })),
 );
 
 export const Route = createFileRoute("/processing")({

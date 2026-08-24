@@ -10,8 +10,8 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteHeader } from "@/components/site-header";
+import { reportLovableError } from "@/shared/lib/error-reporting";
+import { SiteHeader } from "@/shared/components/layout/site-header";
 
 function NotFoundComponent() {
   return (
