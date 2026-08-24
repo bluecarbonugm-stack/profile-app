@@ -53,7 +53,7 @@ function PublicationRow({ pub }: { pub: Publication }) {
         {meta && <p className="eyebrow mt-2 text-accent">{meta}</p>}
       </div>
 
-      {/* Only present when the sheet has a link — a control that goes nowhere
+      {/* Only present when the sheet has a link - a control that goes nowhere
           is worse than no control. */}
       {pub.url && (
         <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" />
@@ -64,7 +64,7 @@ function PublicationRow({ pub }: { pub: Publication }) {
   const layout = "group flex flex-col gap-4 p-6 md:flex-row md:gap-8";
 
   // The whole row is the link when there is one, rather than a small button
-  // tucked at the end — a bigger target and one obvious affordance.
+  // tucked at the end - a bigger target and one obvious affordance.
   return pub.url ? (
     <a
       href={pub.url}

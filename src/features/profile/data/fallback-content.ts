@@ -3,7 +3,7 @@ import type { ProfileContent } from "../types";
 /**
  * Content the profile page renders when the spreadsheet is unreachable or not
  * configured yet. Keep it truthful and complete enough to be publishable on its
- * own — this is what visitors see during a Google outage.
+ * own - this is what visitors see during a Google outage.
  *
  * Team names below trace the authorship of the 2023 Panduan Teknis and are
  * placeholders until the `team` sheet is filled in; the sheet always wins.

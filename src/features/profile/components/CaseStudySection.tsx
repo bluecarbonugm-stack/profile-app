@@ -5,7 +5,7 @@ import { Section, SectionHeader } from "@/shared/components/layout/section";
 import { Button } from "@/shared/components/ui/button";
 
 // Editorial content tied to one specific published result, so it lives in code
-// rather than the spreadsheet — the figures below are cited in the 2023 guide
+// rather than the spreadsheet - the figures below are cited in the 2023 guide
 // and should not drift with routine content edits.
 const CLASS_LEGEND = [
   { color: "oklch(0.68 0.17 45)", label: "Terumbu Karang", areaHa: 376 },

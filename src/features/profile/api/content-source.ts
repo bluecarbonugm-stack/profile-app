@@ -90,7 +90,7 @@ async function fetchFromSheet(endpoint: string): Promise<ProfilePayload> {
     json = JSON.parse(body);
   } catch {
     throw new Error(
-      'Apps Script did not return JSON — check that the Web App is deployed with access set to "Anyone".',
+      'Apps Script did not return JSON - check that the Web App is deployed with access set to "Anyone".',
     );
   }
 
@@ -118,7 +118,7 @@ export async function loadProfileContent(): Promise<ProfilePayload> {
 
   const endpoint = env("PROFILE_CONTENT_ENDPOINT");
   if (!endpoint) {
-    // Not an error — this is the expected state before the sheet is wired up.
+    // Not an error - this is the expected state before the sheet is wired up.
     const payload = fallbackPayload("PROFILE_CONTENT_ENDPOINT is not set");
     cache = { payload, expiresAt: now + ttlMs() };
     return payload;
@@ -132,7 +132,7 @@ export async function loadProfileContent(): Promise<ProfilePayload> {
     const reason = error instanceof Error ? error.message : String(error);
     console.error(`[profile] falling back to bundled content: ${reason}`);
 
-    // Serve stale sheet content rather than the fallback when we have some —
+    // Serve stale sheet content rather than the fallback when we have some -
     // yesterday's real team list beats today's placeholder one.
     if (cache?.payload.source === "sheet") {
       const stale: ProfilePayload = { ...cache.payload, reason: `stale: ${reason}` };

@@ -60,7 +60,7 @@ export function NodePalette() {
         {CATEGORIES.map((cat) => {
           const items = filtered.filter((n) => n.category === cat.id);
           if (items.length === 0) return null;
-          // While searching, every matching group is forced open — collapsed
+          // While searching, every matching group is forced open - collapsed
           // results look like no results.
           const isOpen = query ? true : open[cat.id];
 
