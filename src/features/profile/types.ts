@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Schema for the JSON returned by the Google Apps Script Web App. Everything a
-// spreadsheet can leave blank is optional here — an editor forgetting to fill a
+// spreadsheet can leave blank is optional here - an editor forgetting to fill a
 // cell must degrade to a missing field, never to a failed page render.
 
 const trimmed = z.string().trim();

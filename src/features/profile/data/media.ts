@@ -1,6 +1,6 @@
 // Photo URLs pasted into a spreadsheet are almost never direct image links.
 // People share a Google Drive file and paste whatever the address bar shows,
-// which renders an HTML viewer page, not an image — so <img src> breaks.
+// which renders an HTML viewer page, not an image - so <img src> breaks.
 // Normalize the shapes we actually see into something an <img> can load.
 
 const DRIVE_ID_PATTERNS = [

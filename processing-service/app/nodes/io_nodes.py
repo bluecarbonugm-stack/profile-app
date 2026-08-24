@@ -35,7 +35,7 @@ def execute_vector_input(
     ref = store.get(str(artifact_id))
     try:
         gdf = gpd.read_file(str(ref.path))
-    except (AttributeError, Exception):
+    except Exception:
         import json
         import shapely.geometry
         with open(ref.path, "r", encoding="utf-8") as f:
