@@ -7,6 +7,7 @@ import {
   CATEGORIES,
   NODES_BY_ID,
   PORT_COLORS,
+  type Param,
   type Port,
 } from "@/features/processing/data/nodes-catalog";
 import { uploadArtifactFn } from "@/features/processing";
@@ -20,7 +21,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
+import { RoiPointEditor } from "./RoiPointEditor";
 import type { WorkbenchNodeData } from "./WorkbenchNode";
+
+type SamplePoint = { lat: number; lon: number };
+
+const ROI_NODE_IDS = new Set(["sunglint", "water-column"]);
+const ROI_MIN_POINTS = 10;
 
 interface Props {
   node: Node | null;
@@ -28,6 +35,19 @@ interface Props {
 }
 
 const CATEGORY_LABEL = Object.fromEntries(CATEGORIES.map((c) => [c.id, `${c.code} · ${c.label}`]));
+
+function normalizeSamplePoints(value: unknown): SamplePoint[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  return value.filter(
+    (point): point is SamplePoint =>
+      !!point &&
+      typeof point === "object" &&
+      typeof (point as SamplePoint).lat === "number" &&
+      typeof (point as SamplePoint).lon === "number",
+  );
+}
 
 export function PropertyPanel({ node, onParamChange }: Props) {
   const [collapsed, setCollapsed] = useState(false);
@@ -81,6 +101,8 @@ export function PropertyPanel({ node, onParamChange }: Props) {
   const valueOf = (key: string) =>
     (data.params[key] ?? spec.params.find((p) => p.key === key)?.default ?? "") as
       string | number | boolean;
+  const roiParam = spec.params.find((p) => p.key === "sample_points");
+  const roiPoints = normalizeSamplePoints(data.params.sample_points);
 
   return (
     <aside className="flex h-full w-[315px] shrink-0 flex-col border-l border-border bg-card">
@@ -108,109 +130,129 @@ export function PropertyPanel({ node, onParamChange }: Props) {
         {spec.params.length === 0 ? (
           <p className="text-xs text-muted-foreground">Node ini tidak memerlukan parameter.</p>
         ) : (
-          spec.params.map((param) => {
-            const id = `${node.id}-${param.key}`;
-            return (
-              <div key={param.key} className="space-y-2">
-                <label htmlFor={id} className="eyebrow block text-muted-foreground">
-                  {param.label}
-                </label>
+          <>
+            {roiParam && ROI_NODE_IDS.has(data.specId) ? (
+              <RoiPointEditor
+                value={roiPoints}
+                onChange={(nextPoints) =>
+                  onParamChange(node.id, roiParam.key, nextPoints as unknown as JsonValue)
+                }
+                min={ROI_MIN_POINTS}
+              />
+            ) : null}
 
-                {param.type === "text" && (
-                  <Input
-                    id={id}
-                    className="h-8 text-xs"
-                    value={String(valueOf(param.key) ?? "")}
-                    onChange={(e) => onParamChange(node.id, param.key, e.target.value)}
-                  />
-                )}
-
-                {param.type === "number" && (
-                  <Input
-                    id={id}
-                    type="number"
-                    className="tabular h-8 text-xs"
-                    value={Number(valueOf(param.key) ?? 0)}
-                    onChange={(e) => onParamChange(node.id, param.key, Number(e.target.value))}
-                  />
-                )}
-
-                {param.type === "select" && param.options && (
-                  <Select
-                    value={String(valueOf(param.key) ?? "")}
-                    onValueChange={(v) => onParamChange(node.id, param.key, v)}
-                  >
-                    <SelectTrigger id={id} className="h-8 text-xs">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {param.options.map((o) => (
-                        <SelectItem key={o} value={o} className="text-xs">
-                          {o}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-
-                {param.type === "file" && (
-                  <div className="space-y-1.5">
-                    <Input
-                      id={id}
-                      type="file"
-                      accept={param.accept}
-                      className="h-8 text-xs file:text-xs"
-                      onChange={async (e) => {
-                        const file = e.target.files?.[0];
-                        if (!file) return;
-                        const kind =
-                          data.specId === "raster-input"
-                            ? "raster"
-                            : data.specId === "vector-input"
-                              ? "vector"
-                              : "table";
-                        const formData = new FormData();
-                        formData.set("file", file);
-                        formData.set("kind", kind);
-                        try {
-                          const artifact = await uploadArtifactFn({ data: formData });
-                          onParamChange(node.id, param.key, artifact.id);
-                        } catch (error) {
-                          toast.error(
-                            error instanceof Error ? error.message : "Gagal mengunggah file",
-                          );
-                        }
-                      }}
-                    />
-                    {typeof valueOf(param.key) === "string" &&
-                    valueOf(param.key) !== param.default &&
-                    valueOf(param.key) !== "" ? (
-                      <p className="text-[11px] text-muted-foreground">
-                        File terunggah (id: {String(valueOf(param.key)).slice(0, 8)}…)
-                      </p>
-                    ) : null}
-                  </div>
-                )}
-
-                {param.type === "checkbox" && (
-                  <div className="flex items-center gap-2">
-                    <Checkbox
-                      id={id}
-                      checked={Boolean(valueOf(param.key))}
-                      onCheckedChange={(v) => onParamChange(node.id, param.key, Boolean(v))}
-                    />
-                    <label htmlFor={id} className="text-xs text-muted-foreground">
-                      Aktif
+            {spec.params
+              .filter(
+                (param) =>
+                  !(param as Param).hidden &&
+                  !(roiParam && ROI_NODE_IDS.has(data.specId) && param.key === roiParam.key),
+              )
+              .map((param) => {
+                const id = `${node.id}-${param.key}`;
+                return (
+                  <div key={param.key} className="space-y-2">
+                    <label htmlFor={id} className="eyebrow block text-muted-foreground">
+                      {param.label}
                     </label>
-                  </div>
-                )}
 
-                {param.help && (
-                  <p className="text-[11px] leading-relaxed text-muted-foreground">{param.help}</p>
-                )}
-              </div>
-            );
-          })
+                    {param.type === "text" && (
+                      <Input
+                        id={id}
+                        className="h-8 text-xs"
+                        value={String(valueOf(param.key) ?? "")}
+                        onChange={(e) => onParamChange(node.id, param.key, e.target.value)}
+                      />
+                    )}
+
+                    {param.type === "number" && (
+                      <Input
+                        id={id}
+                        type="number"
+                        className="tabular h-8 text-xs"
+                        value={Number(valueOf(param.key) ?? 0)}
+                        onChange={(e) => onParamChange(node.id, param.key, Number(e.target.value))}
+                      />
+                    )}
+
+                    {param.type === "select" && param.options && (
+                      <Select
+                        value={String(valueOf(param.key) ?? "")}
+                        onValueChange={(v) => onParamChange(node.id, param.key, v)}
+                      >
+                        <SelectTrigger id={id} className="h-8 text-xs">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {param.options.map((o) => (
+                            <SelectItem key={o} value={o} className="text-xs">
+                              {o}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+
+                    {param.type === "file" && (
+                      <div className="space-y-1.5">
+                        <Input
+                          id={id}
+                          type="file"
+                          accept={param.accept}
+                          className="h-8 text-xs file:text-xs"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (!file) return;
+                            const kind =
+                              data.specId === "raster-input"
+                                ? "raster"
+                                : data.specId === "vector-input"
+                                  ? "vector"
+                                  : "table";
+                            const formData = new FormData();
+                            formData.set("file", file);
+                            formData.set("kind", kind);
+                            try {
+                              const artifact = await uploadArtifactFn({ data: formData });
+                              onParamChange(node.id, param.key, artifact.id);
+                            } catch (error) {
+                              toast.error(
+                                error instanceof Error ? error.message : "Gagal mengunggah file",
+                              );
+                            }
+                          }}
+                        />
+                        {typeof valueOf(param.key) === "string" &&
+                        valueOf(param.key) !== param.default &&
+                        valueOf(param.key) !== "" ? (
+                          <p className="text-[11px] text-muted-foreground">
+                            File terunggah (id: {String(valueOf(param.key)).slice(0, 8)}…)
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
+
+                    {param.type === "checkbox" && (
+                      <div className="flex items-center gap-2">
+                        <Checkbox
+                          id={id}
+                          checked={Boolean(valueOf(param.key))}
+                          onCheckedChange={(v) => onParamChange(node.id, param.key, Boolean(v))}
+                        />
+                        <label htmlFor={id} className="text-xs text-muted-foreground">
+                          Aktif
+                        </label>
+                      </div>
+                    )}
+
+                    {param.help && (
+                      <p className="text-[11px] leading-relaxed text-muted-foreground">
+                        {param.help}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+          </>
         )}
 
         <div className="grid grid-cols-2 gap-4 border-t border-border pt-5">

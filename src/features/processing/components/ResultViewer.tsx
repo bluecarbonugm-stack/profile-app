@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { NODES_BY_ID } from "@/features/processing/data/nodes-catalog";
 import type { NodeRunResult } from "@/features/processing";
+import type { JsonValue } from "../api/types";
 import { X } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 
@@ -102,49 +103,13 @@ export function ResultViewer({ nodeId, specId, onClose, result }: Props) {
             </p>
           )}
 
-          {isRealResult && result.implemented && result.summary && (
-            <table className="w-full text-sm">
-              <tbody>
-                {Object.entries(result.summary).map(([key, value]) => (
-                  <tr key={key} className="border-b border-border">
-                    <td className="py-1 pr-4 font-medium">{key}</td>
-                    <td className="py-1">
-                      {typeof value === "object" ? JSON.stringify(value) : String(value)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {isRealResult && result.error && (
+            <p className="text-sm text-destructive">{result.error}</p>
           )}
 
-          {!isRealResult && spec.id === "rf-train" && (
-            <>
-              <Panel title="Variable Importance">
-                <div className="h-56">
-                  <ResponsiveContainer>
-                    <BarChart data={varImportance}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                      <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-                      <YAxis tick={{ fontSize: 11 }} />
-                      <Tooltip />
-                      <Bar dataKey="value" fill="var(--teal)" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </Panel>
-              <Panel title="OOB Report">
-                <pre className="text-[11px] leading-relaxed bg-muted/40 p-3 rounded border border-border">
-                  {`nTree = 300
-Variable selection = sqrt
-Impurity = Gini
-OOB accuracy = 0.882
-Kappa = 0.845
-Kelas terbaik = Pasir (UA 0.978)
-Kelas terlemah = Lamun (UA 0.844)`}
-                </pre>
-              </Panel>
-            </>
-          )}
+          {isRealResult && result.implemented && result.summary ? (
+            <SummaryReport summary={result.summary} />
+          ) : null}
 
           {!isRealResult && spec.id === "confusion-matrix" && (
             <Panel title="Confusion Matrix">
@@ -189,19 +154,16 @@ Kelas terlemah = Lamun (UA 0.844)`}
             </Panel>
           )}
 
-          {!isRealResult &&
-            (hasRaster || hasVector) &&
-            spec.id !== "rf-train" &&
-            spec.id !== "confusion-matrix" && (
-              <Panel title="Map Preview">
-                <div className="relative h-64 rounded border border-border overflow-hidden bg-ocean-gradient">
-                  <div className="absolute inset-0 bg-grid opacity-40" />
-                  <div className="absolute bottom-3 left-3 text-[11px] bg-black/50 text-white px-2 py-1 rounded">
-                    Preview raster / vektor: {spec.name}
-                  </div>
+          {!isRealResult && (hasRaster || hasVector) && spec.id !== "confusion-matrix" && (
+            <Panel title="Map Preview">
+              <div className="relative h-64 rounded border border-border overflow-hidden bg-ocean-gradient">
+                <div className="absolute inset-0 bg-grid opacity-40" />
+                <div className="absolute bottom-3 left-3 text-[11px] bg-black/50 text-white px-2 py-1 rounded">
+                  Preview raster / vektor: {spec.name}
                 </div>
-              </Panel>
-            )}
+              </div>
+            </Panel>
+          )}
 
           {!isRealResult &&
             hasChart &&
@@ -252,6 +214,12 @@ Kelas terlemah = Lamun (UA 0.844)`}
               Node ini tidak menghasilkan output preview.
             </p>
           )}
+
+          {!isRealResult && spec.outputs.length > 0 && spec.id === "rf-train" && (
+            <p className="text-xs text-muted-foreground">
+              Jalankan pipeline untuk melihat ringkasan pelatihan model.
+            </p>
+          )}
         </div>
 
         {!isRealResult && (
@@ -272,5 +240,124 @@ function Panel({ title, children }: { title: string; children: React.ReactNode }
       <h3 className="eyebrow mb-3 text-muted-foreground">{title}</h3>
       {children}
     </section>
+  );
+}
+
+function isScalar(value: JsonValue): boolean {
+  return value === null || typeof value !== "object";
+}
+
+function isDict(value: JsonValue): value is { [key: string]: JsonValue } {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function ScalarText({ value }: { value: JsonValue }) {
+  if (typeof value === "number") {
+    return <span className="tabular">{Number.isInteger(value) ? value : value.toFixed(4)}</span>;
+  }
+  return <>{value === null ? "null" : String(value)}</>;
+}
+
+// Renders real scientific summaries: scalar rows in the main table, nested
+// dicts as subtables (matrix layout when the shape is uniform), and arrays or
+// mixed structures as compact JSON blocks.
+function SummaryReport({ summary }: { summary: Record<string, JsonValue> }) {
+  const entries = Object.entries(summary);
+  if (entries.length === 0) {
+    return <p className="text-sm text-muted-foreground">Node selesai tanpa ringkasan.</p>;
+  }
+  return (
+    <div className="space-y-6">
+      {entries.some(([, value]) => isScalar(value)) && (
+        <table className="w-full text-sm">
+          <tbody>
+            {entries
+              .filter(([, value]) => isScalar(value))
+              .map(([key, value]) => (
+                <tr key={key} className="border-b border-border">
+                  <td className="py-1 pr-4 font-medium">{key}</td>
+                  <td className="py-1">
+                    <ScalarText value={value} />
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      )}
+      {entries
+        .filter(([, value]) => !isScalar(value))
+        .map(([key, value]) => (
+          <Panel title={key.replace(/_/g, " ")} key={key}>
+            <NestedValue value={value} />
+          </Panel>
+        ))}
+    </div>
+  );
+}
+
+function NestedValue({ value }: { value: JsonValue }) {
+  if (isDict(value)) {
+    const rows = Object.entries(value);
+    if (rows.every(([, v]) => isScalar(v))) {
+      return (
+        <table className="w-full text-sm">
+          <tbody>
+            {rows.map(([key, v]) => (
+              <tr key={key} className="border-b border-border last:border-b-0">
+                <td className="py-1 pr-4 font-medium">{key}</td>
+                <td className="py-1">
+                  <ScalarText value={v} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
+    if (
+      rows.every(
+        ([, v]) => isDict(v) && Object.values(v).every(isScalar) && Object.keys(v).length > 0,
+      )
+    ) {
+      const columns = [
+        ...new Set(rows.flatMap(([, v]) => Object.keys(v as Record<string, JsonValue>))),
+      ];
+      return (
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-xs">
+            <thead className="bg-muted/40">
+              <tr>
+                <th className="border border-border px-2 py-1 text-left" />
+                {columns.map((column) => (
+                  <th key={column} className="border border-border px-2 py-1 text-left">
+                    {column}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(([rowKey, v]) => (
+                <tr key={rowKey}>
+                  <th className="border border-border px-2 py-1 text-left font-medium">{rowKey}</th>
+                  {columns.map((column) => {
+                    const cell = (v as Record<string, JsonValue>)[column];
+                    return (
+                      <td key={column} className="border border-border px-2 py-1">
+                        {cell === undefined ? "—" : <ScalarText value={cell} />}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+  }
+  return (
+    <pre className="overflow-x-auto rounded border border-border bg-muted/40 p-3 text-[11px] leading-relaxed tabular">
+      {JSON.stringify(value, null, 2)}
+    </pre>
   );
 }

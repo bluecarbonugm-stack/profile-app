@@ -1,16 +1,18 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Waves } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isProcessing = pathname.startsWith("/processing");
 
   return (
-    <header className={cn(
-      "sticky top-0 z-40 border-b backdrop-blur",
-      isProcessing ? "border-border bg-card/90" : "border-border/60 bg-background/80",
-    )}>
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b backdrop-blur",
+        isProcessing ? "border-border bg-card/90" : "border-border/60 bg-background/80",
+      )}
+    >
       <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-6 px-4">
         <Link to="/" className="flex items-center gap-2 text-sm font-semibold">
           <span className="grid place-items-center h-7 w-7 rounded-md bg-ocean-gradient text-white">

@@ -20,6 +20,7 @@ export interface Param {
   options?: string[];
   help?: string;
   accept?: string;
+  hidden?: boolean;
 }
 
 export interface NodeSpec {
@@ -258,6 +259,13 @@ export const NODES: NodeSpec[] = [
         options: ["OLS", "Robust"],
         default: "OLS",
       },
+      {
+        key: "sample_points",
+        label: "Sample points",
+        type: "text",
+        default: "[]",
+        hidden: true,
+      },
     ],
   },
   {
@@ -292,6 +300,13 @@ export const NODES: NodeSpec[] = [
     outputs: [p("out", "Raster DII", "raster"), p("chart", "Regresi ki/kj", "chart")],
     params: [
       { key: "pairs", label: "Pasangan band", type: "text", default: "B2-B3, B2-B4, B3-B4" },
+      {
+        key: "sample_points",
+        label: "Sample points",
+        type: "text",
+        default: "[]",
+        hidden: true,
+      },
     ],
   },
   {

@@ -20,7 +20,7 @@ Today the whole thing is simulated:
 This is the first of three independent sub-projects (UI/UX fixes and a client→Supabase
 migration are the other two, brainstormed separately). Within processing, this is Phase 1
 of a phased rebuild — later phases replace stub node logic with real remote-sensing
-algorithms; Phase 1 only has to make the *engine* and *I/O* real.
+algorithms; Phase 1 only has to make the _engine_ and _I/O_ real.
 
 ## Goal / Non-goals
 
