@@ -25,7 +25,20 @@ describe("executeGraph", () => {
         {
           id: "n1",
           specId: "sunglint",
-          params: { sample_points: [{ lat: -5, lon: 110 }] },
+          params: {
+            sample_points: [
+              { lat: -5, lon: 110 },
+              { lat: -5, lon: 110.1 },
+              { lat: -5, lon: 110.2 },
+              { lat: -5, lon: 110.3 },
+              { lat: -5, lon: 110.4 },
+              { lat: -5, lon: 110.5 },
+              { lat: -5, lon: 110.6 },
+              { lat: -5, lon: 110.7 },
+              { lat: -5, lon: 110.8 },
+              { lat: -5, lon: 110.9 },
+            ],
+          },
         },
       ],
       edges: [],
@@ -33,7 +46,20 @@ describe("executeGraph", () => {
 
     expect(mockedExecuteNode).toHaveBeenCalledWith(
       "sunglint",
-      { sample_points: [{ lat: -5, lon: 110 }] },
+      {
+        sample_points: [
+          { lat: -5, lon: 110 },
+          { lat: -5, lon: 110.1 },
+          { lat: -5, lon: 110.2 },
+          { lat: -5, lon: 110.3 },
+          { lat: -5, lon: 110.4 },
+          { lat: -5, lon: 110.5 },
+          { lat: -5, lon: 110.6 },
+          { lat: -5, lon: 110.7 },
+          { lat: -5, lon: 110.8 },
+          { lat: -5, lon: 110.9 },
+        ],
+      },
       {},
       ["out", "chart"],
     );

@@ -9,7 +9,7 @@ import rasterio
 from rasterio.io import MemoryFile
 
 from app.artifacts import ArtifactStore
-from app.nodes.sample_utils import extract_samples_from_artifact
+from app.nodes.sample_utils import MIN_ROI_SAMPLE_POINTS, extract_samples_from_artifact
 
 logger = logging.getLogger(__name__)
 
@@ -73,6 +73,11 @@ def execute_lyzenga(
     log_bands = {band: _log_band(stack[band - 1]) for band in distinct_bands}
 
     samples, _ = extract_samples_from_artifact(store, str(artifact_id), sample_points)
+    if samples.shape[0] < MIN_ROI_SAMPLE_POINTS:
+        raise ValueError(
+            f"Lyzenga DII requires at least {MIN_ROI_SAMPLE_POINTS} valid sample"
+            f" points for a reliable attenuation estimate (got {samples.shape[0]})."
+        )
 
     # Standard band pairs for coastal mapping: (Blue,Green), (Blue,Red), (Green,Red)
     band_pairs = [(b_blue, b_green), (b_blue, b_red), (b_green, b_red)]

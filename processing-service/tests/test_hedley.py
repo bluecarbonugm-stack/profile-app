@@ -97,7 +97,7 @@ def test_hedley_rejects_wrong_visible_band_count(
     from app.nodes.hedley import execute_hedley
 
     ref = store.save("input.tif", "raster", four_band_geotiff_bytes)
-    try:
+    with pytest.raises(ValueError, match="exactly 3 visible bands"):
         execute_hedley(
             store=store,
             params={
@@ -109,9 +109,6 @@ def test_hedley_rejects_wrong_visible_band_count(
             inputs={},
             output_ports=["out"],
         )
-        raise AssertionError("expected ValueError")
-    except ValueError:
-        pass
 
 
 def test_hedley_rejects_nir_band_out_of_range(
@@ -120,7 +117,7 @@ def test_hedley_rejects_nir_band_out_of_range(
     from app.nodes.hedley import execute_hedley
 
     ref = store.save("input.tif", "raster", four_band_geotiff_bytes)
-    try:
+    with pytest.raises(ValueError, match="out of range"):
         execute_hedley(
             store=store,
             params={
@@ -132,9 +129,6 @@ def test_hedley_rejects_nir_band_out_of_range(
             inputs={},
             output_ports=["out"],
         )
-        raise AssertionError("expected ValueError")
-    except ValueError:
-        pass
 
 
 def test_hedley_raises_without_valid_samples(
@@ -143,7 +137,7 @@ def test_hedley_raises_without_valid_samples(
     from app.nodes.hedley import execute_hedley
 
     ref = store.save("input.tif", "raster", four_band_geotiff_bytes)
-    try:
+    with pytest.raises(ValueError, match="No valid samples"):
         execute_hedley(
             store=store,
             params={
@@ -155,6 +149,32 @@ def test_hedley_raises_without_valid_samples(
             inputs={},
             output_ports=["out"],
         )
-        raise AssertionError("expected ValueError")
-    except ValueError:
-        pass
+
+
+def test_hedley_rejects_fewer_than_ten_valid_samples(
+    store: ArtifactStore, four_band_geotiff_bytes: bytes
+) -> None:
+    """9 real in-bounds samples must fail the scientific minimum - this is the
+    count threshold, not the zero-valid-samples edge case."""
+    from app.nodes.hedley import execute_hedley
+
+    nine_points = [
+        {"lat": float(SIZE - row - 0.5), "lon": float(col + 0.5)}
+        for row in range(3)
+        for col in range(3)
+    ]
+    assert len(nine_points) == 9
+
+    ref = store.save("input.tif", "raster", four_band_geotiff_bytes)
+    with pytest.raises(ValueError, match="at least 10"):
+        execute_hedley(
+            store=store,
+            params={
+                "file": ref.id,
+                "nir_band": 4,
+                "visible_bands": "1,2,3",
+                "sample_points": nine_points,
+            },
+            inputs={},
+            output_ports=["out"],
+        )

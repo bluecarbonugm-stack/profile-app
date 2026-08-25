@@ -9,6 +9,10 @@ from rasterio.transform import rowcol
 
 from app.artifacts import ArtifactStore
 
+#: Scientific minimum: regressions over fewer points are meaningless. Enforced
+#: by the sunglint/water-column executors after extraction.
+MIN_ROI_SAMPLE_POINTS = 10
+
 
 def extract_samples_from_artifact(
     store: ArtifactStore,
@@ -18,8 +22,9 @@ def extract_samples_from_artifact(
     """Extract float32 per-point band samples from a stored raster artifact.
 
     Sample points are given as WGS84 lat/lon dicts and reprojected to the
-    raster CRS when needed. Points outside the raster bounds are skipped; a
-    ``ValueError`` is raised when no valid sample remains.
+    raster CRS when needed. Points outside the raster bounds or landing on
+    non-finite (nodata/NaN) pixels are skipped; a ``ValueError`` is raised when
+    no valid sample remains.
 
     Returns ``(samples, raster_meta)`` where ``samples`` has shape
     ``(n_valid_points, n_bands)`` and ``raster_meta`` carries the georeferencing
@@ -81,7 +86,13 @@ def _extract_samples(
             if r < 0 or r >= height or c < 0 or c >= width:
                 continue
 
-            samples[valid_count, :] = data[:, r, c]
+            values = data[:, r, c]
+            # A ROI point on a nodata pixel would poison the regression with
+            # NaN (sklearn rejects NaN input with an opaque error), so drop it
+            # here alongside out-of-bounds points.
+            if not np.all(np.isfinite(values)):
+                continue
+            samples[valid_count, :] = values
             valid_count += 1
         except Exception:
             continue

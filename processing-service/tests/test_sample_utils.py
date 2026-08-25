@@ -51,6 +51,36 @@ def test_extract_samples_rejects_when_no_point_falls_inside(store, tiny_geotiff_
         )
 
 
+def test_extract_samples_skips_nonfinite_pixels(store):
+    """A ROI point on a nodata/NaN pixel must be dropped, not propagated as
+    NaN into the regression design matrix (sklearn rejects NaN input)."""
+    data = np.full((1, 4, 4), 5.0, dtype="float32")
+    data[0, 0, 0] = np.nan
+    buffer = io.BytesIO()
+    with rasterio.open(
+        buffer,
+        "w",
+        driver="GTiff",
+        height=4,
+        width=4,
+        count=1,
+        dtype="float32",
+        crs="EPSG:4326",
+        transform=from_origin(0, 4, 1, 1),
+    ) as dst:
+        dst.write(data)
+    ref = store.save("nan.tif", "raster", buffer.getvalue())
+
+    samples, _ = extract_samples_from_artifact(
+        store=store,
+        artifact_id=ref.id,
+        # first point lands on the NaN pixel at row 0, col 0
+        sample_points=[{"lat": 3.5, "lon": 0.5}, {"lat": 2.5, "lon": 1.5}],
+    )
+    assert samples.shape == (1, 1)
+    assert float(samples[0, 0]) == 5.0
+
+
 def test_extract_samples_reprojects_wgs84_points(store):
     data = np.arange(2 * 4 * 4, dtype="uint8").reshape(2, 4, 4)
     x_min, y_max, pixel = 12_000_000.0, -500_000.0, 100.0

@@ -6,12 +6,22 @@ import { topoSort } from "./topo-sort";
 import type { GraphPayload, NodeRunResult, RunResult } from "./types";
 
 const REAL_IO_FILE_NODES = new Set(["raster-input", "vector-input", "table-input"]);
+const ROI_NODE_IDS = new Set(["sunglint", "water-column"]);
+const ROI_MIN_POINTS = 10;
 
 function validateGraph(payload: GraphPayload): string[] {
   const errors: string[] = [];
   for (const node of payload.nodes) {
     if (REAL_IO_FILE_NODES.has(node.specId) && !node.params.file) {
       errors.push(`Node "${node.id}" belum memiliki file yang diunggah`);
+    }
+    // Advisory mirror of the backend rule (hedley/lyzenga enforce it
+    // authoritatively); catching it here fails fast before any upload.
+    if (ROI_NODE_IDS.has(node.specId)) {
+      const points = node.params.sample_points;
+      if (!Array.isArray(points) || points.length < ROI_MIN_POINTS) {
+        errors.push(`Node "${node.id}" perlu minimal ${ROI_MIN_POINTS} titik sampel ROI`);
+      }
     }
   }
   return errors;

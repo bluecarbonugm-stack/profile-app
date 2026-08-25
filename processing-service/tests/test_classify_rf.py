@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import io
 from pathlib import Path
 
 import numpy as np
@@ -82,7 +83,7 @@ def test_rf_rejects_missing_label_field(store, tiny_classify_bundle):
     from app.nodes.classify_rf import execute_classify_rf
 
     raster_ref, vector_ref = tiny_classify_bundle
-    try:
+    with pytest.raises(ValueError):
         execute_classify_rf(
             store=store,
             params={
@@ -93,16 +94,62 @@ def test_rf_rejects_missing_label_field(store, tiny_classify_bundle):
             inputs={},
             output_ports=["out"],
         )
-        raise AssertionError("expected ValueError")
-    except ValueError:
-        pass
+
+
+def test_rf_accepts_camelcase_labelfield_alias(store, tiny_classify_bundle):
+    """The UI sends labelField; the backend must accept it as label_field."""
+    from app.nodes.classify_rf import execute_classify_rf
+
+    raster_ref, vector_ref = tiny_classify_bundle
+    result = execute_classify_rf(
+        store=store,
+        params={
+            "raster": raster_ref.id,
+            "training_vector": vector_ref.id,
+            "labelField": "class",
+        },
+        inputs={},
+        output_ports=["out"],
+    )
+    assert result["implemented"] is True
+
+
+def test_rf_rejects_raster_without_crs(store):
+    """A CRS-less raster cannot be aligned with the training vector; fail loud."""
+    from app.nodes.classify_rf import execute_classify_rf
+
+    data = np.zeros((1, 4, 4), dtype="uint8")
+    buffer = io.BytesIO()
+    with rasterio.open(
+        buffer,
+        "w",
+        driver="GTiff",
+        height=4,
+        width=4,
+        count=1,
+        dtype="uint8",
+    ) as dst:
+        dst.write(data)
+    raster_ref = store.save("nocrs.tif", "raster", buffer.getvalue())
+    vector_ref = store.save(
+        "train.geojson", "vector", (FIXTURES_DIR / "train.geojson").read_bytes()
+    )
+
+    with pytest.raises(ValueError, match="no CRS"):
+        execute_classify_rf(
+            store=store,
+            params={
+                "raster": raster_ref.id,
+                "training_vector": vector_ref.id,
+                "label_field": "class",
+            },
+            inputs={},
+            output_ports=["out"],
+        )
 
 
 def test_rf_requires_raster_and_vector(store, tiny_classify_bundle):
     from app.nodes.classify_rf import execute_classify_rf
 
-    try:
+    with pytest.raises(ValueError):
         execute_classify_rf(store, {}, {}, ["out"])
-        raise AssertionError("expected ValueError")
-    except ValueError:
-        pass

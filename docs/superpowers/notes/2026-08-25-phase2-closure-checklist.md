@@ -49,3 +49,13 @@ sections C/D. Key question: separate local admin app vs protected `/admin` route
 Need from user: who edits content, media types/sizes, whether PRISM artifacts go to Supabase.
 Supabase creds already in `.env` (`VITE_SUPABASE_URL=https://bmeffxdjzdtiizhvhugj.supabase.co` + anon key);
 `@supabase/supabase-js` NOT installed; helper `src/shared/lib/supabase.ts` was deleted as dead code.
+
+## Closure progress update (auto-appended 2026-08-25)
+
+- Step 3 DONE: closure commit `d3d8ef2` on main - "docs(prism): close phase 2 - correct
+  verification ledger, mark plan complete, add state notes" (5 files, +239/-90).
+- Remaining: step 4 final review (range fa002e1..5ae94c0), step 5 findings, step 6 drop
+  stash (`\ = "stash@{0}"; git stash drop \`), step 7 push main + align feature branch
+  (`git branch -f enhance/dev-vendor-restructure main; git push origin main enhance/dev-vendor-restructure`).
+- Note: a graphify git hook prints to stderr on every commit; PowerShell renders it as a
+  RemoteException. It is noise, not a failure - check `git log` to confirm success.

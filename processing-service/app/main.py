@@ -36,11 +36,14 @@ async def upload_artifact(
 
 
 @app.post("/nodes/{node_type}/execute", response_model=ExecuteResponse)
-async def execute_node(
+def execute_node(
     node_type: str,
     request: ExecuteRequest,
     store: ArtifactStore = Depends(get_store),
 ) -> ExecuteResponse:
+    # Deliberately sync: FastAPI runs sync handlers in a threadpool, so
+    # CPU-bound RF fits / raster math cannot starve the health endpoint that
+    # the frontend availability check depends on.
     executor = REAL_EXECUTORS.get(node_type)
     try:
         if executor is not None:

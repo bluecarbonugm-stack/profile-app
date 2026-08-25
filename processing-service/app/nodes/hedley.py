@@ -10,7 +10,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
 from app.artifacts import ArtifactStore
-from app.nodes.sample_utils import extract_samples_from_artifact
+from app.nodes.sample_utils import MIN_ROI_SAMPLE_POINTS, extract_samples_from_artifact
 
 
 def _parse_band_list(raw: Any, param_name: str) -> list[int]:
@@ -79,6 +79,11 @@ def execute_hedley(
         valid_mask &= data != float(nodata)
 
     samples, _ = extract_samples_from_artifact(store, str(artifact_id), sample_points)
+    if samples.shape[0] < MIN_ROI_SAMPLE_POINTS:
+        raise ValueError(
+            f"Hedley correction requires at least {MIN_ROI_SAMPLE_POINTS} valid sample"
+            f" points for a reliable regression (got {samples.shape[0]})."
+        )
 
     X_nir = samples[:, nir_idx].reshape(-1, 1)
     nir_min = float(np.min(X_nir))
