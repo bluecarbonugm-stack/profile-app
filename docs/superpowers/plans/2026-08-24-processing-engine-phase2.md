@@ -1,5 +1,10 @@
 # Processing Engine Phase 2 Implementation Plan
 
+> **STATUS: CLOSED 2026-08-25.** All 9 tasks implemented, committed, and merged to `main` @ `5ae94c0`.
+> Commit map: T1 `fc26af5`; T2-T4, T6-T8 `ee9e168`; T5 `f5607ad` + review fixes `ee9e168`; T9 ledger closure commit.
+> Related: `e88ca69` import repair, `493af12` UI identity, `e36b4d3` drop nitro, `88a1835` chore/docs, `5ae94c0` workbench parity.
+> Final gates at `5ae94c0`: pytest 44 passed (venv), vitest 3 files/8 tests, typecheck 0 errors, lint 0 errors/2 warnings, build OK, preview HTTP 200.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** replace selected PRISM processing stubs with real coastal remote-sensing algorithms and the first usable ROI/sample-point input flow, using `D:\Proyek\CoastalAutoMapper` as the mandatory reference implementation.
@@ -53,7 +58,7 @@
 - Consumes: current `ExecuteRequest`, `PropertyPanel`, `onParamChange`.
 - Produces: backend accepts nested JSON params; frontend nodes can persist `sample_points` and other structured params safely in `data.params`.
 
-- [ ] **Step 1: Add pytest for nested JSON param execution**
+- [x] **Step 1: Add pytest for nested JSON param execution**
 
 ```python
 def test_execute_node_accepts_nested_json_params(client: TestClient) -> None:
@@ -73,12 +78,12 @@ def test_execute_node_accepts_nested_json_params(client: TestClient) -> None:
     assert response.status_code in (200, 400)
 ```
 
-- [ ] **Step 2: Run test to verify contract acceptance**
+- [x] **Step 2: Run test to verify contract acceptance**
 
 Run: `python -m pytest processing-service/tests/test_main.py::test_execute_node_accepts_nested_json_params -v`
 Expected: PASS after backend accepts nested params without schema rejection.
 
-- [ ] **Step 3: Update backend request schema to allow nested JSON params**
+- [x] **Step 3: Update backend request schema to allow nested JSON params**
 
 Change `processing-service/app/schemas.py` to:
 
@@ -95,7 +100,7 @@ class ExecuteRequest(BaseModel):
     output_ports: list[str] = []
 ```
 
-- [ ] **Step 4: Ensure frontend sends nested params already and add Vitest contract assertion**
+- [x] **Step 4: Ensure frontend sends nested params already and add Vitest contract assertion**
 
 Confirm existing `run.ts` and `Workbench.tsx` already serialize nested `data.params`. Add a focused test in `src/features/processing/api/run.test.ts` asserting the constructed payload preserves nested `sample_points`.
 
@@ -109,17 +114,17 @@ test("preserves nested sample_points in request payload", async () => {
 });
 ```
 
-- [ ] **Step 5: Verify backend tests**
+- [x] **Step 5: Verify backend tests**
 
 Run: `python -m pytest processing-service/tests -v`
 Expected: PASS
 
-- [ ] **Step 6: Verify frontend tests**
+- [x] **Step 6: Verify frontend tests**
 
 Run: `npx vitest run`
 Expected: PASS
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add processing-service/app/schemas.py processing-service/app/main.py processing-service/tests/test_main.py src/features/processing/components/PropertyPanel.tsx src/features/processing/components/Workbench.tsx src/features/processing/api/run.test.ts
@@ -141,7 +146,7 @@ git commit -m "feat(prism): allow nested JSON params for ROI workflow"
 - Consumes: raster artifact ref from `ArtifactStore`, rasterio metadata, and `sample_points` JSON.
 - Produces: extracted float32 sample array and shared validation behavior usable by Hedley, Lyzenga, and RF.
 
-- [ ] **Step 1: Create failing pytest for sample extraction**
+- [x] **Step 1: Create failing pytest for sample extraction**
 
 ```python
 def test_extract_samples_returns_valid_array(store, tiny_geotiff_bytes):
@@ -161,7 +166,7 @@ def test_extract_samples_returns_valid_array(store, tiny_geotiff_bytes):
         assert samples.shape[0] >= 1
 ```
 
-- [ ] **Step 2: Create failing pytest for validation**
+- [x] **Step 2: Create failing pytest for validation**
 
 ```python
 def test_extract_samples_rejects_missing_points(store, tiny_geotiff_bytes):
@@ -174,7 +179,7 @@ def test_extract_samples_rejects_missing_points(store, tiny_geotiff_bytes):
         pass
 ```
 
-- [ ] **Step 3: Implement minimal sample extraction utility**
+- [x] **Step 3: Implement minimal sample extraction utility**
 
 Create `processing-service/app/nodes/sample_utils.py` containing:
 
@@ -185,12 +190,12 @@ Create `processing-service/app/nodes/sample_utils.py` containing:
 - row/col extraction
 - return `(samples, raster_meta)`
 
-- [ ] **Step 4: Run sample utility tests**
+- [x] **Step 4: Run sample utility tests**
 
 Run: `python -m pytest processing-service/tests/test_sample_utils.py -v`
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add processing-service/app/nodes/sample_utils.py processing-service/tests/test_sample_utils.py
@@ -213,7 +218,7 @@ git commit -m "feat(prism): add shared sample extraction utility"
 - Consumes: raster artifact id, band params, sample_points from request.
 - Produces: `implemented=True`, corrected 3-band raster artifact id, regression summary.
 
-- [ ] **Step 1: Create failing pytest for Hedley execution**
+- [x] **Step 1: Create failing pytest for Hedley execution**
 
 ```python
 def test_hedley_corrects_raster(store, tiny_geotiff_bytes):
@@ -236,12 +241,12 @@ def test_hedley_corrects_raster(store, tiny_geotiff_bytes):
     assert "slopes" in result["summary"]
 ```
 
-- [ ] **Step 2: Run test to verify failure**
+- [x] **Step 2: Run test to verify failure**
 
 Run: `python -m pytest processing-service/tests/test_hedley.py::test_hedley_corrects_raster -v`
 Expected: FAIL
 
-- [ ] **Step 3: Implement Hedley algorithm handler**
+- [x] **Step 3: Implement Hedley algorithm handler**
 
 Port the core logic from `D:\Proyek\CoastalAutoMapper\backend\app\hedley.py` lines 117-365:
 
@@ -253,14 +258,14 @@ Port the core logic from `D:\Proyek\CoastalAutoMapper\backend\app\hedley.py` lin
 - clip valid pixels to >= 0
 - write 3-band float32 GeoTIFF artifact
 
-- [ ] **Step 4: Register handler in `__init__.py`**
+- [x] **Step 4: Register handler in `__init__.py`**
 
-- [ ] **Step 5: Run pytest**
+- [x] **Step 5: Run pytest**
 
 Run: `python -m pytest processing-service/tests -v`
 Expected: PASS
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add processing-service/app/nodes/hedley.py processing-service/app/nodes/__init__.py processing-service/tests/test_hedley.py
@@ -282,7 +287,7 @@ git commit -m "feat(prism): implement real Hedley sunglint correction"
 - Consumes: raster artifact id, band selection, sample_points.
 - Produces: stacked DII raster artifact id and covariance summary.
 
-- [ ] **Step 1: Create failing pytest**
+- [x] **Step 1: Create failing pytest**
 
 ```python
 def test_lyzenga_builds_dii_raster(store, tiny_geotiff_bytes):
@@ -306,12 +311,12 @@ def test_lyzenga_builds_dii_raster(store, tiny_geotiff_bytes):
     assert "pairs" in result["summary"]
 ```
 
-- [ ] **Step 2: Run test to verify failure**
+- [x] **Step 2: Run test to verify failure**
 
 Run: `python -m pytest processing-service/tests/test_lyzenga.py::test_lyzenga_builds_dii_raster -v`
 Expected: FAIL
 
-- [ ] **Step 3: Implement Lyzenga stacked DII**
+- [x] **Step 3: Implement Lyzenga stacked DII**
 
 Port core logic from `D:\Proyek\CoastalAutoMapper\backend\app\lyzenga.py` lines 677-916:
 
@@ -323,14 +328,14 @@ Port core logic from `D:\Proyek\CoastalAutoMapper\backend\app\lyzenga.py` lines 
 - apply inverse transform
 - stack and write DII artifact
 
-- [ ] **Step 4: Register in `__init__.py`**
+- [x] **Step 4: Register in `__init__.py`**
 
-- [ ] **Step 5: Run pytest**
+- [x] **Step 5: Run pytest**
 
 Run: `python -m pytest processing-service/tests -v`
 Expected: PASS
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add processing-service/app/nodes/lyzenga.py processing-service/app/nodes/__init__.py processing-service/tests/test_lyzenga.py
@@ -353,7 +358,7 @@ git commit -m "feat(prism): implement real Lyzenga stacked DII"
 - Consumes: raster artifact id, training vector artifact id, label field, model params.
 - Produces: classified raster artifact id and class mapping summary.
 
-- [ ] **Step 1: Create failing pytest**
+- [x] **Step 1: Create failing pytest**
 
 ```python
 def test_rf_classify_produces_output(store, tiny_classify_bundle):
@@ -376,12 +381,12 @@ def test_rf_classify_produces_output(store, tiny_classify_bundle):
     assert "class_mapping" in result["summary"]
 ```
 
-- [ ] **Step 2: Run test to verify failure**
+- [x] **Step 2: Run test to verify failure**
 
 Run: `python -m pytest processing-service/tests/test_classify_rf.py::test_rf_classify_produces_output -v`
 Expected: FAIL
 
-- [ ] **Step 3: Implement RF classify**
+- [x] **Step 3: Implement RF classify**
 
 Use a pragmatic first path: do not yet implement model serialization across nodes. When `rf-train` runs with both raster and training vector attached, execute training + prediction in the same node and return classified raster artifact directly.
 
@@ -394,14 +399,14 @@ Port the core path from `D:\Proyek\CoastalAutoMapper\backend\app\classify_rf.py`
 - predict full raster in chunks
 - write classified int16 GeoTIFF
 
-- [ ] **Step 4: Register in `__init__.py`**
+- [x] **Step 4: Register in `__init__.py`**
 
-- [ ] **Step 5: Run pytest**
+- [x] **Step 5: Run pytest**
 
 Run: `python -m pytest processing-service/tests -v`
 Expected: PASS
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add processing-service/app/nodes/classify_rf.py processing-service/app/nodes/__init__.py processing-service/tests/test_classify_rf.py processing-service/tests/fixtures/train.geojson processing-service/tests/fixtures/classify.tif
@@ -422,7 +427,7 @@ git commit -m "feat(prism): implement real Random Forest classification"
 - Consumes: new algorithm inputs from Phase 2 backend.
 - Produces: updated UI params for `sunglint`, `water-column`, and `rf-train` nodes.
 
-- [ ] **Step 1: Update catalog params**
+- [x] **Step 1: Update catalog params**
 
 For `sunglint`, replace or extend current params with:
 
@@ -444,17 +449,17 @@ For `rf-train`, extend with:
 - `n_estimators`
 - `max_depth`
 
-- [ ] **Step 2: Run typecheck**
+- [x] **Step 2: Run typecheck**
 
 Run: `npm run typecheck`
 Expected: clean
 
-- [ ] **Step 3: Run tests**
+- [x] **Step 3: Run tests**
 
 Run: `npx vitest run`
 Expected: PASS
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/features/processing/data/nodes-catalog.ts src/features/processing/api/run.test.ts
@@ -475,7 +480,7 @@ git commit -m "feat(prism): update processing catalog for real algorithms"
 - Consumes: selected node with `sample_points` param.
 - Produces: editable, validated ROI list persisted in `node.data.params.sample_points`.
 
-- [ ] **Step 1: Implement manual ROI editor**
+- [x] **Step 1: Implement manual ROI editor**
 
 When `spec.params` includes a `sample_points` key or node id is ROI-capable:
 
@@ -486,16 +491,16 @@ When `spec.params` includes a `sample_points` key or node id is ROI-capable:
 - show total count
 - mark invalid state when fewer than 10 points
 
-- [ ] **Step 2: Keep existing field renderers unchanged**
+- [x] **Step 2: Keep existing field renderers unchanged**
 
 Make ROI section conditional and self-contained.
 
-- [ ] **Step 3: Verify frontend**
+- [x] **Step 3: Verify frontend**
 
 Run: `npm run typecheck && npm run lint && npx vitest run`
 Expected: clean/PASS
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/features/processing/components/PropertyPanel.tsx
@@ -516,7 +521,7 @@ git commit -m "feat(prism): add manual ROI point editor"
 - Consumes: real result payloads from Hedley/Lyzenga/RF.
 - Produces: structured summary table rendering.
 
-- [ ] **Step 1: Implement nested summary renderer**
+- [x] **Step 1: Implement nested summary renderer**
 
 Add rendering paths for:
 
@@ -524,16 +529,16 @@ Add rendering paths for:
 - nested dicts rendered as subtables
 - array/object values as JSON block for compact overflow
 
-- [ ] **Step 2: Remove mock-only fallbacks for replaced nodes**
+- [x] **Step 2: Remove mock-only fallbacks for replaced nodes**
 
 Keep generic fallback message, but expand support for real `summary` payloads.
 
-- [ ] **Step 3: Verify frontend**
+- [x] **Step 3: Verify frontend**
 
 Run: `npm run test && npm run lint && npm run build`
 Expected: PASS/clean
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/features/processing/components/ResultViewer.tsx
@@ -554,21 +559,21 @@ git commit -m "feat(prism): render real scientific result summaries"
 - Consumes: completed Phase 2 tasks.
 - Produces: committed state, verified gate, recorded ledger.
 
-- [ ] **Step 1: Run backend tests**
+- [x] **Step 1: Run backend tests**
 
 Run: `python -m pytest processing-service/tests -v`
 
-- [ ] **Step 2: Run frontend tests**
+- [x] **Step 2: Run frontend tests**
 
 Run: `npx vitest run`
 
-- [ ] **Step 3: Run frontend quality gates**
+- [x] **Step 3: Run frontend quality gates**
 
 Run: `npm run typecheck && npm run lint && npm run build`
 
-- [ ] **Step 4: Record progress in `.superpowers/sdd/2026-08-22-processing-engine-phase2/progress.md`**
+- [x] **Step 4: Record progress in `.superpowers/sdd/2026-08-22-processing-engine-phase2/progress.md`**
 
-- [ ] **Step 5: Commit final status**
+- [x] **Step 5: Commit final status**
 
 ```bash
 git add .superpowers
