@@ -112,7 +112,7 @@ export type ProfileContent = z.infer<typeof ProfileContentSchema>;
  */
 export interface ProfilePayload {
   content: ProfileContent;
-  source: "sheet" | "fallback";
+  source: "sheet" | "supabase" | "fallback";
   /** Reason the sheet was not used. Present only when `source` is "fallback". */
   reason?: string;
   fetchedAt: string;

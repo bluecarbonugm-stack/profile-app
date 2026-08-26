@@ -1,15 +1,15 @@
 import { FALLBACK_CONTENT } from "../data/fallback-content";
 import { ProfileContentSchema, type ProfileContent, type ProfilePayload } from "../types";
+import { getSupabaseAnon } from "../../../shared/lib/supabase";
 
-// Server-only. Reads profile content from the Google Apps Script Web App that
-// fronts the team's spreadsheet, validates it, and caches it in memory.
+// Server-only. Reads profile content from Supabase, validates it, and caches
+// it in memory. Falls back to bundled defaults when Supabase is unreachable.
 //
-// The endpoint URL and token are deliberately NOT read from `VITE_*` variables:
+// Supabase URL and keys are deliberately NOT read from `VITE_*` variables:
 // those are inlined into the client bundle, which would publish the write-side
-// surface of the sheet to anyone who opens devtools.
+// surface to anyone who opens devtools.
 
 const DEFAULT_TTL_SECONDS = 300;
-const REQUEST_TIMEOUT_MS = 8_000;
 
 interface CacheEntry {
   payload: ProfilePayload;
@@ -65,90 +65,155 @@ function fallbackPayload(reason: string): ProfilePayload {
   };
 }
 
-async function fetchFromSheet(endpoint: string): Promise<ProfilePayload> {
-  const url = new URL(endpoint);
-  const token = env("PROFILE_CONTENT_TOKEN");
-  if (token) url.searchParams.set("token", token);
+/** Normalize a snake_case DB row into a camelCase ProfileContent field. */
+function mapSiteRow(row: Record<string, unknown>): ProfileContent["site"] {
+  return {
+    organizationName: (row.organization_name as string) ?? "",
+    faculty: (row.faculty as string) ?? "",
+    department: (row.department as string) ?? "",
+    badge: (row.badge as string) ?? "",
+    headline: (row.headline as string) ?? "",
+    headlineEmphasis: (row.headline_emphasis as string) ?? "",
+    headlineSuffix: (row.headline_suffix as string) ?? "",
+    intro: (row.intro as string) ?? "",
+    aboutTitle: (row.about_title as string) ?? "",
+    aboutParagraphs: (row.about_paragraphs as string[]) ?? [],
+    address: (row.address as string) ?? undefined,
+    email: (row.email as string) ?? undefined,
+    phone: (row.phone as string) ?? undefined,
+    mapsUrl: (row.maps_url as string) ?? undefined,
+    heroImage: (row.hero_image as string) ?? undefined,
+    foundedYear: (row.founded_year as string) ?? undefined,
+  };
+}
 
-  const response = await fetch(url, {
-    // Apps Script answers the /exec URL with a 302 to a googleusercontent host;
-    // following redirects is required, not optional.
-    redirect: "follow",
-    headers: { accept: "application/json" },
-    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-  });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapListRows(
+  rows: Record<string, unknown>[],
+  mapper: (row: Record<string, unknown>) => Record<string, unknown>,
+): Record<string, unknown>[] {
+  return rows
+    .sort((a, b) => ((a.sort_order as number) ?? 0) - ((b.sort_order as number) ?? 0))
+    .map((row, i) => ({ ...mapper(row), order: (row.sort_order as number) ?? i + 1 }));
+}
 
-  if (!response.ok) {
-    throw new Error(`Apps Script responded ${response.status} ${response.statusText}`);
-  }
+async function fetchFromSupabase(): Promise<ProfilePayload> {
+  const supabase = getSupabaseAnon();
 
-  // A misconfigured deployment (e.g. access not set to "Anyone") returns a
-  // Google sign-in *page* with status 200, so trust the body, not the status.
-  const body = await response.text();
-  let json: unknown;
-  try {
-    json = JSON.parse(body);
-  } catch {
+  // Fetch site (single row)
+  const { data: siteRow, error: siteErr } = await supabase
+    .from("site")
+    .select("*")
+    .limit(1)
+    .single();
+
+  if (siteErr) throw new Error(`Supabase site query: ${siteErr.message}`);
+
+  // Fetch all list tables in parallel
+  const [statsRes, focusRes, teamRes, pubRes, galleryRes, partnersRes] = await Promise.all([
+    supabase.from("stats").select("*"),
+    supabase.from("focus").select("*"),
+    supabase.from("team").select("*"),
+    supabase.from("publications").select("*"),
+    supabase.from("gallery").select("*"),
+    supabase.from("partners").select("*"),
+  ]);
+
+  // Check for errors
+  const errors = [
+    { name: "stats", res: statsRes },
+    { name: "focus", res: focusRes },
+    { name: "team", res: teamRes },
+    { name: "publications", res: pubRes },
+    { name: "gallery", res: galleryRes },
+    { name: "partners", res: partnersRes },
+  ].filter((e) => e.res.error);
+  if (errors.length > 0) {
     throw new Error(
-      'Apps Script did not return JSON - check that the Web App is deployed with access set to "Anyone".',
+      `Supabase query errors: ${errors.map((e) => `${e.name}: ${e.res.error!.message}`).join(", ")}`,
     );
   }
 
-  const parsed = ProfileContentSchema.safeParse(json);
-  if (!parsed.success) {
-    throw new Error(
-      `Unexpected sheet shape: ${parsed.error.issues[0]?.message ?? "validation failed"}`,
-    );
-  }
+  const content: ProfileContent = {
+    site: mapSiteRow(siteRow as Record<string, unknown>),
+    stats: mapListRows((statsRes.data as Record<string, unknown>[]) ?? [], (r) => ({
+      value: (r.value as string) ?? "",
+      label: (r.label as string) ?? "",
+    })) as ProfileContent["stats"],
+    focus: mapListRows((focusRes.data as Record<string, unknown>[]) ?? [], (r) => ({
+      icon: (r.icon as string) ?? "",
+      title: (r.title as string) ?? "",
+      body: (r.body as string) ?? "",
+    })) as ProfileContent["focus"],
+    team: mapListRows((teamRes.data as Record<string, unknown>[]) ?? [], (r) => ({
+      name: (r.name as string) ?? "",
+      role: (r.role as string) ?? "",
+      field: (r.field as string) ?? "",
+      photo: (r.photo_url as string) ?? undefined,
+    })) as ProfileContent["team"],
+    publications: mapListRows((pubRes.data as Record<string, unknown>[]) ?? [], (r) => ({
+      year: (r.year as string) ?? "",
+      type: (r.type as string) ?? "",
+      title: (r.title as string) ?? "",
+      authors: (r.authors as string) ?? "",
+      venue: (r.venue as string) ?? "",
+    })) as ProfileContent["publications"],
+    gallery: mapListRows((galleryRes.data as Record<string, unknown>[]) ?? [], (r) => ({
+      title: (r.title as string) ?? "",
+      caption: (r.caption as string) ?? "",
+      image: (r.image_url as string) ?? undefined,
+    })) as ProfileContent["gallery"],
+    partners: mapListRows((partnersRes.data as Record<string, unknown>[]) ?? [], (r) => ({
+      name: (r.name as string) ?? "",
+    })) as ProfileContent["partners"],
+    updatedAt: undefined,
+  };
 
   return {
-    content: mergeWithFallback(parsed.data),
-    source: "sheet",
+    content: mergeWithFallback(content),
+    source: "supabase",
     fetchedAt: new Date().toISOString(),
   };
 }
 
 /**
- * Returns profile content, preferring the spreadsheet and degrading to the
- * bundled fallback. Never throws: a Google outage must not take the site down.
+ * Returns profile content, preferring Supabase and degrading to the
+ * bundled fallback. Never throws: a Supabase outage must not take the site down.
  */
 export async function loadProfileContent(): Promise<ProfilePayload> {
   const now = Date.now();
   if (cache && cache.expiresAt > now) return cache.payload;
 
-  const endpoint = env("PROFILE_CONTENT_ENDPOINT");
-  if (!endpoint) {
-    // Not an error - this is the expected state before the sheet is wired up.
-    const payload = fallbackPayload("PROFILE_CONTENT_ENDPOINT is not set");
+  const url = env("SUPABASE_URL");
+  if (!url) {
+    const payload = fallbackPayload("SUPABASE_URL is not set");
     cache = { payload, expiresAt: now + ttlMs() };
     return payload;
   }
 
   try {
-    const payload = await fetchFromSheet(endpoint);
+    const payload = await fetchFromSupabase();
     cache = { payload, expiresAt: now + ttlMs() };
     return payload;
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     console.error(`[profile] falling back to bundled content: ${reason}`);
 
-    // Serve stale sheet content rather than the fallback when we have some -
+    // Serve stale Supabase content rather than the fallback when we have some -
     // yesterday's real team list beats today's placeholder one.
-    if (cache?.payload.source === "sheet") {
+    if (cache?.payload.source === "supabase") {
       const stale: ProfilePayload = { ...cache.payload, reason: `stale: ${reason}` };
       cache = { payload: stale, expiresAt: now + ttlMs() };
       return stale;
     }
 
     const payload = fallbackPayload(reason);
-    // Short retry window so a transient blip does not pin the fallback for the
-    // full TTL.
     cache = { payload, expiresAt: now + Math.min(ttlMs(), 60_000) };
     return payload;
   }
 }
 
-/** Clears the cache. Exposed for a future revalidation webhook / admin action. */
+/** Clears the cache. Exposed for admin writes to trigger revalidation. */
 export function invalidateProfileContentCache(): void {
   cache = undefined;
 }
