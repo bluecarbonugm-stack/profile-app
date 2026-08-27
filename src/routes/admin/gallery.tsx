@@ -2,6 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { galleryCrud, uploadImage } from "@/features/profile/api/admin-content";
+import { Card } from "@/shared/components/ui/card";
+import { Label } from "@/shared/components/ui/label";
+import {
+  AdminEditCard,
+  AdminPageHeader,
+  NumberField,
+  TextField,
+} from "@/features/profile/components/admin/admin-field";
 
 export const Route = createFileRoute("/admin/gallery")({
   component: AdminGallery,
@@ -63,106 +71,86 @@ function AdminGallery() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-[#10316B]">Galeri</h1>
-        <button
-          onClick={() => {
-            setEditing({ ...EMPTY, sort_order: rows.length + 1 });
-            setIsNew(true);
-          }}
-          className="rounded-md bg-[#0B409C] px-3 py-1.5 text-sm text-white hover:bg-[#0B409C]/90"
-        >
-          + Tambah
-        </button>
-      </div>
+      <AdminPageHeader
+        title="Galeri"
+        onAdd={() => {
+          setEditing({ ...EMPTY, sort_order: rows.length + 1 });
+          setIsNew(true);
+        }}
+      />
+
       {editing && (
-        <div className="mt-4 rounded-lg border bg-white p-4 shadow-sm">
-          <div className="grid grid-cols-2 gap-3">
+        <AdminEditCard
+          onSave={() => saveMut.mutate()}
+          onCancel={() => {
+            setEditing(null);
+            setIsNew(false);
+            setImageFile(null);
+          }}
+          isPending={saveMut.isPending}
+          isSuccess={saveMut.isSuccess}
+          isError={saveMut.isError}
+        >
+          <TextField
+            label="Judul"
+            value={editing.title ?? ""}
+            onChange={(v) => setEditing({ ...editing, title: v })}
+          />
+          <TextField
+            label="Caption"
+            value={editing.caption ?? ""}
+            onChange={(v) => setEditing({ ...editing, caption: v })}
+          />
+          <div className="space-y-1.5 sm:col-span-2">
+            <Label>Gambar</Label>
             <input
-              placeholder="Judul"
-              value={editing.title ?? ""}
-              onChange={(e) => setEditing({ ...editing, title: e.target.value })}
-              className="rounded border px-3 py-2 text-sm"
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
+              className="block text-sm text-muted-foreground file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-secondary-foreground"
             />
-            <input
-              placeholder="Caption"
-              value={editing.caption ?? ""}
-              onChange={(e) => setEditing({ ...editing, caption: e.target.value })}
-              className="rounded border px-3 py-2 text-sm"
-            />
-            <div className="col-span-2">
-              <label className="block text-xs text-gray-500">Gambar</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
-                className="mt-1 text-sm"
-              />
-              {editing.image_url && !imageFile && (
-                <img
-                  src={editing.image_url}
-                  alt=""
-                  className="mt-2 h-16 w-16 rounded object-cover"
-                />
-              )}
-            </div>
-            <input
-              type="number"
-              placeholder="Urutan"
-              value={editing.sort_order ?? 0}
-              onChange={(e) => setEditing({ ...editing, sort_order: Number(e.target.value) })}
-              className="rounded border px-3 py-2 text-sm"
-            />
+            {editing.image_url && !imageFile && (
+              <img src={editing.image_url} alt="" className="h-16 w-16 rounded object-cover" />
+            )}
           </div>
-          <div className="mt-3 flex gap-2">
-            <button
-              onClick={() => saveMut.mutate()}
-              disabled={saveMut.isPending}
-              className="rounded bg-[#0B409C] px-3 py-1.5 text-sm text-white hover:bg-[#0B409C]/90 disabled:opacity-50"
-            >
-              Simpan
-            </button>
-            <button
-              onClick={() => {
-                setEditing(null);
-                setIsNew(false);
-                setImageFile(null);
-              }}
-              className="rounded border px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
-            >
-              Batal
-            </button>
-          </div>
-        </div>
+          <NumberField
+            label="Urutan"
+            value={editing.sort_order ?? 0}
+            onChange={(v) => setEditing({ ...editing, sort_order: v })}
+          />
+        </AdminEditCard>
       )}
+
       <div className="mt-4 grid grid-cols-2 gap-3">
         {rows.map((row: Row) => (
-          <div key={row.id} className="rounded-lg border bg-white p-3 shadow-sm">
+          <Card key={row.id} className="gap-2 p-3">
             {row.image_url && (
-              <img src={row.image_url} alt="" className="mb-2 h-24 w-full rounded object-cover" />
+              <img src={row.image_url} alt="" className="h-24 w-full rounded object-cover" />
             )}
-            <p className="text-sm font-medium text-[#10316B]">{row.title}</p>
-            <p className="text-xs text-gray-500">{row.caption}</p>
-            <div className="mt-2 flex gap-2">
+            <p className="text-sm font-medium">{row.title}</p>
+            <p className="text-xs text-muted-foreground">{row.caption}</p>
+            <div className="flex gap-4">
               <button
+                type="button"
                 onClick={() => {
                   setEditing(row);
                   setIsNew(false);
                 }}
-                className="text-xs text-[#0B409C] hover:underline"
+                className="text-xs text-primary hover:underline"
               >
                 Edit
               </button>
               <button
+                type="button"
                 onClick={() => {
                   if (confirm("Hapus?")) deleteMut.mutate(row.id);
                 }}
-                className="text-xs text-red-500 hover:underline"
+                className="text-xs text-destructive hover:underline"
               >
                 Hapus
               </button>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </div>

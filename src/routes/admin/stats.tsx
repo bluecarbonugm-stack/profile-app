@@ -2,6 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { statsCrud } from "@/features/profile/api/admin-content";
+import {
+  AdminEditCard,
+  AdminListRow,
+  AdminPageHeader,
+  NumberField,
+  TextField,
+} from "@/features/profile/components/admin/admin-field";
 
 export const Route = createFileRoute("/admin/stats")({
   component: AdminStats,
@@ -42,91 +49,60 @@ function AdminStats() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-[#10316B]">Statistik</h1>
-        <button
-          onClick={() => {
-            setEditing({ ...EMPTY, sort_order: rows.length + 1 });
-            setIsNew(true);
-          }}
-          className="rounded-md bg-[#0B409C] px-3 py-1.5 text-sm text-white hover:bg-[#0B409C]/90"
-        >
-          + Tambah
-        </button>
-      </div>
+      <AdminPageHeader
+        title="Statistik"
+        onAdd={() => {
+          setEditing({ ...EMPTY, sort_order: rows.length + 1 });
+          setIsNew(true);
+        }}
+      />
+
       {editing && (
-        <div className="mt-4 rounded-lg border bg-white p-4 shadow-sm">
-          <div className="grid grid-cols-3 gap-3">
-            <input
-              placeholder="Nilai"
-              value={editing.value ?? ""}
-              onChange={(e) => setEditing({ ...editing, value: e.target.value })}
-              className="rounded border px-3 py-2 text-sm"
-            />
-            <input
-              placeholder="Label"
-              value={editing.label ?? ""}
-              onChange={(e) => setEditing({ ...editing, label: e.target.value })}
-              className="rounded border px-3 py-2 text-sm"
-            />
-            <input
-              type="number"
-              placeholder="Urutan"
-              value={editing.sort_order ?? 0}
-              onChange={(e) => setEditing({ ...editing, sort_order: Number(e.target.value) })}
-              className="rounded border px-3 py-2 text-sm"
-            />
-          </div>
-          <div className="mt-3 flex gap-2">
-            <button
-              onClick={() => saveMut.mutate()}
-              disabled={saveMut.isPending}
-              className="rounded bg-[#0B409C] px-3 py-1.5 text-sm text-white hover:bg-[#0B409C]/90 disabled:opacity-50"
-            >
-              Simpan
-            </button>
-            <button
-              onClick={() => {
-                setEditing(null);
-                setIsNew(false);
-              }}
-              className="rounded border px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50"
-            >
-              Batal
-            </button>
-          </div>
-        </div>
+        <AdminEditCard
+          onSave={() => saveMut.mutate()}
+          onCancel={() => {
+            setEditing(null);
+            setIsNew(false);
+          }}
+          isPending={saveMut.isPending}
+          isSuccess={saveMut.isSuccess}
+          isError={saveMut.isError}
+        >
+          <TextField
+            label="Nilai"
+            value={editing.value ?? ""}
+            onChange={(v) => setEditing({ ...editing, value: v })}
+          />
+          <TextField
+            label="Label"
+            value={editing.label ?? ""}
+            onChange={(v) => setEditing({ ...editing, label: v })}
+          />
+          <NumberField
+            label="Urutan"
+            value={editing.sort_order ?? 0}
+            onChange={(v) => setEditing({ ...editing, sort_order: v })}
+          />
+        </AdminEditCard>
       )}
+
       <div className="mt-4 space-y-2">
         {rows.map((row: Row) => (
-          <div
+          <AdminListRow
             key={row.id}
-            className="flex items-center justify-between rounded-lg border bg-white px-4 py-3 shadow-sm"
+            onEdit={() => {
+              setEditing(row);
+              setIsNew(false);
+            }}
+            onDelete={() => {
+              if (confirm("Hapus?")) deleteMut.mutate(row.id);
+            }}
           >
             <p className="text-sm">
-              <span className="font-bold text-[#10316B]">{row.value}</span>{" "}
-              <span className="text-gray-500">{row.label}</span>
+              <span className="tabular font-medium">{row.value}</span>{" "}
+              <span className="text-muted-foreground">{row.label}</span>
             </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() => {
-                  setEditing(row);
-                  setIsNew(false);
-                }}
-                className="text-xs text-[#0B409C] hover:underline"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => {
-                  if (confirm("Hapus?")) deleteMut.mutate(row.id);
-                }}
-                className="text-xs text-red-500 hover:underline"
-              >
-                Hapus
-              </button>
-            </div>
-          </div>
+          </AdminListRow>
         ))}
       </div>
     </div>

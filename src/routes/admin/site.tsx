@@ -2,6 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { getSite, updateSite } from "@/features/profile/api/admin-content";
+import { Button } from "@/shared/components/ui/button";
+import {
+  SaveStatus,
+  TextAreaField,
+  TextField,
+} from "@/features/profile/components/admin/admin-field";
 
 export const Route = createFileRoute("/admin/site")({
   component: AdminSite,
@@ -48,61 +54,81 @@ function AdminSite() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["admin", "site"] }),
   });
 
-  const field = (label: string, key: keyof SiteRow, type = "text") => (
-    <div>
-      <label className="block text-sm font-medium text-gray-700">{label}</label>
-      <input
-        type={type}
-        value={(form[key] as string) ?? ""}
-        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[#0B409C] focus:outline-none focus:ring-1 focus:ring-[#0B409C]"
-      />
-    </div>
-  );
+  const set = (key: keyof SiteRow) => (value: string) => setForm({ ...form, [key]: value });
 
-  if (isLoading) return <p className="text-sm text-gray-500">Memuat...</p>;
+  if (isLoading) return <p className="text-sm text-muted-foreground">Memuat…</p>;
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-[#10316B]">Site Info</h1>
-      <div className="mt-6 space-y-4">
-        {field("Organization Name", "organization_name")}
-        {field("Faculty", "faculty")}
-        {field("Department", "department")}
-        {field("Badge", "badge")}
-        {field("Headline", "headline")}
-        {field("Headline Emphasis", "headline_emphasis")}
-        {field("Headline Suffix", "headline_suffix")}
-        {field("Intro", "intro")}
-        {field("About Title", "about_title")}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            About Paragraphs (satu paragraf per baris)
-          </label>
-          <textarea
-            value={(form.about_paragraphs ?? []).join("\n")}
-            onChange={(e) => setForm({ ...form, about_paragraphs: e.target.value.split("\n") })}
-            rows={4}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[#0B409C] focus:outline-none focus:ring-1 focus:ring-[#0B409C]"
+      <h1 className="text-2xl font-display">Site Info</h1>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <TextField
+          label="Organization Name"
+          value={form.organization_name ?? ""}
+          onChange={set("organization_name")}
+        />
+        <TextField label="Faculty" value={form.faculty ?? ""} onChange={set("faculty")} />
+        <TextField label="Department" value={form.department ?? ""} onChange={set("department")} />
+        <TextField label="Badge" value={form.badge ?? ""} onChange={set("badge")} />
+        <TextField label="Headline" value={form.headline ?? ""} onChange={set("headline")} />
+        <TextField
+          label="Headline Emphasis"
+          value={form.headline_emphasis ?? ""}
+          onChange={set("headline_emphasis")}
+        />
+        <TextField
+          label="Headline Suffix"
+          value={form.headline_suffix ?? ""}
+          onChange={set("headline_suffix")}
+        />
+        <TextField
+          label="Founded Year"
+          value={form.founded_year ?? ""}
+          onChange={set("founded_year")}
+        />
+        <div className="sm:col-span-2">
+          <TextAreaField label="Intro" value={form.intro ?? ""} onChange={set("intro")} rows={2} />
+        </div>
+        <div className="sm:col-span-2">
+          <TextField
+            label="About Title"
+            value={form.about_title ?? ""}
+            onChange={set("about_title")}
           />
         </div>
-        {field("Address", "address")}
-        {field("Email", "email", "email")}
-        {field("Phone", "phone")}
-        {field("Maps URL", "maps_url", "url")}
-        {field("Hero Image URL", "hero_image", "url")}
-        {field("Founded Year", "founded_year")}
+        <div className="sm:col-span-2">
+          <TextAreaField
+            label="About Paragraphs"
+            hint="Satu paragraf per baris."
+            value={(form.about_paragraphs ?? []).join("\n")}
+            onChange={(v) => setForm({ ...form, about_paragraphs: v.split("\n") })}
+          />
+        </div>
+        <TextField label="Address" value={form.address ?? ""} onChange={set("address")} />
+        <TextField label="Email" type="email" value={form.email ?? ""} onChange={set("email")} />
+        <TextField label="Phone" value={form.phone ?? ""} onChange={set("phone")} />
+        <TextField
+          label="Maps URL"
+          type="url"
+          value={form.maps_url ?? ""}
+          onChange={set("maps_url")}
+        />
+        <TextField
+          label="Hero Image URL"
+          type="url"
+          value={form.hero_image ?? ""}
+          onChange={set("hero_image")}
+        />
       </div>
       <div className="mt-6 flex items-center gap-3">
-        <button
-          onClick={() => saveMut.mutate()}
-          disabled={saveMut.isPending}
-          className="rounded-md bg-[#0B409C] px-4 py-2 text-sm font-medium text-white hover:bg-[#0B409C]/90 disabled:opacity-50"
-        >
-          {saveMut.isPending ? "Menyimpan..." : "Simpan"}
-        </button>
-        {saveMut.isSuccess && <span className="text-sm text-green-600">Tersimpan!</span>}
-        {saveMut.isError && <span className="text-sm text-red-600">Gagal menyimpan</span>}
+        <Button onClick={() => saveMut.mutate()} disabled={saveMut.isPending}>
+          {saveMut.isPending ? "Menyimpan…" : "Simpan"}
+        </Button>
+        <SaveStatus
+          isPending={saveMut.isPending}
+          isSuccess={saveMut.isSuccess}
+          isError={saveMut.isError}
+        />
       </div>
     </div>
   );
