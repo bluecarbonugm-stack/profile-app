@@ -37,3 +37,13 @@ supabasekey.txt
 
 # Graphify analysis output (generated)
 graphify-out/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+
+# Scratch gate-verification logs from local sessions
+gate-*.txt
+route-structure.txt
+routes-full.txt
