@@ -8,7 +8,10 @@ panel admin (`/admin`) untuk mengelola konten profil.
 
 1. **Fitur tidak saling mengimpor.** `src/features/profile/**` tidak boleh
    mengimpor `src/features/processing/**`, dan sebaliknya. Kalau ada kode yang
-   dibutuhkan keduanya, pindahkan ke `src/shared/`.
+   dibutuhkan keduanya, pindahkan ke `src/shared/`. Batas ini dijaga khusus
+   supaya Processing bisa dipisah ke repo sendiri nanti tanpa refactor besar
+   — lihat [`docs/processing-repo-extraction.md`](docs/processing-repo-extraction.md)
+   untuk rencana dan apa saja yang perlu diduplikasi saat itu terjadi.
 2. **`src/routes/**` tetap tipis.** Isinya hanya metadata `head()`, loader, dan
    memasang komponen dari `features/`. Jangan taruh logika UI di sini.
 3. **Impor lewat alias `@/`**, bukan path relatif berlapis (`../../..`).
