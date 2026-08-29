@@ -2,11 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/shared/components/ui/button";
+import { BrandMark } from "@/shared/components/brand/brand-mark";
 import { resolveImageUrl } from "../data/media";
 import type { SiteInfo, Stat } from "../types";
 
 export function HeroSection({ site, stats }: { site: SiteInfo; stats: Stat[] }) {
   const heroImage = resolveImageUrl(site.heroImage, 1920);
+  const logo = resolveImageUrl(site.logoUrl, 160);
 
   return (
     <section className="relative isolate overflow-hidden bg-ocean-deep text-white">
@@ -21,13 +23,25 @@ export function HeroSection({ site, stats }: { site: SiteInfo; stats: Stat[] }) 
       <div className="absolute inset-0 -z-10 bg-ocean-gradient opacity-90" />
       <div className="absolute inset-0 -z-10 bg-grid opacity-20" />
 
-      <div className="mx-auto w-full max-w-[1200px] px-6 py-24 md:py-36">
-        {site.badge && (
-          <p className="eyebrow flex items-center gap-2.5 text-accent">
-            <span aria-hidden="true" className="h-px w-6 bg-current opacity-50" />
-            {site.badge}
-          </p>
-        )}
+      <div className="mx-auto w-full max-w-[1200px] animate-in fade-in slide-in-from-bottom-3 px-6 py-24 duration-700 md:py-36">
+        <div className="flex items-center gap-3">
+          <span
+            aria-hidden={!logo}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-white/20 backdrop-blur-sm"
+          >
+            {logo ? (
+              <img src={logo} alt={site.organizationName} className="h-7 w-7 object-contain" />
+            ) : (
+              <BrandMark className="h-6 w-6 text-sand" />
+            )}
+          </span>
+          {site.badge && (
+            <p className="eyebrow flex items-center gap-2.5 text-accent">
+              <span aria-hidden="true" className="h-px w-6 bg-current opacity-50" />
+              {site.badge}
+            </p>
+          )}
+        </div>
 
         <h1 className="mt-6 max-w-4xl text-[2.75rem] leading-[1.05] md:text-6xl lg:text-7xl">
           {site.headline}

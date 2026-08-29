@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Waves } from "lucide-react";
+
+import { BrandMark } from "@/shared/components/brand/brand-mark";
 
 export function SiteHeader() {
   return (
@@ -7,7 +8,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-6 px-4">
         <Link to="/" className="flex items-center gap-2 text-sm font-semibold">
           <span className="grid h-7 w-7 place-items-center rounded-md bg-ocean-gradient text-white">
-            <Waves className="h-4 w-4" />
+            <BrandMark className="h-4 w-4" />
           </span>
           <span className="hidden sm:inline">
             Blue Carbon <span className="font-normal text-muted-foreground">Research Group</span>

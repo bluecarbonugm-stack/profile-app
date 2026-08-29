@@ -22,8 +22,13 @@ CREATE TABLE IF NOT EXISTS site (
   phone text,
   maps_url text,
   hero_image text,
+  logo_url text,
   founded_year text
 );
+
+-- Added after initial launch: organization mark shown in the hero. Safe to
+-- re-run against a database created before this column existed.
+ALTER TABLE site ADD COLUMN IF NOT EXISTS logo_url text;
 
 CREATE TABLE IF NOT EXISTS stats (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),

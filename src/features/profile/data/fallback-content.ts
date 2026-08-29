@@ -29,6 +29,7 @@ export const FALLBACK_CONTENT: ProfileContent = {
     phone: undefined,
     mapsUrl: undefined,
     heroImage: undefined,
+    logoUrl: undefined,
     foundedYear: "2018",
   },
 

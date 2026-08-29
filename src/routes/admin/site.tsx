@@ -30,6 +30,7 @@ interface SiteRow {
   phone: string;
   maps_url: string;
   hero_image: string;
+  logo_url: string;
   founded_year: string;
 }
 
@@ -118,6 +119,13 @@ function AdminSite() {
           type="url"
           value={form.hero_image ?? ""}
           onChange={set("hero_image")}
+        />
+        <TextField
+          label="Logo URL"
+          type="url"
+          hint="Ditampilkan di hero. Kosongkan untuk memakai mark BCRG bawaan."
+          value={form.logo_url ?? ""}
+          onChange={set("logo_url")}
         />
       </div>
       <div className="mt-6 flex items-center gap-3">

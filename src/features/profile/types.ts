@@ -1,14 +1,14 @@
 import { z } from "zod";
 
-// Schema for the JSON returned by the Google Apps Script Web App. Everything a
-// spreadsheet can leave blank is optional here - an editor forgetting to fill a
-// cell must degrade to a missing field, never to a failed page render.
+// Schema for content read from Supabase (see api/content-source.ts). Everything
+// an editor can leave blank in /admin is optional here - a half-filled row must
+// degrade to a missing field, never to a failed page render.
 
 const trimmed = z.string().trim();
 const optionalText = trimmed.optional().catch(undefined);
 const optionalUrl = trimmed.url().optional().catch(undefined);
 
-/** Sheets hand back numbers as text often enough that coercion is worth it. */
+/** Sort order sometimes arrives as text; coercion is cheap insurance. */
 const order = z.coerce.number().optional().catch(undefined);
 
 export const SiteInfoSchema = z.object({
@@ -29,6 +29,8 @@ export const SiteInfoSchema = z.object({
   phone: optionalText,
   mapsUrl: optionalUrl,
   heroImage: optionalUrl,
+  /** Organization mark shown in the hero. Falls back to the BrandMark SVG when unset. */
+  logoUrl: optionalUrl,
   foundedYear: optionalText,
 });
 

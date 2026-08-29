@@ -83,6 +83,7 @@ function mapSiteRow(row: Record<string, unknown>): ProfileContent["site"] {
     phone: (row.phone as string) ?? undefined,
     mapsUrl: (row.maps_url as string) ?? undefined,
     heroImage: (row.hero_image as string) ?? undefined,
+    logoUrl: (row.logo_url as string) ?? undefined,
     foundedYear: (row.founded_year as string) ?? undefined,
   };
 }
