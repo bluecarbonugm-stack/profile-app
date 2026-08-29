@@ -5,6 +5,8 @@ import { initialsOf, resolveImageUrl } from "../data/media";
 import type { TeamMember } from "../types";
 
 export function TeamSection({ index, members }: { index: number; members: TeamMember[] }) {
+  if (members.length === 0) return null;
+
   return (
     <Section id="tim">
       <SectionHeader
@@ -32,7 +34,7 @@ function TeamCard({ member }: { member: TeamMember }) {
   const photo = resolveImageUrl(member.photo, 320);
 
   return (
-    <li className="flex gap-4 bg-card p-6 transition-colors hover:bg-muted/40">
+    <li className="reveal-item relative flex gap-4 bg-card p-6 transition-all duration-300 hover:z-10 hover:-translate-y-0.5 hover:bg-muted/40 hover:shadow-md">
       {photo ? (
         <img
           src={photo}

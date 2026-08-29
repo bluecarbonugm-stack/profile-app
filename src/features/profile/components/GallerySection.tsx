@@ -16,8 +16,10 @@ const PLACEHOLDER_TINTS = [
 ];
 
 export function GallerySection({ index, items }: { index: number; items: GalleryItem[] }) {
+  if (items.length === 0) return null;
+
   return (
-    <Section id="galeri" tone="muted">
+    <Section id="galeri">
       <SectionHeader
         index={index}
         eyebrow="Galeri Lapangan"
@@ -28,7 +30,7 @@ export function GallerySection({ index, items }: { index: number; items: Gallery
         {items.map((item, i) => {
           const image = resolveImageUrl(item.image, 600);
           return (
-            <li key={item.title}>
+            <li key={item.title} className="reveal-item">
               <figure
                 className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border"
                 style={

@@ -16,6 +16,8 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 export function FocusSection({ index, pillars }: { index: number; pillars: FocusPillar[] }) {
+  if (pillars.length === 0) return null;
+
   return (
     <Section id="fokus" tone="muted">
       <SectionHeader
@@ -32,7 +34,7 @@ export function FocusSection({ index, pillars }: { index: number; pillars: Focus
           return (
             <article
               key={pillar.title}
-              className="group flex flex-col gap-4 bg-card p-6 transition-colors hover:bg-muted/40"
+              className="reveal-item group flex flex-col gap-4 bg-card p-6 transition-colors hover:-translate-y-0.5 hover:bg-muted/40 hover:shadow-md"
             >
               <div className="flex items-center justify-between">
                 <span className="grid h-10 w-10 place-items-center rounded-md bg-accent/10 text-accent transition-colors group-hover:bg-accent/15">

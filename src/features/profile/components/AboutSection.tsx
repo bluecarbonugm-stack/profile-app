@@ -2,6 +2,8 @@ import { Section, Eyebrow } from "@/shared/components/layout/section";
 import type { SiteInfo } from "../types";
 
 export function AboutSection({ index, site }: { index: number; site: SiteInfo }) {
+  if (!site.aboutTitle && site.aboutParagraphs.length === 0) return null;
+
   return (
     <Section id="tentang">
       <div className="grid gap-10 md:grid-cols-[1fr_1.5fr] md:gap-16">

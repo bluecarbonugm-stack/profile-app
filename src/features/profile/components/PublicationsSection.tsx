@@ -11,6 +11,8 @@ export function PublicationsSection({
   index: number;
   publications: Publication[];
 }) {
+  if (publications.length === 0) return null;
+
   return (
     <Section id="publikasi" tone="muted">
       <SectionHeader
@@ -61,7 +63,7 @@ function PublicationRow({ pub }: { pub: Publication }) {
     </>
   );
 
-  const layout = "group flex flex-col gap-4 p-6 md:flex-row md:gap-8";
+  const layout = "reveal-item group flex flex-col gap-4 p-6 md:flex-row md:gap-8";
 
   // The whole row is the link when there is one, rather than a small button
   // tucked at the end - a bigger target and one obvious affordance.
