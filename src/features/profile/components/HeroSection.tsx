@@ -4,10 +4,12 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import { BrandMark } from "@/shared/components/brand/brand-mark";
 import { SafeImage } from "@/shared/components/media/safe-image";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import { resolveImageUrl } from "../data/media";
 import type { SiteInfo, Stat } from "../types";
 
 export function HeroSection({ site, stats }: { site: SiteInfo; stats: Stat[] }) {
+  const { t } = useLanguage();
   const heroImage = resolveImageUrl(site.heroImage, 1920);
   const logo = resolveImageUrl(site.logoUrl, 160);
 
@@ -70,7 +72,7 @@ export function HeroSection({ site, stats }: { site: SiteInfo; stats: Stat[] }) 
         <div className="mt-10 flex flex-wrap gap-3">
           <Button asChild size="lg" className="bg-white text-ocean-deep hover:bg-white/90">
             <Link to="/processing">
-              Coba alur kerja pemetaan <ArrowRight className="h-4 w-4" />
+              {t("hero.ctaPrimary")} <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
           <Button
@@ -79,7 +81,7 @@ export function HeroSection({ site, stats }: { site: SiteInfo; stats: Stat[] }) 
             variant="outline"
             className="border-white/25 text-white hover:border-white/50 hover:bg-white/10"
           >
-            <a href="#publikasi">Lihat publikasi</a>
+            <a href="#publikasi">{t("hero.ctaSecondary")}</a>
           </Button>
         </div>
 

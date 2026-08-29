@@ -1,6 +1,7 @@
 import { Fish, Layers, LineChart, Satellite, Sprout, Waves, type LucideIcon } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import type { FocusPillar } from "../types";
 
 // The spreadsheet stores an icon *key*, not a component, so editors can pick one
@@ -16,15 +17,16 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 export function FocusSection({ index, pillars }: { index: number; pillars: FocusPillar[] }) {
+  const { t } = useLanguage();
   if (pillars.length === 0) return null;
 
   return (
     <Section id="fokus" tone="muted">
       <SectionHeader
         index={index}
-        eyebrow="Fokus Riset"
-        title="Pilar kerja kelompok riset."
-        description="Struktur riset kami mengikuti alur SOP pemetaan habitat perairan dangkal, dari pra-pemrosesan citra hingga analisis multi-temporal."
+        eyebrow={t("focus.eyebrow")}
+        title={t("focus.title")}
+        description={t("focus.description")}
       />
 
       {/* Gap-as-border grid: one hairline between cells, none on the outside. */}

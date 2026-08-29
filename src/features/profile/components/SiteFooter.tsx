@@ -1,7 +1,9 @@
 import { BrandMark } from "@/shared/components/brand/brand-mark";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import type { ProfilePayload } from "../types";
 
 export function SiteFooter({ payload }: { payload: ProfilePayload }) {
+  const { t } = useLanguage();
   const { site } = payload.content;
 
   return (
@@ -18,7 +20,9 @@ export function SiteFooter({ payload }: { payload: ProfilePayload }) {
         </div>
 
         {payload.source === "supabase" && payload.content.updatedAt && (
-          <span className="eyebrow text-white/35">Diperbarui {payload.content.updatedAt}</span>
+          <span className="eyebrow text-white/35">
+            {t("footer.updated")} {payload.content.updatedAt}
+          </span>
         )}
       </div>
     </footer>

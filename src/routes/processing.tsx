@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Toaster } from "@/shared/components/ui/sonner";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 
 const Workbench = lazy(() =>
   import("@/features/processing/components/Workbench").then((m) => ({ default: m.Workbench })),
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/processing")({
 });
 
 function ProcessingRoute() {
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   return (
@@ -37,7 +39,9 @@ function ProcessingRoute() {
       <div className="flex-1 min-h-0 hidden lg:block">
         {mounted && (
           <Suspense
-            fallback={<div className="p-6 text-sm text-muted-foreground">Memuat workbench…</div>}
+            fallback={
+              <div className="p-6 text-sm text-muted-foreground">{t("processing.loading")}</div>
+            }
           >
             <Workbench />
           </Suspense>
@@ -49,15 +53,15 @@ function ProcessingRoute() {
 }
 
 function MobileNotice() {
+  const { t } = useLanguage();
   return (
     <div className="lg:hidden flex-1 grid place-items-center p-6 text-center">
       <div className="max-w-sm">
-        <div className="text-[11px] uppercase tracking-wider text-accent">Layar terlalu sempit</div>
-        <h2 className="mt-2 text-2xl">Buka Processing di layar lebih lebar</h2>
-        <p className="mt-3 text-sm text-muted-foreground">
-          Workbench node-based dirancang untuk layar desktop/tablet lebar (≥1024 px) agar palette,
-          kanvas, dan property panel bisa tampil bersamaan.
-        </p>
+        <div className="text-[11px] uppercase tracking-wider text-accent">
+          {t("processing.notReadyEyebrow")}
+        </div>
+        <h2 className="mt-2 text-2xl">{t("processing.notReadyTitle")}</h2>
+        <p className="mt-3 text-sm text-muted-foreground">{t("processing.notReadyBody")}</p>
       </div>
     </div>
   );

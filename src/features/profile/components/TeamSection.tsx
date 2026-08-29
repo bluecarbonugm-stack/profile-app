@@ -2,22 +2,25 @@ import { GraduationCap, Mail } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
 import { SafeImage } from "@/shared/components/media/safe-image";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import { initialsOf, resolveImageUrl } from "../data/media";
 import type { TeamMember } from "../types";
 
 export function TeamSection({ index, members }: { index: number; members: TeamMember[] }) {
+  const { t } = useLanguage();
   if (members.length === 0) return null;
 
   return (
     <Section id="tim">
       <SectionHeader
         index={index}
-        eyebrow="Tim Peneliti"
-        title="Peneliti & anggota lab."
-        description="Peneliti dan asisten riset lintas bidang (penginderaan jauh pesisir, machine learning, fotogrametri, dan survei lapangan)."
+        eyebrow={t("team.eyebrow")}
+        title={t("team.title")}
+        description={t("team.description")}
         aside={
           <p className="eyebrow text-muted-foreground">
-            <span className="tabular">{String(members.length).padStart(2, "0")}</span> anggota
+            <span className="tabular">{String(members.length).padStart(2, "0")}</span>{" "}
+            {t("team.membersUnit")}
           </p>
         }
       />
@@ -32,6 +35,7 @@ export function TeamSection({ index, members }: { index: number; members: TeamMe
 }
 
 function TeamCard({ member }: { member: TeamMember }) {
+  const { t } = useLanguage();
   const photo = resolveImageUrl(member.photo, 320);
   const initialsAvatar = (
     <div
@@ -73,7 +77,7 @@ function TeamCard({ member }: { member: TeamMember }) {
                 href={`mailto:${member.email}`}
                 className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-accent-ink"
               >
-                <Mail className="h-3 w-3" /> Email
+                <Mail className="h-3 w-3" /> {t("team.email")}
               </a>
             )}
             {member.scholarUrl && (
@@ -83,7 +87,7 @@ function TeamCard({ member }: { member: TeamMember }) {
                 rel="noreferrer noopener"
                 className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-accent-ink"
               >
-                <GraduationCap className="h-3 w-3" /> Scholar
+                <GraduationCap className="h-3 w-3" /> {t("team.scholar")}
               </a>
             )}
           </div>

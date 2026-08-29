@@ -3,44 +3,46 @@ import { GraduationCap, Mail, MapPin, Phone } from "lucide-react";
 
 import { Section, Eyebrow } from "@/shared/components/layout/section";
 import { Button } from "@/shared/components/ui/button";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import type { SiteInfo } from "../types";
 
 export function ContactSection({ index, site }: { index: number; site: SiteInfo }) {
+  const { t } = useLanguage();
+
   return (
     <Section id="kontak" tone="deep">
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <div>
           <Eyebrow index={index} className="text-teal">
-            Kontak
+            {t("contact.eyebrow")}
           </Eyebrow>
-          <h2 className="mt-4 text-3xl leading-[1.15] md:text-[2.5rem]">Mari berkolaborasi.</h2>
+          <h2 className="mt-4 text-3xl leading-[1.15] md:text-[2.5rem]">{t("contact.title")}</h2>
           <p className="measure mt-4 text-sm leading-relaxed text-white/65 md:text-base">
-            Tertarik bekerja sama untuk pemetaan habitat pesisir, pelatihan, atau riset bersama?
-            Hubungi kami melalui email atau formulir di samping.
+            {t("contact.intro")}
           </p>
 
           <dl className="mt-10 space-y-4 border-t border-white/15 pt-8 text-sm">
             {site.address && (
-              <ContactRow icon={MapPin} label="Alamat" href={site.mapsUrl}>
+              <ContactRow icon={MapPin} label={t("contact.address")} href={site.mapsUrl}>
                 {site.address}
               </ContactRow>
             )}
             {site.email && (
-              <ContactRow icon={Mail} label="Email" href={`mailto:${site.email}`}>
+              <ContactRow icon={Mail} label={t("contact.email")} href={`mailto:${site.email}`}>
                 {site.email}
               </ContactRow>
             )}
             {site.phone && (
               <ContactRow
                 icon={Phone}
-                label="Telepon"
+                label={t("contact.phone")}
                 href={`tel:${site.phone.replace(/\s+/g, "")}`}
               >
                 {site.phone}
               </ContactRow>
             )}
             {site.department && (
-              <ContactRow icon={GraduationCap} label="Departemen">
+              <ContactRow icon={GraduationCap} label={t("contact.department")}>
                 {site.department}
               </ContactRow>
             )}
@@ -96,6 +98,7 @@ function ContactRow({
  * hands it to their mail client. It works everywhere and loses nothing.
  */
 function ContactForm({ recipient }: { recipient?: string }) {
+  const { t } = useLanguage();
   const [name, setName] = useState("");
   const [institution, setInstitution] = useState("");
   const [email, setEmail] = useState("");
@@ -105,11 +108,11 @@ function ContactForm({ recipient }: { recipient?: string }) {
     event.preventDefault();
     if (!recipient) return;
 
-    const subject = `Kolaborasi: ${name || "Tanpa nama"}${institution ? ` (${institution})` : ""}`;
+    const subject = `${t("contact.emailSubjectPrefix")}: ${name || t("contact.emailNoName")}${institution ? ` (${institution})` : ""}`;
     const body = [
-      `Nama: ${name}`,
-      `Institusi: ${institution}`,
-      `Email: ${email}`,
+      `${t("contact.formName")}: ${name}`,
+      `${t("contact.formInstitution")}: ${institution}`,
+      `${t("contact.formEmail")}: ${email}`,
       "",
       message,
     ].join("\n");
@@ -123,12 +126,18 @@ function ContactForm({ recipient }: { recipient?: string }) {
       onSubmit={handleSubmit}
     >
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Nama" required value={name} onChange={setName} />
-        <Field label="Institusi" value={institution} onChange={setInstitution} />
+        <Field label={t("contact.formName")} required value={name} onChange={setName} />
+        <Field label={t("contact.formInstitution")} value={institution} onChange={setInstitution} />
       </div>
-      <Field label="Email" type="email" required value={email} onChange={setEmail} />
       <Field
-        label="Pesan / topik kolaborasi"
+        label={t("contact.formEmail")}
+        type="email"
+        required
+        value={email}
+        onChange={setEmail}
+      />
+      <Field
+        label={t("contact.formMessage")}
         required
         multiline
         value={message}
@@ -140,11 +149,9 @@ function ContactForm({ recipient }: { recipient?: string }) {
         disabled={!recipient}
         className="mt-1 bg-teal text-ocean-deep hover:bg-teal/90"
       >
-        Kirim pesan
+        {t("contact.formSubmit")}
       </Button>
-      <p className="text-xs leading-relaxed text-white/45">
-        Tombol ini membuka aplikasi email Anda dengan pesan yang sudah terisi.
-      </p>
+      <p className="text-xs leading-relaxed text-white/45">{t("contact.formHint")}</p>
     </form>
   );
 }

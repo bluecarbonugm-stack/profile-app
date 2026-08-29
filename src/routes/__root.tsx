@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportError } from "@/shared/lib/error-reporting";
 import { SiteHeader } from "@/shared/components/layout/site-header";
+import { LanguageProvider } from "@/shared/lib/i18n/language-context";
 
 function NotFoundComponent() {
   return (
@@ -107,7 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <HeadContent />
       </head>
@@ -124,8 +125,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteHeader />
-      <Outlet />
+      <LanguageProvider>
+        <SiteHeader />
+        <Outlet />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
 import { Badge } from "@/shared/components/ui/badge";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import type { Publication } from "../types";
 
 export function PublicationsSection({
@@ -11,17 +12,19 @@ export function PublicationsSection({
   index: number;
   publications: Publication[];
 }) {
+  const { t } = useLanguage();
   if (publications.length === 0) return null;
 
   return (
     <Section id="publikasi" tone="muted">
       <SectionHeader
         index={index}
-        eyebrow="Publikasi & Output"
-        title="Publikasi ilmiah, panduan teknis, dataset."
+        eyebrow={t("publications.eyebrow")}
+        title={t("publications.title")}
         aside={
           <p className="eyebrow text-muted-foreground">
-            <span className="tabular">{String(publications.length).padStart(2, "0")}</span> entri
+            <span className="tabular">{String(publications.length).padStart(2, "0")}</span>{" "}
+            {t("publications.entriesUnit")}
           </p>
         }
       />

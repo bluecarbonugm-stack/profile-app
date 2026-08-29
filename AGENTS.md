@@ -65,6 +65,27 @@ variabel berawalan `VITE_` — keduanya ikut terkirim ke browser. Gunakan
 `SUPABASE_URL` / `SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` (server-only,
 lihat `.env.example`).
 
+## Bahasa (ID/EN)
+
+Site punya toggle ID/EN (`<LanguageSwitch>` di nav, lihat
+`src/shared/lib/i18n/`). Cakupannya sengaja dibatasi ke **chrome UI saja**:
+label nav, eyebrow/judul/deskripsi section, label form, tombol, footer.
+String baru masuk ke `src/shared/lib/i18n/translations.ts` (satu key, dua
+bahasa) lalu dipanggil lewat `useLanguage().t("key")` — jangan hardcode
+string UI langsung di JSX kalau section itu sudah pakai `useLanguage()`.
+
+Konten dari Supabase (headline, bio tim, judul publikasi, dst.) **tidak**
+diterjemahkan otomatis — itu teks bebas hasil input admin, tampil apa
+adanya di kedua bahasa. Kalau suatu saat perlu versi Inggris untuk konten,
+itu berarti kolom baru di skema (pola sama seperti `logo_url`), bukan
+perluasan `translations.ts`.
+
+Locale disimpan di `localStorage` client-side saja (tidak ada deteksi locale
+di server/cookie) — `<html lang>` selalu SSR sebagai `id` lalu disinkronkan
+di effect. Ini trade-off yang disengaja: satu kali flash bahasa untuk
+pengunjung yang terakhir pilih EN, sebagai ganti kompleksitas cookie-based
+SSR locale untuk fitur yang cakupannya cuma chrome UI.
+
 ## Sebelum commit
 
 ```bash

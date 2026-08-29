@@ -2,6 +2,7 @@ import { Building2 } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
 import { SafeImage } from "@/shared/components/media/safe-image";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import { resolveImageUrl } from "../data/media";
 import type { Partner } from "../types";
 
@@ -12,11 +13,12 @@ import type { Partner } from "../types";
  * the loop is seamless; pauses on hover so a name can actually be read.
  */
 export function PartnersSection({ index, partners }: { index: number; partners: Partner[] }) {
+  const { t } = useLanguage();
   if (partners.length === 0) return null;
 
   return (
     <Section id="mitra" tone="muted">
-      <SectionHeader index={index} eyebrow="Mitra & Afiliasi" title="Kolaborator lintas sektor." />
+      <SectionHeader index={index} eyebrow={t("partners.eyebrow")} title={t("partners.title")} />
 
       <div className="marquee-viewport mt-14 overflow-hidden">
         <div className="animate-marquee flex w-max items-stretch gap-4">

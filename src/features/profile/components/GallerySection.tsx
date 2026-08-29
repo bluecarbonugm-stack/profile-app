@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MapPin } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 import { resolveImageUrl } from "../data/media";
 import type { GalleryItem } from "../types";
 
@@ -17,15 +18,12 @@ const PLACEHOLDER_TINTS = [
 ];
 
 export function GallerySection({ index, items }: { index: number; items: GalleryItem[] }) {
+  const { t } = useLanguage();
   if (items.length === 0) return null;
 
   return (
     <Section id="galeri">
-      <SectionHeader
-        index={index}
-        eyebrow="Galeri Lapangan"
-        title="Dokumentasi survei & kegiatan."
-      />
+      <SectionHeader index={index} eyebrow={t("gallery.eyebrow")} title={t("gallery.title")} />
 
       <ul className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
         {items.map((item, i) => (

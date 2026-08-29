@@ -1,8 +1,12 @@
 import { Link } from "@tanstack/react-router";
 
 import { BrandMark } from "@/shared/components/brand/brand-mark";
+import { LanguageSwitch } from "@/shared/components/layout/language-switch";
+import { useLanguage } from "@/shared/lib/i18n/language-context";
 
 export function SiteHeader() {
+  const { t } = useLanguage();
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-6 px-4">
@@ -15,8 +19,9 @@ export function SiteHeader() {
           </span>
         </Link>
         <div className="ml-auto hidden text-[11px] text-muted-foreground md:block">
-          Fakultas Geografi · Universitas Gadjah Mada
+          {t("nav.tagline")}
         </div>
+        <LanguageSwitch />
       </div>
     </header>
   );
