@@ -1,46 +1,15 @@
-type LovableErrorOptions = {
-  mechanism?: "manual" | "onerror" | "unhandledrejection" | "react_error_boundary";
-  handled?: boolean;
-  severity?: "error" | "warning" | "info";
-};
+// Client-side error reporting for the React error boundary in __root.tsx.
+// Standalone - no dependency on any external editor/preview runtime. Swap the
+// console.error call for a real sink (Sentry, etc.) if/when one is wired up.
 
-type LovableEvents = {
-  captureException?: (
-    error: unknown,
-    context?: Record<string, unknown>,
-    options?: LovableErrorOptions,
-  ) => void;
-};
-
-declare global {
-  interface Window {
-    __lovableEvents?: LovableEvents;
-    __lovableReportRuntimeError?: (payload: {
-      message: string;
-      stack?: string;
-      filename?: string;
-    }) => void;
-  }
+export interface ErrorReportContext {
+  boundary?: string;
+  [key: string]: unknown;
 }
 
-export function reportLovableError(error: unknown, context: Record<string, unknown> = {}) {
+export function reportError(error: unknown, context: ErrorReportContext = {}): void {
   if (typeof window === "undefined") return;
-  window.__lovableEvents?.captureException?.(
-    error,
-    {
-      source: "react_error_boundary",
-      route: window.location.pathname,
-      ...context,
-    },
-    {
-      mechanism: "react_error_boundary",
-      handled: false,
-      severity: "error",
-    },
-  );
-  // Prod React does not rethrow boundary-caught errors to window.onerror, so the
-  // editor's telemetry never sees them. Forward to lovable.js's reporting hook,
-  // which is present only inside the editor preview.
+
   // Loaders and server fns commonly throw a raw Response; String(it) is the
   // opaque "[object Response]", so pull out the status and URL instead.
   const message =
@@ -49,9 +18,10 @@ export function reportLovableError(error: unknown, context: Record<string, unkno
       : error instanceof Error
         ? error.message
         : String(error);
-  window.__lovableReportRuntimeError?.({
-    message,
+
+  console.error("[error-boundary]", message, {
+    route: window.location.pathname,
     stack: error instanceof Error ? error.stack : undefined,
-    filename: window.location.pathname,
+    ...context,
   });
 }
