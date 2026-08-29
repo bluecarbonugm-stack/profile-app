@@ -90,6 +90,20 @@ ALTER TABLE publications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE gallery ENABLE ROW LEVEL SECURITY;
 ALTER TABLE partners ENABLE ROW LEVEL SECURITY;
 
+-- CREATE POLICY has no IF NOT EXISTS in Postgres, so re-running this file
+-- (e.g. after adding a table below) errors on the first policy that already
+-- exists - and Supabase's SQL Editor runs the whole paste as one
+-- transaction, so that error rolls back everything above it too, including
+-- unrelated schema changes earlier in the same run. DROP IF EXISTS first so
+-- this whole file can always be re-run safely.
+DROP POLICY IF EXISTS "Public read" ON site;
+DROP POLICY IF EXISTS "Public read" ON stats;
+DROP POLICY IF EXISTS "Public read" ON focus;
+DROP POLICY IF EXISTS "Public read" ON team;
+DROP POLICY IF EXISTS "Public read" ON publications;
+DROP POLICY IF EXISTS "Public read" ON gallery;
+DROP POLICY IF EXISTS "Public read" ON partners;
+
 CREATE POLICY "Public read" ON site FOR SELECT USING (true);
 CREATE POLICY "Public read" ON stats FOR SELECT USING (true);
 CREATE POLICY "Public read" ON focus FOR SELECT USING (true);
@@ -97,6 +111,14 @@ CREATE POLICY "Public read" ON team FOR SELECT USING (true);
 CREATE POLICY "Public read" ON publications FOR SELECT USING (true);
 CREATE POLICY "Public read" ON gallery FOR SELECT USING (true);
 CREATE POLICY "Public read" ON partners FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Admin write" ON site;
+DROP POLICY IF EXISTS "Admin write" ON stats;
+DROP POLICY IF EXISTS "Admin write" ON focus;
+DROP POLICY IF EXISTS "Admin write" ON team;
+DROP POLICY IF EXISTS "Admin write" ON publications;
+DROP POLICY IF EXISTS "Admin write" ON gallery;
+DROP POLICY IF EXISTS "Admin write" ON partners;
 
 CREATE POLICY "Admin write" ON site FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Admin write" ON stats FOR ALL USING (auth.role() = 'authenticated');
@@ -116,6 +138,15 @@ ON CONFLICT (id) DO NOTHING;
 -- ============================================================
 -- 4. SEED DATA (from fallback-content.ts)
 -- ============================================================
+-- Plain INSERT ... VALUES has no IF NOT EXISTS either, and these tables have
+-- no natural unique constraint (name/title aren't unique keys) - re-running
+-- this section would silently duplicate every row instead of erroring. `site`
+-- is a singleton, so "does it already have a row" doubles as "has this seed
+-- already run" for the whole block.
+
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM site) THEN
 
 INSERT INTO site (organization_name, faculty, department, badge, headline, headline_emphasis, headline_suffix, intro, about_title, about_paragraphs, address, email, founded_year)
 VALUES (
@@ -178,3 +209,6 @@ INSERT INTO partners (name, sort_order) VALUES
   ('BRIN', 4),
   ('Balai Taman Nasional Karimunjawa', 5),
   ('PUSPICS', 6);
+
+  END IF;
+END $$;
