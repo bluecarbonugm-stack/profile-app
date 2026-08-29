@@ -1,7 +1,8 @@
 # Panduan kontribusi (manusia & agen)
 
 Website Blue Carbon Research Group UGM. Satu aplikasi TanStack Start yang berisi
-dua produk: **Web Profile** (`/`) dan **Web Processing** (`/processing`).
+dua produk: **Web Profile** (`/`) dan **Web Processing** (`/processing`), plus
+panel admin (`/admin`) untuk mengelola konten profil.
 
 ## Aturan arsitektur
 
@@ -23,8 +24,14 @@ dua produk: **Web Profile** (`/`) dan **Web Processing** (`/processing`).
 - Setiap band halaman profil dibungkus `<Section>`, judulnya memakai
   `<SectionHeader>` (`@/shared/components/layout/section`). Jangan menulis ulang
   `max-w` / `padding` / markup eyebrow per section.
-- Label kecil memakai utility `eyebrow`, angka memakai `tabular`. Keduanya
+- Label kecil memakai utility `eyebrow`, angka memakai `tabular`, paragraf
+  panjang memakai `measure`, tautan berwarna memakai `link-rule`. Keempatnya
   didefinisikan di `styles.css`.
+- Form admin (`/admin/**`) memakai primitif dari
+  `@/features/profile/components/admin/admin-field` (`TextField`,
+  `TextAreaField`, `NumberField`, `AdminPageHeader`, `AdminEditCard`,
+  `AdminListRow`) — jangan menulis ulang `<input className="border-gray-300">`
+  atau hex warna literal per route.
 - Jangan menambahkan focus ring per komponen — sudah ada `:focus-visible`
   global. Menambah ring kedua membuat fokus terlihat tidak seragam.
 - Section menyembunyikan dirinya saat datanya kosong, dan nomor urutnya dihitung
@@ -33,13 +40,22 @@ dua produk: **Web Profile** (`/`) dan **Web Processing** (`/processing`).
 
 ## Data konten profil
 
-Konten halaman profil berasal dari Google Spreadsheet via Apps Script, diambil
-di server (`src/features/profile/api/`) dengan cache dan validasi Zod. Selalu
-sediakan fallback: kalau sheet gagal dibaca, halaman harus tetap render memakai
+Konten halaman profil berasal dari Supabase (tabel `site`, `stats`, `focus`,
+`team`, `publications`, `gallery`, `partners`), dibaca di server
+(`src/features/profile/api/content-source.ts`) dengan cache in-memory dan
+validasi Zod. Selalu sediakan fallback: kalau Supabase tidak terjangkau,
+halaman harus tetap render memakai
 `src/features/profile/data/fallback-content.ts`.
 
-Jangan pernah menaruh URL endpoint atau token di kode klien atau di variabel
-berawalan `VITE_` — keduanya ikut terkirim ke browser.
+Admin mengedit konten lewat `/admin/**` (login via Supabase Auth, tulis lewat
+TanStack server functions di `api/admin-content.ts`). Setiap tulis memanggil
+`invalidateProfileContentCache()` agar perubahan langsung terlihat di halaman
+publik.
+
+Jangan pernah menaruh URL Supabase / service-role key di kode klien atau di
+variabel berawalan `VITE_` — keduanya ikut terkirim ke browser. Gunakan
+`SUPABASE_URL` / `SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` (server-only,
+lihat `.env.example`).
 
 ## Sebelum commit
 

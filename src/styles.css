@@ -46,31 +46,32 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.985 0.005 210);
-  --foreground: oklch(0.18 0.03 240);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.03 240);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.03 240);
-  --primary: oklch(0.35 0.09 235);
-  --primary-foreground: oklch(0.985 0.005 210);
-  --secondary: oklch(0.94 0.02 210);
-  --secondary-foreground: oklch(0.25 0.05 240);
-  --muted: oklch(0.95 0.012 220);
-  --muted-foreground: oklch(0.48 0.03 235);
-  --accent: oklch(0.62 0.11 195);
-  --accent-foreground: oklch(0.985 0.005 210);
+  /* Brand palette: #F2F7FF base, #0B409C primary blue, #10316B deep navy, #FFCE63 accent gold */
+  --background: #f2f7ff;
+  --foreground: #10316b;
+  --card: #ffffff;
+  --card-foreground: #10316b;
+  --popover: #ffffff;
+  --popover-foreground: #10316b;
+  --primary: #0b409c;
+  --primary-foreground: #f2f7ff;
+  --secondary: color-mix(in oklab, #0b409c 8%, #ffffff);
+  --secondary-foreground: #10316b;
+  --muted: color-mix(in oklab, #0b409c 6%, #f2f7ff);
+  --muted-foreground: color-mix(in oklab, #10316b 68%, #f2f7ff);
+  --accent: #ffce63;
+  --accent-foreground: #10316b;
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.9 0.015 220);
-  --input: oklch(0.92 0.012 220);
-  --ring: oklch(0.55 0.1 210);
+  --border: color-mix(in oklab, #10316b 14%, #f2f7ff);
+  --input: color-mix(in oklab, #10316b 18%, #f2f7ff);
+  --ring: #0b409c;
 
-  --ocean-deep: oklch(0.22 0.06 245);
-  --ocean: oklch(0.35 0.09 235);
-  --teal: oklch(0.62 0.11 195);
-  --coral: oklch(0.68 0.17 45);
-  --sand: oklch(0.93 0.05 85);
+  --ocean-deep: #10316b;
+  --ocean: #0b409c;
+  --teal: color-mix(in oklab, #0b409c 62%, white);
+  --coral: #ffce63;
+  --sand: color-mix(in oklab, #ffce63 45%, white);
 
   --port-raster: oklch(0.65 0.17 145);
   --port-vector: oklch(0.6 0.18 250);
@@ -138,12 +139,48 @@
   background-image: linear-gradient(135deg, var(--ocean-deep), var(--ocean) 55%, var(--teal));
 }
 
-/* React Flow theme overrides for dark workbench */
+/*
+ * Editorial type utilities shared across the profile page. Defined once here
+ * so every section (Hero, About, Focus, Team, ...) reads from the same
+ * typographic system instead of hand-rolling label/number/measure styles.
+ */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Caps paragraph width at a comfortable reading measure (~60 characters). */
+@utility measure {
+  max-width: 60ch;
+}
+
+/* Understated link treatment: underline tracks the current text color so it
+   stays legible on both light cards and the dark contact band. */
+@utility link-rule {
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+}
+
+/* React Flow theme overrides: white canvas, light panels */
 .workbench .react-flow__background {
-  background: var(--ocean-deep);
+  background: #ffffff;
+}
+.workbench .react-flow__background circle,
+.workbench .react-flow__background path {
+  fill: #cbd5e1;
+  stroke: none;
 }
 .workbench .react-flow__edge-path {
-  stroke: color-mix(in oklab, var(--teal) 70%, transparent);
+  stroke: color-mix(in oklab, var(--primary) 65%, transparent);
   stroke-width: 2;
 }
 .workbench .react-flow__edge.selected .react-flow__edge-path {
@@ -152,7 +189,8 @@
 .workbench .react-flow__handle {
   width: 12px;
   height: 12px;
-  border: 2px solid oklch(0.18 0.03 240);
+  border: 2px solid var(--ocean-deep);
+  background: #ffffff;
 }
 .workbench .react-flow__controls {
   background: var(--card);
@@ -174,5 +212,13 @@
   border-radius: 6px;
 }
 .workbench .react-flow__attribution {
+  display: none;
+}
+
+/* Hidden scrollbars everywhere (developer-first minimalism) */
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
   display: none;
 }

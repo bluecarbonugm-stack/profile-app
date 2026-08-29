@@ -14,9 +14,10 @@ dist-ssr
 .vinxi
 .tanstack/**
 .nitro
+*.local
+
 # Secrets & local keys
 supabasekey.txt
-*.local
 
 # Environment (see .env.example)
 .env
@@ -37,3 +38,16 @@ supabasekey.txt
 *.njsproj
 *.sln
 *.sw?
+
+# Graphify analysis output (generated)
+graphify-out/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+
+# Scratch gate-verification logs from local sessions
+gate-*.txt
+route-structure.txt
+routes-full.txt

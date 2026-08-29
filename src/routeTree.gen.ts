@@ -10,11 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ProcessingRouteImport } from './routes/processing'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminFocusRouteImport } from './routes/admin/focus'
+import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminPartnersRouteImport } from './routes/admin/partners'
+import { Route as AdminPublicationsRouteImport } from './routes/admin/publications'
+import { Route as AdminSiteRouteImport } from './routes/admin/site'
+import { Route as AdminStatsRouteImport } from './routes/admin/stats'
+import { Route as AdminTeamRouteImport } from './routes/admin/team'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProcessingRoute = ProcessingRouteImport.update({
@@ -22,30 +37,141 @@ const ProcessingRoute = ProcessingRouteImport.update({
   path: '/processing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFocusRoute = AdminFocusRouteImport.update({
+  id: '/focus',
+  path: '/focus',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPartnersRoute = AdminPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPublicationsRoute = AdminPublicationsRouteImport.update({
+  id: '/publications',
+  path: '/publications',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSiteRoute = AdminSiteRouteImport.update({
+  id: '/site',
+  path: '/site',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminStatsRoute = AdminStatsRouteImport.update({
+  id: '/stats',
+  path: '/stats',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTeamRoute = AdminTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/processing': typeof ProcessingRoute
+  '/admin/focus': typeof AdminFocusRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/publications': typeof AdminPublicationsRoute
+  '/admin/site': typeof AdminSiteRoute
+  '/admin/stats': typeof AdminStatsRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/processing': typeof ProcessingRoute
+  '/admin/focus': typeof AdminFocusRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/publications': typeof AdminPublicationsRoute
+  '/admin/site': typeof AdminSiteRoute
+  '/admin/stats': typeof AdminStatsRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/processing': typeof ProcessingRoute
+  '/admin/focus': typeof AdminFocusRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/publications': typeof AdminPublicationsRoute
+  '/admin/site': typeof AdminSiteRoute
+  '/admin/stats': typeof AdminStatsRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/processing'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/processing'
+    | '/admin/focus'
+    | '/admin/gallery'
+    | '/admin/login'
+    | '/admin/partners'
+    | '/admin/publications'
+    | '/admin/site'
+    | '/admin/stats'
+    | '/admin/team'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/processing'
-  id: '__root__' | '/' | '/processing'
+  to:
+    | '/'
+    | '/processing'
+    | '/admin/focus'
+    | '/admin/gallery'
+    | '/admin/login'
+    | '/admin/partners'
+    | '/admin/publications'
+    | '/admin/site'
+    | '/admin/stats'
+    | '/admin/team'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/processing'
+    | '/admin/focus'
+    | '/admin/gallery'
+    | '/admin/login'
+    | '/admin/partners'
+    | '/admin/publications'
+    | '/admin/site'
+    | '/admin/stats'
+    | '/admin/team'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ProcessingRoute: typeof ProcessingRoute
 }
 
@@ -58,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/processing': {
       id: '/processing'
       path: '/processing'
@@ -65,11 +198,101 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProcessingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/focus': {
+      id: '/admin/focus'
+      path: '/focus'
+      fullPath: '/admin/focus'
+      preLoaderRoute: typeof AdminFocusRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/gallery': {
+      id: '/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/partners': {
+      id: '/admin/partners'
+      path: '/partners'
+      fullPath: '/admin/partners'
+      preLoaderRoute: typeof AdminPartnersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/publications': {
+      id: '/admin/publications'
+      path: '/publications'
+      fullPath: '/admin/publications'
+      preLoaderRoute: typeof AdminPublicationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/site': {
+      id: '/admin/site'
+      path: '/site'
+      fullPath: '/admin/site'
+      preLoaderRoute: typeof AdminSiteRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/stats': {
+      id: '/admin/stats'
+      path: '/stats'
+      fullPath: '/admin/stats'
+      preLoaderRoute: typeof AdminStatsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/team': {
+      id: '/admin/team'
+      path: '/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AdminTeamRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminFocusRoute: typeof AdminFocusRoute
+  AdminGalleryRoute: typeof AdminGalleryRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminPartnersRoute: typeof AdminPartnersRoute
+  AdminPublicationsRoute: typeof AdminPublicationsRoute
+  AdminSiteRoute: typeof AdminSiteRoute
+  AdminStatsRoute: typeof AdminStatsRoute
+  AdminTeamRoute: typeof AdminTeamRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminFocusRoute: AdminFocusRoute,
+  AdminGalleryRoute: AdminGalleryRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminPartnersRoute: AdminPartnersRoute,
+  AdminPublicationsRoute: AdminPublicationsRoute,
+  AdminSiteRoute: AdminSiteRoute,
+  AdminStatsRoute: AdminStatsRoute,
+  AdminTeamRoute: AdminTeamRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   ProcessingRoute: ProcessingRoute,
 }
 export const routeTree = rootRouteImport

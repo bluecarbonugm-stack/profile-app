@@ -23,6 +23,12 @@ interface Props {
 export function Toolbar({ onNew, onSave, onLoad, onRunAll, onClear, onLoadTemplate }: Props) {
   return (
     <div className="flex h-12 shrink-0 items-center gap-1 border-b border-border bg-card px-3">
+      <div className="mr-2 flex items-baseline gap-2 border-r border-border pr-3">
+        <span className="text-sm font-semibold tracking-tight text-primary">PRISM</span>
+        <span className="eyebrow hidden text-muted-foreground/80 lg:inline">
+          Shallow-water Mapping Workbench
+        </span>
+      </div>
       <ToolbarButton icon={FilePlus2} onClick={onNew}>
         New
       </ToolbarButton>

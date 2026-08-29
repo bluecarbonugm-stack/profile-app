@@ -1,25 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/shared/components/ui/sonner";
 
 const Workbench = lazy(() =>
-  import("@/components/processing/Workbench").then((m) => ({ default: m.Workbench })),
+  import("@/features/processing/components/Workbench").then((m) => ({ default: m.Workbench })),
 );
 
 export const Route = createFileRoute("/processing")({
   head: () => ({
     meta: [
-      { title: "Processing Workbench — Blue Carbon Research Group" },
+      { title: "Processing Workbench - Blue Carbon Research Group" },
       {
         name: "description",
         content:
           "Kanvas node-based untuk merancang alur pemrosesan citra perairan dangkal: koreksi sunglint & kolom air, klasifikasi Random Forest, dan analisis multi-temporal.",
       },
-      { property: "og:title", content: "Processing Workbench — Blue Carbon Research Group" },
+      { property: "og:title", content: "Processing Workbench - Blue Carbon Research Group" },
       {
         property: "og:description",
         content:
-          "Rancang pipeline geospasial habitat perairan dangkal dengan drag-and-drop node — terinspirasi Orange3.",
+          "Rancang pipeline geospasial habitat perairan dangkal dengan drag-and-drop node - terinspirasi Orange3.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -24,7 +24,7 @@ interface Props {
   result?: NodeRunResult;
 }
 
-// Mocked deterministic results per spec — enough to convey the "vibe" of results.
+// Mocked deterministic results per spec - enough to convey the "vibe" of results.
 const varImportance = [
   { name: "DII_B2B3", value: 0.28 },
   { name: "B3", value: 0.19 },
@@ -51,7 +51,7 @@ const confusion = [
 ];
 
 export function ResultViewer({ nodeId, specId, onClose, result }: Props) {
-  // Escape must close the dialog — it is the first thing anyone reaches for,
+  // Escape must close the dialog - it is the first thing anyone reaches for,
   // and without it the only way out is the small × in the corner.
   useEffect(() => {
     if (!nodeId) return;
@@ -343,7 +343,7 @@ function NestedValue({ value }: { value: JsonValue }) {
                     const cell = (v as Record<string, JsonValue>)[column];
                     return (
                       <td key={column} className="border border-border px-2 py-1">
-                        {cell === undefined ? "—" : <ScalarText value={cell} />}
+                        {cell === undefined ? "-" : <ScalarText value={cell} />}
                       </td>
                     );
                   })}

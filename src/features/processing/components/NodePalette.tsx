@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
-import { ChevronDown, ChevronRight, Search } from "lucide-react";
+import { ChevronDown, ChevronRight, PanelLeftClose, PanelLeftOpen, Search } from "lucide-react";
 
 import { CATEGORIES, NODES, type CategoryId } from "@/features/processing/data/nodes-catalog";
 import { Input } from "@/shared/components/ui/input";
 import { cn } from "@/shared/lib/utils";
 
 export function NodePalette() {
+  const [collapsed, setCollapsed] = useState(false);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState<Record<CategoryId, boolean>>({
     io: true,
@@ -30,10 +31,35 @@ export function NodePalette() {
     e.dataTransfer.effectAllowed = "move";
   };
 
+  if (collapsed) {
+    return (
+      <aside className="relative h-full w-0 shrink-0 bg-card">
+        <button
+          type="button"
+          onClick={() => setCollapsed(false)}
+          aria-label="Buka node palette"
+          className="absolute left-2 top-3 z-20 grid h-8 w-8 place-items-center rounded-md border border-border bg-card text-muted-foreground shadow-sm transition-colors hover:bg-muted"
+        >
+          <PanelLeftOpen className="h-4 w-4" />
+        </button>
+      </aside>
+    );
+  }
+
   return (
     <aside className="flex h-full w-72 shrink-0 flex-col border-r border-border bg-card">
       <div className="shrink-0 border-b border-border p-3">
-        <h2 className="eyebrow mb-2.5 text-muted-foreground">Node Palette</h2>
+        <div className="mb-2.5 flex items-center justify-between">
+          <h2 className="eyebrow text-muted-foreground">Node Palette</h2>
+          <button
+            type="button"
+            onClick={() => setCollapsed(true)}
+            aria-label="Tutup node palette"
+            className="grid h-7 w-7 place-items-center rounded text-muted-foreground transition-colors hover:bg-muted"
+          >
+            <PanelLeftClose className="h-3.5 w-3.5" />
+          </button>
+        </div>
         <div className="relative">
           <Search
             aria-hidden="true"
@@ -60,7 +86,7 @@ export function NodePalette() {
         {CATEGORIES.map((cat) => {
           const items = filtered.filter((n) => n.category === cat.id);
           if (items.length === 0) return null;
-          // While searching, every matching group is forced open — collapsed
+          // While searching, every matching group is forced open - collapsed
           // results look like no results.
           const isOpen = query ? true : open[cat.id];
 

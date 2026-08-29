@@ -2,6 +2,8 @@
 // Structure mirrors CONTEXT.md sections A–G. Kept as data so the palette,
 // property panel, and default-node factory all read from a single source.
 
+import type { JsonValue } from "../api/types";
+
 export type PortType = "raster" | "vector" | "table" | "model" | "chart" | "any";
 
 export interface Port {
@@ -10,13 +12,16 @@ export interface Port {
   type: PortType;
 }
 
-export type ParamType = "text" | "number" | "select" | "checkbox" | "file";
+export type ParamType = "text" | "number" | "select" | "checkbox" | "file" | "json";
+
+/** Structured params (e.g. ROI sample points) travel as JSON, never as a string. */
+export type ParamValue = JsonValue;
 
 export interface Param {
   key: string;
   label: string;
   type: ParamType;
-  default?: string | number | boolean;
+  default?: ParamValue;
   options?: string[];
   help?: string;
   accept?: string;
@@ -250,20 +255,18 @@ export const NODES: NodeSpec[] = [
     inputs: [p("raster", "Raster", "raster"), p("roi", "ROI sunglint", "vector")],
     outputs: [p("out", "Raster ter-deglint", "raster"), p("chart", "Regresi R²", "chart")],
     params: [
-      { key: "nir", label: "Band NIR", type: "text", default: "B8" },
-      { key: "visible", label: "Band visible", type: "text", default: "B2,B3,B4" },
+      { key: "nir_band", label: "Band NIR (indeks, 1-based)", type: "number", default: 4 },
       {
-        key: "regression",
-        label: "Metode regresi",
-        type: "select",
-        options: ["OLS", "Robust"],
-        default: "OLS",
+        key: "visible_bands",
+        label: "Band visible (indeks, pisahkan koma)",
+        type: "text",
+        default: "1,2,3",
       },
       {
         key: "sample_points",
         label: "Sample points",
-        type: "text",
-        default: "[]",
+        type: "json",
+        default: [],
         hidden: true,
       },
     ],
@@ -299,12 +302,20 @@ export const NODES: NodeSpec[] = [
     inputs: [p("raster", "Raster (ln)", "raster"), p("substrate", "Sampel substrat", "vector")],
     outputs: [p("out", "Raster DII", "raster"), p("chart", "Regresi ki/kj", "chart")],
     params: [
-      { key: "pairs", label: "Pasangan band", type: "text", default: "B2-B3, B2-B4, B3-B4" },
+      { key: "blue_band", label: "Band biru (indeks, 1-based)", type: "number", default: 1 },
+      { key: "green_band", label: "Band hijau (indeks, 1-based)", type: "number", default: 2 },
+      { key: "red_band", label: "Band merah (indeks, 1-based)", type: "number", default: 3 },
+      {
+        key: "inverse_transform",
+        label: "Terapkan inverse transform",
+        type: "checkbox",
+        default: true,
+      },
       {
         key: "sample_points",
         label: "Sample points",
-        type: "text",
-        default: "[]",
+        type: "json",
+        default: [],
         hidden: true,
       },
     ],
@@ -492,35 +503,16 @@ export const NODES: NodeSpec[] = [
     name: "Random Forest: Train Model",
     category: "ml",
     description: "Latih model Random Forest dari citra + sampel training.",
-    inputs: [p("image", "Citra", "raster"), p("labels", "Raster sampel training", "raster")],
+    inputs: [p("image", "Citra", "raster"), p("labels", "Vektor sampel training", "vector")],
     outputs: [
-      p("model", "Model RF", "model"),
+      p("out", "Raster klasifikasi", "raster"),
       p("importance", "Variable importance", "chart"),
       p("oob", "OOB report", "chart"),
     ],
     params: [
-      {
-        key: "nTree",
-        label: "nTree",
-        type: "select",
-        options: ["50", "100", "200", "300", "500"],
-        default: "300",
-      },
-      {
-        key: "vars",
-        label: "Pemilihan variabel",
-        type: "select",
-        options: ["sqrt", "log"],
-        default: "sqrt",
-      },
-      {
-        key: "impurity",
-        label: "Fungsi impurity",
-        type: "select",
-        options: ["Gini", "Entropy"],
-        default: "Gini",
-      },
-      { key: "grid", label: "Uji semua kombinasi", type: "checkbox", default: false },
+      { key: "label_field", label: "Field kelas", type: "text", default: "class" },
+      { key: "n_estimators", label: "nTree", type: "number", default: 200 },
+      { key: "max_depth", label: "Max depth (kosong = unlimited)", type: "text", default: "" },
     ],
   },
   {
