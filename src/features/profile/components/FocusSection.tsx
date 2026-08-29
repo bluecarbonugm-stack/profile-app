@@ -37,7 +37,7 @@ export function FocusSection({ index, pillars }: { index: number; pillars: Focus
               className="reveal-item group flex flex-col gap-4 bg-card p-6 transition-colors hover:-translate-y-0.5 hover:bg-muted/40 hover:shadow-md"
             >
               <div className="flex items-center justify-between">
-                <span className="grid h-10 w-10 place-items-center rounded-md bg-accent/10 text-accent transition-colors group-hover:bg-accent/15">
+                <span className="grid h-10 w-10 place-items-center rounded-md bg-accent/15 text-accent-ink transition-colors group-hover:bg-accent/25">
                   <Icon className="h-[1.125rem] w-[1.125rem]" />
                 </span>
                 <span className="eyebrow tabular text-muted-foreground/60">

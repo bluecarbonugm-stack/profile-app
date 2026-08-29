@@ -59,7 +59,7 @@ function TeamCard({ member }: { member: TeamMember }) {
       <div className="min-w-0 flex-1">
         <h3 className="text-sm font-medium leading-snug">{member.name}</h3>
         {member.role && <p className="mt-1 text-xs text-muted-foreground">{member.role}</p>}
-        {member.field && <p className="eyebrow mt-2 text-accent">{member.field}</p>}
+        {member.field && <p className="eyebrow mt-2 text-accent-ink">{member.field}</p>}
         {member.bio && (
           <p className="mt-3 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
             {member.bio}
@@ -71,7 +71,7 @@ function TeamCard({ member }: { member: TeamMember }) {
             {member.email && (
               <a
                 href={`mailto:${member.email}`}
-                className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-accent"
+                className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-accent-ink"
               >
                 <Mail className="h-3 w-3" /> Email
               </a>
@@ -81,7 +81,7 @@ function TeamCard({ member }: { member: TeamMember }) {
                 href={member.scholarUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-accent"
+                className="inline-flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-accent-ink"
               >
                 <GraduationCap className="h-3 w-3" /> Scholar
               </a>

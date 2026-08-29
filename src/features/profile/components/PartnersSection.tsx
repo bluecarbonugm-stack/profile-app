@@ -41,10 +41,10 @@ function PartnerCard({ partner }: { partner: Partner }) {
             alt={partner.name}
             loading="lazy"
             className="max-h-9 w-auto max-w-full object-contain grayscale opacity-75 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-            fallback={<Building2 className="h-5 w-5 text-accent" />}
+            fallback={<Building2 className="h-5 w-5 text-accent-ink" />}
           />
         ) : (
-          <Building2 className="h-5 w-5 text-accent" />
+          <Building2 className="h-5 w-5 text-accent-ink" />
         )}
       </div>
       <p className="text-xs font-medium leading-snug whitespace-nowrap">{partner.name}</p>

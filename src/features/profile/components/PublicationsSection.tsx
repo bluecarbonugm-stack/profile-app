@@ -48,17 +48,17 @@ function PublicationRow({ pub }: { pub: Publication }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <h3 className="text-sm font-medium leading-snug transition-colors group-hover:text-accent">
+        <h3 className="text-sm font-medium leading-snug transition-colors group-hover:text-accent-ink">
           {pub.title}
         </h3>
         {pub.authors && <p className="mt-1.5 text-xs text-muted-foreground">{pub.authors}</p>}
-        {meta && <p className="eyebrow mt-2 text-accent">{meta}</p>}
+        {meta && <p className="eyebrow mt-2 text-accent-ink">{meta}</p>}
       </div>
 
       {/* Only present when the sheet has a link - a control that goes nowhere
           is worse than no control. */}
       {pub.url && (
-        <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" />
+        <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent-ink" />
       )}
     </>
   );
