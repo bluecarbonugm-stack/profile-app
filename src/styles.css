@@ -39,6 +39,9 @@
   --color-port-table: var(--port-table);
   --color-port-model: var(--port-model);
   --color-port-chart: var(--port-chart);
+  --shadow-sm: var(--shadow-brand-sm);
+  --shadow-md: var(--shadow-brand-md);
+  --shadow-lg: var(--shadow-brand-lg);
   --font-display: "Instrument Serif", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -78,6 +81,23 @@
   --port-table: oklch(0.78 0.15 90);
   --port-model: oklch(0.55 0.2 305);
   --port-chart: oklch(0.7 0.01 250);
+
+  /* Motion. One easing curve, three durations - every transition in the app
+     picks from this set rather than inventing its own timing. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 400ms;
+  --duration-slow: 700ms;
+
+  /* Shadows. Soft and brand-tinted (mixed with the deep navy) instead of flat
+     gray - reads as a considered choice rather than a Tailwind default. */
+  --shadow-brand-sm: 0 1px 2px color-mix(in oklab, var(--ocean-deep) 10%, transparent);
+  --shadow-brand-md:
+    0 2px 4px color-mix(in oklab, var(--ocean-deep) 6%, transparent),
+    0 8px 20px -6px color-mix(in oklab, var(--ocean-deep) 16%, transparent);
+  --shadow-brand-lg:
+    0 4px 8px color-mix(in oklab, var(--ocean-deep) 6%, transparent),
+    0 16px 40px -10px color-mix(in oklab, var(--ocean-deep) 22%, transparent);
 }
 
 .dark {
@@ -117,6 +137,13 @@
   h3 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
+  }
+  /* One focus treatment for the whole app - do not add a second ring per
+     component, it makes focus states look inconsistent. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
@@ -221,4 +248,92 @@
 }
 *::-webkit-scrollbar {
   display: none;
+}
+
+/*
+ * Scroll-reveal motion. Applied by the shared <Section> primitive
+ * (src/shared/components/layout/section.tsx) via useReveal, so every band on
+ * the page animates in consistently without each section wiring its own
+ * IntersectionObserver. Cards opt in individually for a slightly later,
+ * shorter reveal (see .reveal-item).
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+.reveal-visible .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger children slightly instead of animating as one flat block. Covers
+   grids up to 8 items - more than that, later items just share the last delay. */
+.reveal-item:nth-child(1) {
+  transition-delay: 0ms;
+}
+.reveal-item:nth-child(2) {
+  transition-delay: 60ms;
+}
+.reveal-item:nth-child(3) {
+  transition-delay: 120ms;
+}
+.reveal-item:nth-child(4) {
+  transition-delay: 180ms;
+}
+.reveal-item:nth-child(5) {
+  transition-delay: 240ms;
+}
+.reveal-item:nth-child(6) {
+  transition-delay: 300ms;
+}
+.reveal-item:nth-child(n + 7) {
+  transition-delay: 360ms;
+}
+
+/* Infinite horizontal scroller for the partner logo band. Track is rendered
+   twice back-to-back in the component; animating to -50% loops seamlessly. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 36s) linear infinite;
+}
+.marquee-viewport:hover .animate-marquee {
+  animation-play-state: paused;
+}
+/* Fade the track out at the container edges instead of an abrupt cut. */
+.marquee-viewport {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-marquee {
+    animation: none;
+  }
 }

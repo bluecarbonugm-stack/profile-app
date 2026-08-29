@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { cn } from "@/shared/lib/utils";
+import { useReveal } from "@/shared/hooks/use-reveal";
 
 /**
  * Page-level layout primitives.
@@ -35,8 +36,14 @@ export function Section({
   containerClassName?: string;
   children: ReactNode;
 }) {
+  const { ref, visible } = useReveal<HTMLElement>();
+
   return (
-    <section id={id} className={cn(TONE_CLASS[tone], className)}>
+    <section
+      id={id}
+      ref={ref}
+      className={cn("reveal", visible && "reveal-visible", TONE_CLASS[tone], className)}
+    >
       <div className={cn("mx-auto w-full max-w-[1200px] px-6 py-20 md:py-28", containerClassName)}>
         {children}
       </div>
