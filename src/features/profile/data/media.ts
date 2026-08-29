@@ -40,7 +40,11 @@ export function initialsOf(name: string): string {
   const words = name
     .replace(/\b(?:Prof|Dr|Ir|S\.Si|M\.Sc|M\.Si|Ph\.?D|S\.T)\.?\b/gi, "")
     .split(/\s+/)
-    .filter(Boolean);
+    // The title regex above leaves a trailing "." behind on abbreviations
+    // like "Prof." (\b doesn't match between two non-word chars, so the dot
+    // survives as its own token) - drop tokens with no letters instead of
+    // treating a stray "." as someone's first name.
+    .filter((word) => /[a-zA-Z]/.test(word));
   if (words.length === 0) return "?";
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
   return (words[0][0] + words[words.length - 1][0]).toUpperCase();

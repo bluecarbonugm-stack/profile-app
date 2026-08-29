@@ -1,6 +1,7 @@
 import { GraduationCap, Mail } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
+import { SafeImage } from "@/shared/components/media/safe-image";
 import { initialsOf, resolveImageUrl } from "../data/media";
 import type { TeamMember } from "../types";
 
@@ -32,23 +33,27 @@ export function TeamSection({ index, members }: { index: number; members: TeamMe
 
 function TeamCard({ member }: { member: TeamMember }) {
   const photo = resolveImageUrl(member.photo, 320);
+  const initialsAvatar = (
+    <div
+      aria-hidden="true"
+      className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ocean-gradient font-display text-lg text-white"
+    >
+      {initialsOf(member.name)}
+    </div>
+  );
 
   return (
     <li className="reveal-item relative flex gap-4 bg-card p-6 transition-all duration-300 hover:z-10 hover:-translate-y-0.5 hover:bg-muted/40 hover:shadow-md">
       {photo ? (
-        <img
+        <SafeImage
           src={photo}
           alt={member.name}
           loading="lazy"
           className="h-14 w-14 shrink-0 rounded-full object-cover ring-1 ring-border"
+          fallback={initialsAvatar}
         />
       ) : (
-        <div
-          aria-hidden="true"
-          className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ocean-gradient font-display text-lg text-white"
-        >
-          {initialsOf(member.name)}
-        </div>
+        initialsAvatar
       )}
 
       <div className="min-w-0 flex-1">

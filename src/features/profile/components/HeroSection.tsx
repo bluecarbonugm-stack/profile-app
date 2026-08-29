@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/shared/components/ui/button";
 import { BrandMark } from "@/shared/components/brand/brand-mark";
+import { SafeImage } from "@/shared/components/media/safe-image";
 import { resolveImageUrl } from "../data/media";
 import type { SiteInfo, Stat } from "../types";
 
@@ -13,11 +14,12 @@ export function HeroSection({ site, stats }: { site: SiteInfo; stats: Stat[] }) 
   return (
     <section className="relative isolate overflow-hidden bg-ocean-deep text-white">
       {heroImage && (
-        <img
+        <SafeImage
           src={heroImage}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-35"
+          fallback={null}
         />
       )}
       <div className="absolute inset-0 -z-10 bg-ocean-gradient opacity-90" />
@@ -30,7 +32,12 @@ export function HeroSection({ site, stats }: { site: SiteInfo; stats: Stat[] }) 
             className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 ring-1 ring-white/20 backdrop-blur-sm"
           >
             {logo ? (
-              <img src={logo} alt={site.organizationName} className="h-7 w-7 object-contain" />
+              <SafeImage
+                src={logo}
+                alt={site.organizationName}
+                className="h-7 w-7 object-contain"
+                fallback={<BrandMark className="h-6 w-6 text-sand" />}
+              />
             ) : (
               <BrandMark className="h-6 w-6 text-sand" />
             )}

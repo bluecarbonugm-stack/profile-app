@@ -1,6 +1,7 @@
 import { Building2 } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
+import { SafeImage } from "@/shared/components/media/safe-image";
 import { resolveImageUrl } from "../data/media";
 import type { Partner } from "../types";
 
@@ -35,11 +36,12 @@ function PartnerCard({ partner }: { partner: Partner }) {
     <>
       <div className="flex h-9 items-center">
         {logo ? (
-          <img
+          <SafeImage
             src={logo}
             alt={partner.name}
             loading="lazy"
             className="max-h-9 w-auto max-w-full object-contain grayscale opacity-75 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+            fallback={<Building2 className="h-5 w-5 text-accent" />}
           />
         ) : (
           <Building2 className="h-5 w-5 text-accent" />

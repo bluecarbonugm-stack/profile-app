@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MapPin } from "lucide-react";
 
 import { Section, SectionHeader } from "@/shared/components/layout/section";
@@ -27,44 +28,54 @@ export function GallerySection({ index, items }: { index: number; items: Gallery
       />
 
       <ul className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-        {items.map((item, i) => {
-          const image = resolveImageUrl(item.image, 600);
-          return (
-            <li key={item.title} className="reveal-item">
-              <figure
-                className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border"
-                style={
-                  image
-                    ? undefined
-                    : { background: PLACEHOLDER_TINTS[i % PLACEHOLDER_TINTS.length] }
-                }
-              >
-                {image ? (
-                  <img
-                    src={image}
-                    alt={item.caption ?? item.title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                ) : (
-                  <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-25" />
-                )}
-
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 pt-10">
-                  <span className="block text-[11px] font-medium leading-tight text-white">
-                    {item.title}
-                  </span>
-                  {item.location && (
-                    <span className="mt-1 flex items-center gap-1 text-[10px] text-white/65">
-                      <MapPin className="h-2.5 w-2.5" /> {item.location}
-                    </span>
-                  )}
-                </figcaption>
-              </figure>
-            </li>
-          );
-        })}
+        {items.map((item, i) => (
+          <GalleryCard
+            key={item.title}
+            item={item}
+            tint={PLACEHOLDER_TINTS[i % PLACEHOLDER_TINTS.length]}
+          />
+        ))}
       </ul>
     </Section>
+  );
+}
+
+function GalleryCard({ item, tint }: { item: GalleryItem; tint: string }) {
+  const image = resolveImageUrl(item.image, 600);
+  // A failed load falls back to the same tinted placeholder as "no image
+  // set" - a typo'd URL should look intentional, not like a broken page.
+  const [failed, setFailed] = useState(false);
+  const showImage = Boolean(image) && !failed;
+
+  return (
+    <li className="reveal-item">
+      <figure
+        className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border"
+        style={showImage ? undefined : { background: tint }}
+      >
+        {showImage ? (
+          <img
+            src={image}
+            alt={item.caption ?? item.title}
+            loading="lazy"
+            onError={() => setFailed(true)}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+        ) : (
+          <div aria-hidden="true" className="absolute inset-0 bg-grid opacity-25" />
+        )}
+
+        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 pt-10">
+          <span className="block text-[11px] font-medium leading-tight text-white">
+            {item.title}
+          </span>
+          {item.location && (
+            <span className="mt-1 flex items-center gap-1 text-[10px] text-white/65">
+              <MapPin className="h-2.5 w-2.5" /> {item.location}
+            </span>
+          )}
+        </figcaption>
+      </figure>
+    </li>
   );
 }
