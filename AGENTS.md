@@ -37,6 +37,14 @@ panel admin (`/admin`) untuk mengelola konten profil.
 - Section menyembunyikan dirinya saat datanya kosong, dan nomor urutnya dihitung
   dari section yang tampil (lihat `ProfilePage.tsx`).
 - Tema `dark` dipasang di `__root.tsx` per rute, bukan di dalam komponen rute.
+- `<Section>` sudah membawa scroll-reveal (`useReveal` +
+  `.reveal`/`.reveal-visible`) — jangan tambah IntersectionObserver sendiri.
+  Kartu dalam grid yang ingin animasi bertahap memakai className
+  `reveal-item`, bukan menulis delay manual.
+- Identitas visual organisasi memakai `<BrandMark>`
+  (`@/shared/components/brand/brand-mark`) sebagai fallback, dan
+  `site.logoUrl`/`site.heroImage` saat admin sudah mengisinya — jangan pakai
+  ikon lucide generik (mis. `Waves`) sebagai logo.
 
 ## Data konten profil
 
