@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ProcessingRouteImport } from './routes/processing'
+import { Route as ZedCloneRouteImport } from './routes/zed-clone'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminFocusRouteImport } from './routes/admin/focus'
 import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
@@ -35,6 +36,11 @@ const AdminRoute = AdminRouteImport.update({
 const ProcessingRoute = ProcessingRouteImport.update({
   id: '/processing',
   path: '/processing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ZedCloneRoute = ZedCloneRouteImport.update({
+  id: '/zed-clone',
+  path: '/zed-clone',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/processing': typeof ProcessingRoute
+  '/zed-clone': typeof ZedCloneRoute
   '/admin/focus': typeof AdminFocusRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
@@ -100,6 +107,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/processing': typeof ProcessingRoute
+  '/zed-clone': typeof ZedCloneRoute
   '/admin/focus': typeof AdminFocusRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/processing': typeof ProcessingRoute
+  '/zed-clone': typeof ZedCloneRoute
   '/admin/focus': typeof AdminFocusRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/processing'
+    | '/zed-clone'
     | '/admin/focus'
     | '/admin/gallery'
     | '/admin/login'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/processing'
+    | '/zed-clone'
     | '/admin/focus'
     | '/admin/gallery'
     | '/admin/login'
@@ -158,6 +169,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/processing'
+    | '/zed-clone'
     | '/admin/focus'
     | '/admin/gallery'
     | '/admin/login'
@@ -173,6 +185,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
   ProcessingRoute: typeof ProcessingRoute
+  ZedCloneRoute: typeof ZedCloneRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -196,6 +209,13 @@ declare module '@tanstack/react-router' {
       path: '/processing'
       fullPath: '/processing'
       preLoaderRoute: typeof ProcessingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/zed-clone': {
+      id: '/zed-clone'
+      path: '/zed-clone'
+      fullPath: '/zed-clone'
+      preLoaderRoute: typeof ZedCloneRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -294,6 +314,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   ProcessingRoute: ProcessingRoute,
+  ZedCloneRoute: ZedCloneRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
