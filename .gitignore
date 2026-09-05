@@ -51,3 +51,6 @@ blob-report/
 gate-*.txt
 route-structure.txt
 routes-full.txt
+
+# Vercel build output (Build Output API)
+.vercel

@@ -88,7 +88,6 @@ function mapSiteRow(row: Record<string, unknown>): ProfileContent["site"] {
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapListRows(
   rows: Record<string, unknown>[],
   mapper: (row: Record<string, unknown>) => Record<string, unknown>,
